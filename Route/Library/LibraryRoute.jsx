@@ -4,9 +4,9 @@ import { Library } from "./Library";
 const Stack = createStackNavigator();
 export const LibraryRoute = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen options={{headerShown:false}} name="LibraryPage" component={Library} />
-      <Stack.Screen options={{headerShown:false}} name="Playlist" component={Playlist} />
+    <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Screen  name="LibraryPage" component={Library} />
+      <Stack.Screen  name="Playlist" component={Playlist} />
     </Stack.Navigator>
   );
 };

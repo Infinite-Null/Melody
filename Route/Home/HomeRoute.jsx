@@ -4,9 +4,9 @@ import { Playlist } from "../Playlist";
 const Stack = createStackNavigator();
 export const HomeRoute = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen options={{headerShown:false}} name="HomePage" component={Home} />
-      <Stack.Screen options={{headerShown:false}} name="Playlist" component={Playlist} />
+    <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Screen  name="HomePage" component={Home} />
+      <Stack.Screen  name="Playlist" component={Playlist} />
     </Stack.Navigator>
   );
 };
