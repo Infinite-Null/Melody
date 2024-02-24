@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 export const RootRoute = () => {
   return (
     <>
-      <Tab.Navigator  screenOptions={{tabBarLabelStyle:{color:"white"},headerShown:false, tabBarStyle: {
+      <Tab.Navigator  screenOptions={{tabBarLabelStyle:{color:"rgb(154,153,153)",fontWeight:"bold"},headerShown:false, tabBarStyle: {
           backgroundColor:"rgb(28,27,28)",
           borderColor:"rgb(22,22,24)",
           elevation:10}}}>
@@ -18,7 +18,7 @@ export const RootRoute = () => {
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => (
             focused ? <Animated.View key={Math.random() + Math.random() + Math.random()} entering={FadeInDown.duration(200)} style={{
-              backgroundColor:"rgb(222,222,222)",
+              backgroundColor:"rgb(173,173,173)",
               height:size + 15,
               width:size + 15,
               alignItems:"center",
@@ -33,7 +33,7 @@ export const RootRoute = () => {
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => (
             focused ? <Animated.View key={Math.random() + Math.random() + Math.random()} entering={FadeInDown.duration(200)} style={{
-              backgroundColor:"rgb(222,222,222)",
+              backgroundColor:"rgb(173,173,173)",
               height:size + 15,
               width:size + 15,
               alignItems:"center",
@@ -48,7 +48,7 @@ export const RootRoute = () => {
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => (
             focused ? <Animated.View key={Math.random() + Math.random() + Math.random()} entering={FadeInDown.duration(200)} style={{
-              backgroundColor:"rgb(222,222,222)",
+              backgroundColor:"rgb(173,173,173)",
               height:size + 15,
               width:size + 15,
               alignItems:"center",
