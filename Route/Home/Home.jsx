@@ -1,7 +1,9 @@
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { MainWrapper } from "../../Layout/MainWrapper";
 export const Home = () => {
   return (
-    <Icon name="rocket" size={30} color="#900" />
+    <MainWrapper>
+
+    </MainWrapper>
   );
 };
 

@@ -5,27 +5,58 @@ import { LibraryRoute } from "./Library/LibraryRoute";
 import Entypo from "react-native-vector-icons/Entypo";
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { View } from "react-native";
 const Tab = createBottomTabNavigator();
 export const RootRoute = () => {
   return (
     <>
-      <Tab.Navigator screenOptions={{ headerShown:false}}>
+      <Tab.Navigator  screenOptions={{tabBarLabelStyle:{color:"white"},headerShown:false, tabBarStyle: {
+          backgroundColor:"rgb(25,25,24)",
+          borderColor:"rgb(22,22,24)",
+          elevation:10}}}>
         <Tab.Screen options={{
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => (
-            <Octicons name="home" color={color} size={focused ? size + 2 : size} />
+            focused ? <View style={{
+              backgroundColor:"rgb(222,222,222)",
+              height:size + 15,
+              width:size + 15,
+              alignItems:"center",
+              justifyContent:"center",
+              borderRadius:10,
+              marginBottom:10,
+              elevation:4,
+            }}><Octicons name="home" color={"black"} size={size - 5} /></View> : <Octicons name="home" color={color} size={size-2} />
           ),
         }} name="Home" component={HomeRoute} />
         <Tab.Screen options={{
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => (
-            <Entypo name="compass" color={color} size={focused ? size + 2 : size} />
+            focused ? <View style={{
+              backgroundColor:"rgb(222,222,222)",
+              height:size + 15,
+              width:size + 15,
+              alignItems:"center",
+              justifyContent:"center",
+              borderRadius:10,
+              marginBottom:10,
+              elevation:4,
+            }}><Entypo name="compass" color={"black"} size={size - 5} /></View> : <Entypo name="compass" color={color} size={size - 2} />
           ),
         }} name="Discover" component={DiscoverRoute} />
         <Tab.Screen options={{
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ color, size, focused }) => (
-            <MaterialCommunityIcons name="music-box-multiple-outline" color={color} size={focused ? size + 2 : size} />
+            focused ? <View style={{
+              backgroundColor:"rgb(222,222,222)",
+              height:size + 15,
+              width:size + 15,
+              alignItems:"center",
+              justifyContent:"center",
+              borderRadius:10,
+              marginBottom:10,
+              elevation:4,
+            }}><MaterialCommunityIcons name="music-box-multiple-outline" color={"black"} size={size - 5} /></View> : <MaterialCommunityIcons name="music-box-multiple-outline" color={color} size={size - 2} />
           ),
         }}  name="Library" component={LibraryRoute} />
       </Tab.Navigator>
