@@ -16,6 +16,5 @@ export const Logo = ({text}) => {
         fontSize:theme.colors.headingSize+10,
       }}>{text}</Text>
     </View>
-
   );
 };

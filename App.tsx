@@ -12,7 +12,7 @@ export default function App(){
       ...DefaultTheme.colors,
       primary: 'rgb(43,68,169)',
       text: 'rgb(217,217,217)',
-      textSecondary: 'rgb(182,182,182)',
+      textSecondary: 'rgb(201,201,201)',
       white : "white",
       spacing : 10,
       headingSize:width * 0.085,
