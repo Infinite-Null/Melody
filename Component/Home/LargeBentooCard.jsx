@@ -14,6 +14,7 @@ export const LargeBentooCard = ({width,text,subtext,onPress,image,backgroundColo
       borderRadius:10,
       elevation:10,
       flexDirection:"row",
+      overflow:"hidden",
     }}>
     <View style={{
       padding:theme.colors.spacing,
