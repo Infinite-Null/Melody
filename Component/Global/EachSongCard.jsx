@@ -2,7 +2,7 @@ import { Image, View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 
-export const EachSongCard = ({title,artist,image}) => {
+export const EachSongCard = ({title,artist,image,width}) => {
   return (
     <View style={{
       flexDirection:'row',
@@ -11,6 +11,7 @@ export const EachSongCard = ({title,artist,image}) => {
       maxHeight:60,
       elevation:10,
       marginVertical:5,
+      width:width ? width : "100%",
     }}>
       <Image source={{
         uri:image,

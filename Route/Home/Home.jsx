@@ -3,12 +3,13 @@ import { Spacer } from "../../Component/Global/Spacer";
 import { Logo } from "../../Component/Global/Logo";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
 import { SmallBentooCard } from "../../Component/Home/SmallBentooCard";
-import { ScrollView, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import { SearchBar } from "../../Component/Home/SearchBar";
 import { Heading } from "../../Component/Global/Heading";
 import { EachSongCard } from "../../Component/Global/EachSongCard";
 import { TrendingSongLayout } from "../../Layout/TrendingSongLayout";
 export const Home = () => {
+  const width = Dimensions.get("window").width
   return (
     <MainWrapper>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
@@ -34,16 +35,16 @@ export const Home = () => {
         <Spacer/>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <TrendingSongLayout>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do forever"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
           </TrendingSongLayout>
           <TrendingSongLayout>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
-            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
+            <EachSongCard image={"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg"} title={"Love Me Like you Do"} artist={"Ankit Kumar Shah"} width={width * 0.7}/>
           </TrendingSongLayout>
         </ScrollView>
       </ScrollView>
