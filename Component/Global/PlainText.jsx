@@ -7,7 +7,7 @@ export const PlainText = ({text}) => {
     <Text style={{
       color:theme.colors.textSecondary,
       fontSize:theme.colors.fontSize,
-      fontWeight:600,
+      fontWeight:500,
     }}>{text}</Text>
   );
 };
