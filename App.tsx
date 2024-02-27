@@ -10,15 +10,15 @@ export default function App(){
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: 'rgb(43,68,169)',
-      text: 'rgb(217,217,217)',
-      textSecondary: 'rgb(201,201,201)',
+      primary: '#8EBBFF',
+      text: '#F4F5FC',
+      textSecondary: '#CCCCCC',
       white : "white",
       spacing : 10,
       headingSize:width * 0.085,
       fontSize:width * 0.045,
       disabled:'rgb(131,131,131)',
-      background:'rgb(22,22,24)',
+      background:'#24293E',
     },
   };
   return  <NavigationContainer theme={MyTheme}>

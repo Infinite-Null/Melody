@@ -1,14 +1,14 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { Spacer } from "../../Component/Global/Spacer";
-import { Logo } from "../../Component/Global/Logo";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
 import { SmallBentooCard } from "../../Component/Home/SmallBentooCard";
-import { Dimensions, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { SearchBar } from "../../Component/Home/SearchBar";
 import { Heading } from "../../Component/Global/Heading";
-import { EachSongCard } from "../../Component/Global/EachSongCard";
-import { TrendingSongLayout } from "../../Layout/TrendingSongLayout";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
+import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
+import { RouteHeading } from "../../Component/Global/RouteHeading";
+import { useTheme } from "@react-navigation/native";
 export const Home = () => {
   const songs = [
     {
@@ -62,26 +62,19 @@ export const Home = () => {
       artist:"Ankit Kumar Shah",
     },
   ]
+  const theme = useTheme()
   return (
     <MainWrapper>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
         paddingBottom:20,
       }}>
         <Spacer/>
-        <Logo text={"elody"}/>
         <Spacer/>
-        <SearchBar/>
+        <RouteHeading text={"Home"}/>
         <Spacer/>
-        <LargeBentooCard text={"Top Most Hitz Music in 2023"} subtext={"2023 hitz"} width={"100%"} onPress={()=>{}} backgroundColor={"rgb(78,155,76)"} image={require("../../Images/musicListning.png")}/>
         <Spacer/>
-        <View style={{
-          flexDirection:"row",
-          justifyContent:'space-between',
-          gap:10,
-        }}>
-          <SmallBentooCard width={"49%"} image={require("../../Images/relax.png")} backgroundColor={"rgb(77,87,136)"} text={"RELAX"}/>
-          <SmallBentooCard width={"49%"} image={require("../../Images/listen.png")} backgroundColor={"rgb(97,77,136)"} text={"POP"}/>
-        </View>
+        <LargeBentooCard text={"Top Most Hitz Music in 2023"} subtext={"2023 hitz"} width={"100%"} onPress={()=>{}} backgroundColor={theme.colors.primary} image={require("../../Images/musicListning.png")}/>
+        <Spacer/>
         <Spacer/>
         <Heading text={"Trending Songs"}/>
         <Spacer/>
@@ -90,6 +83,7 @@ export const Home = () => {
         <Heading text={"Romantic Top 40"}/>
         <Spacer/>
         <HorizontalScrollSongs songs={songs}/>
+        <EachPlaylistCard/>
       </ScrollView>
     </MainWrapper>
   );
