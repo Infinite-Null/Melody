@@ -5,7 +5,7 @@ export const PlainText = ({text}) => {
   const theme = useTheme()
   return (
     <Text style={{
-      color:theme.colors.textSecondary,
+      color:theme.colors.text,
       fontSize:theme.colors.fontSize,
       fontWeight:500,
     }}>{text}</Text>

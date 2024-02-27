@@ -1,14 +1,13 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { Spacer } from "../../Component/Global/Spacer";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
-import { SmallBentooCard } from "../../Component/Home/SmallBentooCard";
-import { ScrollView, View } from "react-native";
-import { SearchBar } from "../../Component/Home/SearchBar";
+import { ScrollView } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { RouteHeading } from "../../Component/Global/RouteHeading";
 import { useTheme } from "@react-navigation/native";
+import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 export const Home = () => {
   const songs = [
     {
@@ -68,22 +67,26 @@ export const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
         paddingBottom:20,
       }}>
-        <Spacer/>
-        <Spacer/>
         <RouteHeading text={"Home"}/>
-        <Spacer/>
-        <Spacer/>
         <LargeBentooCard text={"Top Most Hitz Music in 2023"} subtext={"2023 hitz"} width={"100%"} onPress={()=>{}} backgroundColor={theme.colors.primary} image={require("../../Images/musicListning.png")}/>
-        <Spacer/>
-        <Spacer/>
-        <Heading text={"Trending Songs"}/>
-        <Spacer/>
-        <HorizontalScrollSongs songs={songs}/>
-        <Spacer/>
-        <Heading text={"Romantic Top 40"}/>
-        <Spacer/>
-        <HorizontalScrollSongs songs={songs}/>
-        <EachPlaylistCard/>
+        <PaddingConatiner>
+          <Heading text={"Recommended"}/>
+        </PaddingConatiner>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+          paddingLeft:13,
+        }}>
+          <EachPlaylistCard/>
+          <EachPlaylistCard/>
+          <EachPlaylistCard/>
+          <EachPlaylistCard/>
+          <EachPlaylistCard/>
+        </ScrollView>
+        <PaddingConatiner>
+          <Heading text={"Trending Songs"}/>
+          <HorizontalScrollSongs songs={songs}/>
+          <Heading text={"Romantic Top 40"}/>
+          <HorizontalScrollSongs songs={songs}/>
+        </PaddingConatiner>
       </ScrollView>
     </MainWrapper>
   );

@@ -14,6 +14,7 @@ export const EachPlaylistCard = () => {
       backgroundColor:"rgb(55,55,79)",
       padding:10,
       elevation:3,
+      marginRight:10,
     }}>
       <Image source={{
         uri:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",

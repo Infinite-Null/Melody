@@ -4,7 +4,7 @@ import { useTheme } from "@react-navigation/native";
 export const MainWrapper = ({children}) => {
   const theme = useTheme()
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:theme.colors.background,paddingHorizontal:theme.colors.spacing}}>
+    <SafeAreaView style={{flex:1,backgroundColor:theme.colors.background}}>
       {children}
     </SafeAreaView>
   );
