@@ -8,6 +8,8 @@ import { RouteHeading } from "../../Component/Global/RouteHeading";
 import { useTheme } from "@react-navigation/native";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import { EachAlbumCard } from "../../Component/Global/EachAlbumCard";
+import { Spacer } from "../../Component/Global/Spacer";
+import { RenderTopCharts } from "../../Component/Home/RenderTopCharts";
 export const Home = () => {
   const songs = [
     {
@@ -61,6 +63,33 @@ export const Home = () => {
       artist:"Ankit Kumar Shah",
     },
   ]
+  const topChats = [
+    {
+      name:"Most Searched",
+      follower:"1.2k follower",
+      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
+    },
+    {
+      name:"Most Searched",
+      follower:"1.2k follower",
+      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
+    },
+    {
+      name:"Most Searched",
+      follower:"1.2k follower",
+      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
+    },
+    {
+      name:"Most Searched",
+      follower:"1.2k follower",
+      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
+    },
+    {
+      name:"Most Searched",
+      follower:"1.2k follower",
+      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
+    },
+  ]
   const theme = useTheme()
   return (
     <MainWrapper>
@@ -104,6 +133,26 @@ export const Home = () => {
         <PaddingConatiner>
           <Heading text={"Top Charts"}/>
         </PaddingConatiner>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+          paddingLeft:13,
+        }}>
+          <RenderTopCharts playlist={topChats}/>
+       </ScrollView>
+        <PaddingConatiner>
+        <Heading text={"Recommended Albums"}/>
+      </PaddingConatiner>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+        paddingLeft:13,
+      }}>
+        <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+          {name:"Ankit"},{name:"Esha"}]}/>
+        <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+          {name:"Ankit"},{name:"Esha"}]}/>
+        <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+          {name:"Ankit"},{name:"Esha"}]}/>
+        <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+          {name:"Ankit"},{name:"Esha"}]}/>
+      </ScrollView>
       </ScrollView>
     </MainWrapper>
   );
