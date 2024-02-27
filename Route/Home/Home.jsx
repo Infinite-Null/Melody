@@ -1,5 +1,4 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
-import { Spacer } from "../../Component/Global/Spacer";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
 import { ScrollView } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
@@ -8,6 +7,7 @@ import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { RouteHeading } from "../../Component/Global/RouteHeading";
 import { useTheme } from "@react-navigation/native";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
+import { EachAlbumCard } from "../../Component/Global/EachAlbumCard";
 export const Home = () => {
   const songs = [
     {
@@ -75,17 +75,34 @@ export const Home = () => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
           paddingLeft:13,
         }}>
-          <EachPlaylistCard/>
-          <EachPlaylistCard/>
-          <EachPlaylistCard/>
-          <EachPlaylistCard/>
-          <EachPlaylistCard/>
+          <EachPlaylistCard image={"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg"} name={"Most Searched"} follower={"1.2k follower"}/>
+          <EachPlaylistCard image={"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg"} name={"Most Searched"} follower={"1.2k follower"}/>
+          <EachPlaylistCard image={"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg"} name={"Most Searched"} follower={"1.2k follower"}/>
+          <EachPlaylistCard image={"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg"} name={"Most Searched"} follower={"1.2k follower"}/>
         </ScrollView>
         <PaddingConatiner>
           <Heading text={"Trending Songs"}/>
           <HorizontalScrollSongs songs={songs}/>
-          <Heading text={"Romantic Top 40"}/>
+        <Heading text={"Trending Albums"}/>
+        </PaddingConatiner>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+          paddingLeft:13,
+        }}>
+          <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+            {name:"Ankit"},{name:"Esha"}]}/>
+          <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+            {name:"Ankit"},{name:"Esha"}]}/>
+          <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+            {name:"Ankit"},{name:"Esha"}]}/>
+          <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
+            {name:"Ankit"},{name:"Esha"}]}/>
+        </ScrollView>
+        <PaddingConatiner>
+          <Heading text={"Top Romantic"}/>
           <HorizontalScrollSongs songs={songs}/>
+        </PaddingConatiner>
+        <PaddingConatiner>
+          <Heading text={"Top Charts"}/>
         </PaddingConatiner>
       </ScrollView>
     </MainWrapper>

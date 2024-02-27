@@ -4,7 +4,7 @@ import { SmallText } from "./SmallText";
 import { SpaceBetween } from "../../Layout/SpaceBetween";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-export const EachPlaylistCard = () => {
+export const EachPlaylistCard = ({image, name, follower}) => {
   return (
     <View style={{
       borderRadius:10,
@@ -17,7 +17,7 @@ export const EachPlaylistCard = () => {
       marginRight:10,
     }}>
       <Image source={{
-        uri:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
+        uri:image,
       }} style={{
         height:200,
         width:"100%",
@@ -27,8 +27,8 @@ export const EachPlaylistCard = () => {
           height:50,
         }}>
           <View >
-            <PlainText text={"Most Searched Song"}/>
-            <SmallText text={"12.3k follower"}/>
+            <PlainText text={name}/>
+            <SmallText text={follower}/>
           </View>
           <FontAwesome5 name={"play"} size={15}/>
         </SpaceBetween>
