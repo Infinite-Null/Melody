@@ -1,6 +1,6 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
-import { FlatList, ScrollView } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { RouteHeading } from "../../Component/Global/RouteHeading";
@@ -12,6 +12,7 @@ import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
+import Animated, { FadeInDown, FlipInEasyX, FlipInXDown, SlideInDown, ZoomInDown } from "react-native-reanimated";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
@@ -113,12 +114,12 @@ export const Home = () => {
     <MainWrapper>
       <LoadingComponent loading={Loading}/>
       {
-        !Loading &&  <>
+        !Loading &&  <Animated.View entering={FadeInDown.springify()}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:20,
           }}>
             <RouteHeading text={"Home"}/>
-            <LargeBentooCard text={"Top Most Hitz Music in 2023"} subtext={"2023 hitz"} width={"100%"} onPress={()=>{}} backgroundColor={theme.colors.primary} image={require("../../Images/musicListning.png")}/>
+            <LargeBentooCard text={"Top Most Hitz Music in 2023"} subtext={"2023 hitz"} width={"100%"} onPress={()=>{}} image={require("../../Images/musicListning.png")}/>
             <PaddingConatiner>
               <Heading text={"Recommended"}/>
             </PaddingConatiner>
@@ -130,18 +131,9 @@ export const Home = () => {
               <HorizontalScrollSongs songs={songs}/>
               <Heading text={"Trending Albums"}/>
             </PaddingConatiner>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+            <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }}>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-            </ScrollView>
+            }} data={Data?.data?.trending?.albums??[]} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Top Romantic"}/>
               <HorizontalScrollSongs songs={songs}/>
@@ -149,28 +141,22 @@ export const Home = () => {
             <PaddingConatiner>
               <Heading text={"Top Charts"}/>
             </PaddingConatiner>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+            {/*<ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{*/}
+            {/*  paddingLeft:13,*/}
+            {/*}}>*/}
+            {/*  <RenderTopCharts playlist={topChats}/>*/}
+            {/*</ScrollView>*/}
+            <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }}>
-              <RenderTopCharts playlist={topChats}/>
-            </ScrollView>
+            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts.filter((e)=>e.type==='playlist')}/>}/>
             <PaddingConatiner>
               <Heading text={"Recommended Albums"}/>
             </PaddingConatiner>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
+            <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }}>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-              <EachAlbumCard image={'https://c.saavncdn.com/980/MONTAGEM-CORAL-1-0-English-2023-20231121082025-500x500.jpg?bch=474736'} name={"Hell of ride"} artists={[
-                {name:"Ankit"},{name:"Esha"}]}/>
-            </ScrollView>
+            }} data={Data?.data?.albums??[]} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
           </ScrollView>
-        </>
+        </Animated.View>
       }
     </MainWrapper>
   );
