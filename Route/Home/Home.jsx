@@ -8,8 +8,8 @@ import { RouteHeading } from "../../Component/Global/RouteHeading";
 import { useTheme } from "@react-navigation/native";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import { EachAlbumCard } from "../../Component/Global/EachAlbumCard";
-import { Spacer } from "../../Component/Global/Spacer";
 import { RenderTopCharts } from "../../Component/Home/RenderTopCharts";
+import { Loading } from "../../Component/Global/Loading";
 export const Home = () => {
   const songs = [
     {
@@ -93,6 +93,7 @@ export const Home = () => {
   const theme = useTheme()
   return (
     <MainWrapper>
+      {/*<Loading loading={true}/>*/}
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
         paddingBottom:20,
       }}>

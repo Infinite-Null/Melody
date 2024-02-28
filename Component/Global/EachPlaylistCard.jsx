@@ -1,8 +1,9 @@
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import { SpaceBetween } from "../../Layout/SpaceBetween";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FastImage from "react-native-fast-image";
 
 export const EachPlaylistCard = ({image, name, follower}) => {
   return (
@@ -16,7 +17,7 @@ export const EachPlaylistCard = ({image, name, follower}) => {
       elevation:3,
       marginRight:10,
     }}>
-      <Image source={{
+      <FastImage source={{
         uri:image,
       }} style={{
         height:200,

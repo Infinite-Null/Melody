@@ -1,6 +1,7 @@
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
+import FastImage from "react-native-fast-image";
 
 export const EachSongCard = ({title,artist,image,width}) => {
   return (
@@ -13,7 +14,7 @@ export const EachSongCard = ({title,artist,image,width}) => {
       marginVertical:5,
       width:width ? width : "100%",
     }}>
-      <Image source={{
+      <FastImage source={{
         uri:image,
       }} style={{
         height:50,
