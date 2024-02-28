@@ -4,14 +4,15 @@ import { SmallText } from "./SmallText";
 import { SpaceBetween } from "../../Layout/SpaceBetween";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FastImage from "react-native-fast-image";
+import { memo } from "react";
 
-export const EachPlaylistCard = ({image, name, follower}) => {
+export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, follower, id}){
   return (
     <View style={{
       borderRadius:10,
       overflow:"hidden",
       width:220,
-      height:270,
+      height:290,
       backgroundColor:"rgb(55,55,79)",
       padding:10,
       elevation:3,
@@ -24,15 +25,17 @@ export const EachPlaylistCard = ({image, name, follower}) => {
         width:"100%",
         borderRadius:10,
       }}/>
-        <SpaceBetween style={{
-          height:50,
+      <SpaceBetween style={{
+        height:70,
+      }}>
+        <View style={{
+          width:"85%",
         }}>
-          <View >
-            <PlainText text={name}/>
-            <SmallText text={follower}/>
-          </View>
-          <FontAwesome5 name={"play"} size={15}/>
-        </SpaceBetween>
+          <PlainText text={name}/>
+          <SmallText text={follower}/>
+        </View>
+        <FontAwesome5 name={"play"} size={15}/>
+      </SpaceBetween>
     </View>
   );
-};
+})

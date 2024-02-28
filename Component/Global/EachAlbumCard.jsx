@@ -3,7 +3,7 @@ import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 
 
-export const EachAlbumCard = ({image,name,artists}) => {
+export const EachAlbumCard = ({image,name,artists,id}) => {
   let artistsNames = ""
   artists.map((e,i)=>{
     if (i === artists.length - 1){

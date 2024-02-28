@@ -3,7 +3,7 @@ import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
 
-export const EachSongCard = ({title,artist,image,width}) => {
+export const EachSongCard = ({title,artist,image,width,id}) => {
   return (
     <View style={{
       flexDirection:'row',
