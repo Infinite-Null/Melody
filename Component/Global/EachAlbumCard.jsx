@@ -54,10 +54,10 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id}
           width:"100%",
           height:"100%",
           justifyContent:"flex-end",
-          backgroundColor:"rgba(0,0,0,0.13)",
+          backgroundColor:"rgba(0,0,0,0.27)",
         }}>
           <View style={{
-            backgroundColor:"rgba(0,0,0,0.8)",
+            backgroundColor:"rgba(31,35,96,0.55)",
             padding:10,
           }}>
             <PlainText text={formattedText(name)}/>
