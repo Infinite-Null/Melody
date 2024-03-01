@@ -4,7 +4,7 @@ async function getHomePageData(languages){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'https://saavn.dev/modules?language=' + languages,
+    url: 'https://jio-savan-api-sigma.vercel.app/modules?language=' + languages,
     headers: { },
   };
     try {

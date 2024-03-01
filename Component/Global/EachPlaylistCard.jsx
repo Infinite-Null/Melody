@@ -5,8 +5,10 @@ import { SpaceBetween } from "../../Layout/SpaceBetween";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FastImage from "react-native-fast-image";
 import { memo } from "react";
+import { useTheme } from "@react-navigation/native";
 
 export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, follower, id}){
+  const theme = useTheme()
   return (
     <View style={{
       borderRadius:10,
@@ -34,7 +36,7 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
           <PlainText text={name}/>
           <SmallText text={follower}/>
         </View>
-        <FontAwesome5 name={"play"} size={15}/>
+        <FontAwesome5 name={"play"} size={15} color={theme.colors.text}/>
       </SpaceBetween>
     </View>
   );

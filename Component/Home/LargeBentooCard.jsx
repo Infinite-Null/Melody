@@ -6,7 +6,7 @@ import { BentooButton } from "./BentooButton";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import FastImage from "react-native-fast-image";
 
-export const LargeBentooCard = ({width,text,subtext,onPress,image}) => {
+export const LargeBentooCard = ({width,text,subtext,onPress,image,id}) => {
   const theme = useTheme()
   return (
    <PaddingConatiner>

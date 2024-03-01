@@ -1,6 +1,6 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { RouteHeading } from "../../Component/Global/RouteHeading";
@@ -12,7 +12,7 @@ import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
-import Animated, { FadeInDown, FlipInEasyX, FlipInXDown, SlideInDown, ZoomInDown } from "react-native-reanimated";
+import Animated, { FadeInDown } from "react-native-reanimated";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
@@ -119,7 +119,7 @@ export const Home = () => {
             paddingBottom:20,
           }}>
             <RouteHeading text={"Home"}/>
-            <LargeBentooCard text={"Top Most Hitz Music in 2023"} subtext={"2023 hitz"} width={"100%"} onPress={()=>{}} image={require("../../Images/musicListning.png")}/>
+            <LargeBentooCard text={"Top Most Hitz Music Today"} subtext={"Today's hitz"} width={"100%"} onPress={()=>{}} image={require("../../Images/musicListning.png")} id={"110858205"}/>
             <PaddingConatiner>
               <Heading text={"Recommended"}/>
             </PaddingConatiner>
