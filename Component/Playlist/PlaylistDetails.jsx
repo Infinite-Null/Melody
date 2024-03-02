@@ -11,7 +11,7 @@ import { useTheme } from "@react-navigation/native";
 export const PlaylistDetails = ({name,listener,liked,onPlay}) => {
   const theme = useTheme()
   return (
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(36,41,62,0.06)', 'rgb(19,19,19)', theme.colors.background]} style={{
+    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)', 'rgb(19,19,19)', theme.colors.background]} style={{
       padding:10,
       alignItems:"center",
       justifyContent:"space-between",

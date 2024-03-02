@@ -26,14 +26,18 @@ export const PlaylistTopHeader = ({AnimatedRef,url}) => {
       justifyContent:"center",
       height:SizeOfSmallImage * 1.4,
     }}>
-      <Animated.Image source={{
-        uri:url,
-      }} style={[{
-        height:SizeOfSmallImage,
-        width: SizeOfSmallImage,
-        borderRadius:10,
-      },AnimatedImageStyle]}/>
-      <Animated.Image source={{
+      <View style={{
+        elevation:10,
+      }}>
+        <Animated.Image source={{
+          uri:url,
+        }} style={[{
+          height:SizeOfSmallImage,
+          width: SizeOfSmallImage,
+          borderRadius:10,
+        },AnimatedImageStyle]}/>
+      </View>
+      <Animated.Image blurRadius={10} source={{
         uri:url,
       }} style={[{
         height:SizeOfSmallImage * 2,
@@ -46,7 +50,7 @@ export const PlaylistTopHeader = ({AnimatedRef,url}) => {
         width: "100%",
         position:"absolute",
         zIndex:-1,
-        backgroundColor:"rgba(36,41,62,0.84)",
+        backgroundColor:"rgba(33,33,33,0.7)",
       }}/>
     </View>
   );
