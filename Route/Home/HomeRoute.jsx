@@ -1,10 +1,11 @@
-import { createStackNavigator } from '@react-navigation/stack';
+
 import { Home } from "./Home";
 import { Playlist } from "../Playlist";
-const Stack = createStackNavigator();
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 export const HomeRoute = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown:false}}>
+    <Stack.Navigator screenOptions={{headerShown:false,animation:'fade_from_bottom'}}>
       <Stack.Screen  name="HomePage" component={Home} />
       <Stack.Screen  name="Playlist" component={Playlist} />
     </Stack.Navigator>
