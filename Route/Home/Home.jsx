@@ -15,58 +15,6 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
-  const songs = [
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-    {
-      song:"Love me like you do",
-      image:"https://t3.ftcdn.net/jpg/02/72/14/56/360_F_272145619_0msru0f2296jsjEliBht6ZcdUjqZwLZn.jpg",
-      artist:"Ankit Kumar Shah",
-    },
-  ]
   async function fetchHomePageData(){
     try {
       setLoading(true)
@@ -99,7 +47,7 @@ export const Home = () => {
             }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Trending Songs"}/>
-              <HorizontalScrollSongs songs={songs}/>
+              <HorizontalScrollSongs id={"110858205"}/>
               <Heading text={"Trending Albums"}/>
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
@@ -107,7 +55,7 @@ export const Home = () => {
             }} data={Data?.data?.trending?.albums??[]} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Top Romantic"}/>
-              <HorizontalScrollSongs songs={songs}/>
+              <HorizontalScrollSongs id={"142311984"}/>
             </PaddingConatiner>
             <PaddingConatiner>
               <Heading text={"Top Charts"}/>
