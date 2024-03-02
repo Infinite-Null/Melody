@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { Heading } from "../Global/Heading";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SmallText } from "../Global/SmallText";
@@ -10,6 +10,7 @@ import { useTheme } from "@react-navigation/native";
 
 export const PlaylistDetails = ({name,listener,liked,onPlay}) => {
   const theme = useTheme()
+  const width = Dimensions.get('window').width
   return (
     <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)', 'rgb(19,19,19)', theme.colors.background]} style={{
       padding:10,
@@ -19,6 +20,7 @@ export const PlaylistDetails = ({name,listener,liked,onPlay}) => {
     }}>
       <View style={{
         paddingLeft:5,
+        maxWidth:width*0.8,
       }}>
         <Heading text={name}/>
         <View style={{flexDirection:"row",gap:5}}>

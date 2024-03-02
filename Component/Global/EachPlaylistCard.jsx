@@ -21,7 +21,7 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
       elevation:3,
       marginRight:10,
     }}>
-    <Pressable onPress={()=>{navigation.navigate("Playlist")}} style={{
+    <Pressable onPress={()=>{navigation.navigate("Playlist",{id})}} style={{
       height:"100%",
       width:"100%",
     }}>

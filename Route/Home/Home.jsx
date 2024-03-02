@@ -4,7 +4,6 @@ import { FlatList, ScrollView } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { RouteHeading } from "../../Component/Global/RouteHeading";
-import { useTheme } from "@react-navigation/native";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import { EachAlbumCard } from "../../Component/Global/EachAlbumCard";
 import { RenderTopCharts } from "../../Component/Home/RenderTopCharts";
@@ -68,34 +67,6 @@ export const Home = () => {
       artist:"Ankit Kumar Shah",
     },
   ]
-  const topChats = [
-    {
-      name:"Most Searched",
-      follower:"1.2k follower",
-      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
-    },
-    {
-      name:"Most Searched",
-      follower:"1.2k follower",
-      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
-    },
-    {
-      name:"Most Searched",
-      follower:"1.2k follower",
-      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
-    },
-    {
-      name:"Most Searched",
-      follower:"1.2k follower",
-      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
-    },
-    {
-      name:"Most Searched",
-      follower:"1.2k follower",
-      image:"https://c.saavncdn.com/editorial/MostSearchedSongsEnglish_20240108090530.jpg",
-    },
-  ]
-  const theme = useTheme()
   async function fetchHomePageData(){
     try {
       setLoading(true)
@@ -125,7 +96,7 @@ export const Home = () => {
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link}/>}/>
+            }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Trending Songs"}/>
               <HorizontalScrollSongs songs={songs}/>
@@ -141,11 +112,6 @@ export const Home = () => {
             <PaddingConatiner>
               <Heading text={"Top Charts"}/>
             </PaddingConatiner>
-            {/*<ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{*/}
-            {/*  paddingLeft:13,*/}
-            {/*}}>*/}
-            {/*  <RenderTopCharts playlist={topChats}/>*/}
-            {/*</ScrollView>*/}
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
             }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts.filter((e)=>e.type==='playlist')}/>}/>

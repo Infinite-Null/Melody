@@ -2,7 +2,6 @@ import { EachPlaylistCard } from "../Global/EachPlaylistCard";
 import { View } from "react-native";
 
 export const RenderTopCharts = ({playlist}) => {
-  console.log(playlist.length);
   const data = []
   for (let i = 0; i < playlist.length; i = i + 2){
     if (i === playlist.length - 1 && playlist.length % 2 !== 0){

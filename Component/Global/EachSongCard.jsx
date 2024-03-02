@@ -1,9 +1,10 @@
-import { View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
 
-export const EachSongCard = ({title,artist,image,width,id}) => {
+export const EachSongCard = ({title,artist,image,width,id,url,style}) => {
+  const width1 = Dimensions.get("window").width;
   return (
     <View style={{
       flexDirection:'row',
@@ -12,7 +13,9 @@ export const EachSongCard = ({title,artist,image,width,id}) => {
       maxHeight:60,
       elevation:10,
       marginVertical:5,
+      marginBottom:6,
       width:width ? width : "100%",
+      ...style,
     }}>
       <FastImage source={{
         uri:image,
@@ -22,8 +25,8 @@ export const EachSongCard = ({title,artist,image,width,id}) => {
         borderRadius:10,
       }}/>
       <View>
-        <PlainText text={title}/>
-        <SmallText text={artist}/>
+        <PlainText text={title.replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™")} style={{paddingRight:15,width:width1 - 60}}/>
+        <SmallText text={artist} style={{paddingRight:15,width:width1 - 60}}/>
       </View>
     </View>
   );
