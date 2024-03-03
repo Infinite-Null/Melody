@@ -12,7 +12,7 @@ export const PlaylistDetails = ({name,listener,liked,onPlay,Album,releasedDate,n
   const theme = useTheme()
   const width = Dimensions.get('window').width
   return (
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)', 'rgb(19,19,19)', theme.colors.background]} style={{
+    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)', 'rgb(0,0,0)', theme.colors.background]} style={{
       padding:10,
       alignItems:"center",
       justifyContent:"space-between",

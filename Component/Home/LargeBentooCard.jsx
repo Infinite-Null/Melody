@@ -1,13 +1,14 @@
 import { View } from "react-native";
 import { Heading } from "../Global/Heading";
 import { PlainText } from "../Global/PlainText";
-import { useTheme } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { BentooButton } from "./BentooButton";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import FastImage from "react-native-fast-image";
 
-export const LargeBentooCard = ({width,text,subtext,onPress,image,id}) => {
+export const LargeBentooCard = ({width,text,subtext,image,id}) => {
   const theme = useTheme()
+  const navigation = useNavigation()
   return (
    <PaddingConatiner>
      <View style={{
@@ -28,7 +29,9 @@ export const LargeBentooCard = ({width,text,subtext,onPress,image,id}) => {
          }}>
            <Heading text={text}/>
            <PlainText text={subtext}/>
-           <BentooButton text={"Listen Now"} onPress={onPress}/>
+           <BentooButton text={"Listen Now"} onPress={()=>{
+             navigation.navigate("Playlist",{id})
+           }}/>
          </View>
          <FastImage source={image} style={{
            height:"100%",

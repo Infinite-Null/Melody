@@ -38,7 +38,7 @@ export const Home = () => {
             paddingBottom:20,
           }}>
             <RouteHeading text={"Home"}/>
-            <LargeBentooCard text={"Top Most Hitz Music Today"} subtext={"Today's hitz"} width={"100%"} onPress={()=>{}} image={require("../../Images/musicListning.png")} id={"110858205"}/>
+            <LargeBentooCard text={"Top Most Hitz Music Today"} subtext={"Today's hitz"} width={"100%"} image={require("../../Images/musicListning.png")} id={"110858205"}/>
             <PaddingConatiner>
               <Heading text={"Recommended"}/>
             </PaddingConatiner>
@@ -52,7 +52,7 @@ export const Home = () => {
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }} data={Data?.data?.trending?.albums??[]} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
+            }} data={Data?.data?.trending?.albums ?? []} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Top Romantic"}/>
               <HorizontalScrollSongs id={"142311984"}/>
@@ -62,13 +62,13 @@ export const Home = () => {
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts.filter((e)=>e.type==='playlist')}/>}/>
+            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>}/>
             <PaddingConatiner>
               <Heading text={"Recommended Albums"}/>
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }} data={Data?.data?.albums??[]} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
+            }} data={Data?.data?.albums ?? []} renderItem={(item)=><EachAlbumCard image={item?.item?.image[2]?.link ?? ""} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
           </ScrollView>
         </Animated.View>
       }

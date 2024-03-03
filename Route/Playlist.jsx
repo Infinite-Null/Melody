@@ -45,13 +45,13 @@ export const Playlist = ({route}) => {
       {Loading &&
         <LoadingComponent loading={Loading}/>}
       {!Loading &&  <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef}>
-        <PlaylistTopHeader AnimatedRef={AnimatedRef} url={NotReleased?"https://cdn.dribbble.com/users/2426611/screenshots/8292520/404_presentaxxtion_4x.jpg":Data?.data?.image[2]?.link ??""}/>
+        <PlaylistTopHeader AnimatedRef={AnimatedRef} url={NotReleased?"https://cdn.dribbble.com/users/2426611/screenshots/8292520/404_presentaxxtion_4x.jpg" : Data?.data?.image[2]?.link ?? ""}/>
         <PlaylistDetails name={Data?.data?.name ?? ""} liked={false} listener={Data?.data?.fanCount ?? ""} onPlay={()=>{}} Album={Album} releasedDate={Data?.data?.releaseDate ?? ""} notReleased = {NotReleased}/>
         {!NotReleased && <View style={{
           paddingHorizontal:10,
           backgroundColor:theme.colors.background,
         }}>
-          {Data.data.songs.map((e,i)=><EachSongCard key={i} image={e.image[2].link} id={e.id} width={"100%"} title={e.name} artist={e.primaryArtists} url={e.downloadUrl} style={{
+          {Data?.data?.songs?.map((e,i)=><EachSongCard key={i} image={e.image[2].link} id={e.id} width={"100%"} title={e.name} artist={e.primaryArtists} url={e.downloadUrl} style={{
             marginBottom:15,
           }}/>)}
         </View>}
