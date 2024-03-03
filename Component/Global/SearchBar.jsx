@@ -21,7 +21,7 @@ export const SearchBar = ({onPressSearch,onChange}) => {
         backgroundColor:"rgb(29,33,47)",
         borderTopLeftRadius:10,
         borderBottomLeftRadius:10}}>
-        <TextInput onChangeText={onChange}/>
+        <TextInput onChangeText={onChange} autoFocus={true}/>
       </Animated.View>
       <Pressable onPress={onPressSearch}>
         <Animated.View entering={FlipInXDown.duration(200)} exiting={FadeOutUp.duration(200)} style={{
