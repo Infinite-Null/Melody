@@ -1,10 +1,12 @@
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, Pressable, View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import { memo } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 
 export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id}) {
+  const navigation = useNavigation()
   let artistsNames = ""
   if (artists.length > 3){
     for (let i = 0; i < 3; i++){
@@ -35,7 +37,9 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id}
     }
   }
   return (
-    <View style={{
+    <Pressable onPress={()=>{
+      navigation.navigate("Playlist" , {id,Album:true})
+    }} style={{
       borderRadius:10,
       height:230,
       width:230,
@@ -65,6 +69,6 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id}
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </Pressable>
   );
 })

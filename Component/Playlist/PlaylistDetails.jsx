@@ -8,7 +8,7 @@ import { PlayButton } from "./PlayButton";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
 
-export const PlaylistDetails = ({name,listener,liked,onPlay}) => {
+export const PlaylistDetails = ({name,listener,liked,onPlay,Album,releasedDate,notReleased}) => {
   const theme = useTheme()
   const width = Dimensions.get('window').width
   return (
@@ -18,19 +18,21 @@ export const PlaylistDetails = ({name,listener,liked,onPlay}) => {
       justifyContent:"space-between",
       flexDirection:"row",
     }}>
-      <View style={{
-        paddingLeft:5,
-        maxWidth:width*0.8,
-      }}>
-        <Heading text={name}/>
-        <View style={{flexDirection:"row",gap:5}}>
-          <Ionicons name={"musical-note"} size={16}/>
-          <SmallText text={listener + " Listeners"}/>
+      {!notReleased && <>
+        <View style={{
+          paddingLeft:5,
+          maxWidth:width * 0.8,
+        }}>
+          <Heading text={name}/>
+          <View style={{flexDirection:"row",gap:5}}>
+            {!Album && <Ionicons name={"musical-note"} size={16}/>}
+            <SmallText text={Album ? "Released " + releasedDate : listener + " Listeners"}/>
+          </View>
+          <Spacer/>
+          <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
         </View>
-        <Spacer/>
-        <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
-      </View>
-      <PlayButton onPress={onPlay}/>
+        <PlayButton onPress={onPlay}/>
+      </>}
     </LinearGradient>
   );
 };
