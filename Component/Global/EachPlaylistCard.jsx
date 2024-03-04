@@ -8,7 +8,7 @@ import { memo } from "react";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import LinearGradient from "react-native-linear-gradient";
 
-export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, follower, id}){
+export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, follower, id, MainContainerStyle, ImageStyle}){
   const theme = useTheme()
   const navigation = useNavigation()
   return (
@@ -20,6 +20,7 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
       padding:10,
       elevation:3,
       marginRight:10,
+      ...MainContainerStyle,
     }}>
     <Pressable onPress={()=>{navigation.navigate("Playlist",{id})}} style={{
       height:"100%",
@@ -31,6 +32,7 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
         height:200,
         width:"100%",
         borderRadius:10,
+        ...ImageStyle,
       }}/>
       <SpaceBetween style={{
         height:70,
