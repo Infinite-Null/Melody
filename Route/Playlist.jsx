@@ -37,6 +37,7 @@ export const Playlist = ({route}) => {
   }
   useEffect(() => {
     fetchPlaylistData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const NotReleased = Data?.data?.releaseDate === "" && Data?.data?.year === "0" && Data.data.songs[0].downloadUrl === false
@@ -44,7 +45,8 @@ export const Playlist = ({route}) => {
     <MainWrapper>
       {Loading &&
         <LoadingComponent loading={Loading}/>}
-      {!Loading &&  <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef}>
+      {!Loading &&  <>
+      {Data?.data?.songs?.length > 0 && <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef}>
         <PlaylistTopHeader AnimatedRef={AnimatedRef} url={NotReleased?"https://cdn.dribbble.com/users/2426611/screenshots/8292520/404_presentaxxtion_4x.jpg" : Data?.data?.image[2]?.link ?? ""}/>
         <PlaylistDetails name={Data?.data?.name ?? ""} liked={false} listener={Data?.data?.fanCount ?? ""} onPlay={()=>{}} Album={Album} releasedDate={Data?.data?.releaseDate ?? ""} notReleased = {NotReleased}/>
         {!NotReleased && <View style={{
@@ -66,6 +68,15 @@ export const Playlist = ({route}) => {
           <SmallText text={"Not Available"}/>
         </View>}
       </Animated.ScrollView>}
+      </>}
+      {Data?.data?.songs?.length <= 0 && <View style={{
+        flex: 1,
+        alignItems:"center",
+        justifyContent:"center"
+      }}>
+        <PlainText text={"Playlist not available"}/>
+        <SmallText text={"not available"}/>
+        </View>}
     </MainWrapper>
   );
 };
