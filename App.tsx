@@ -1,4 +1,3 @@
-
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {RootRoute} from "./Route/RootRoute";
 import { createStackNavigator } from "@react-navigation/stack";
