@@ -72,7 +72,7 @@ export const Playlist = ({route}) => {
       {Data?.data?.songs?.length <= 0 && <View style={{
         flex: 1,
         alignItems:"center",
-        justifyContent:"center"
+        justifyContent:"center",
       }}>
         <PlainText text={"Playlist not available"}/>
         <SmallText text={"not available"}/>

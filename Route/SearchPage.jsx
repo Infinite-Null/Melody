@@ -8,6 +8,8 @@ import SongDisplay from "../Component/SearchPage/SongDisplay";
 import { LoadingComponent } from "../Component/Global/Loading";
 import { getSearchPlaylistData } from "../Api/Playlist";
 import PlaylistDisplay from "../Component/SearchPage/PlaylistDisplay";
+import { getSearchAlbumData } from "../Api/Album";
+import AlbumsDisplay from "../Component/SearchPage/AlbumDisplay";
 
 export const SearchPage = () => {
   const [ActiveTab, setActiveTab] = useState(0)
@@ -24,6 +26,9 @@ export const SearchPage = () => {
           data = await getSearchSongData(text,1,limit)
         } else if (ActiveTab === 1){
           data = await getSearchPlaylistData(text,1,limit)
+        }
+        else if (ActiveTab === 2){
+          data = await getSearchAlbumData(text,1,limit)
         }
         setData(data)
       } catch (e) {
@@ -49,6 +54,7 @@ export const SearchPage = () => {
       }}>
           {ActiveTab === 0 && <SongDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
           {ActiveTab === 1 && <PlaylistDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
+          {ActiveTab === 2 && <AlbumsDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
       </View>}
     </MainWrapper>
   );

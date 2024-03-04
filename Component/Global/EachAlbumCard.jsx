@@ -5,7 +5,7 @@ import { memo } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 
-export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id}) {
+export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,mainContainerStyle}) {
   const navigation = useNavigation()
   let artistsNames = ""
   if (artists.length > 3){
@@ -47,6 +47,7 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id}
       marginRight:10,
       flexDirection:"row",
       overflow:"hidden",
+      ...mainContainerStyle,
     }}>
       <ImageBackground source={{
         uri:image,

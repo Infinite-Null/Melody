@@ -2,12 +2,13 @@
 import React, { useState } from 'react'
 import { Dimensions, FlatList, View } from 'react-native'
 import { LoadingComponent } from '../Global/Loading'
-import { EachPlaylistCard } from '../Global/EachPlaylistCard'
 import { PlainText } from '../Global/PlainText'
 import { SmallText } from '../Global/SmallText'
-import { getSearchPlaylistData } from '../../Api/Playlist'
+import { EachAlbumCard } from '../Global/EachAlbumCard'
+import { getSearchAlbumData } from '../../Api/Album'
 
-export default function PlaylistDisplay({data, limit, Searchtext}) {
+export default function AlbumsDisplay({data, limit, Searchtext}) {
+    console.log(data);
   const [Data, setData] = useState(data)
   const totalPages = Math.ceil(Data?.data?.total ?? 1 / limit)
   const [Page, setPage] = useState(1)
@@ -17,7 +18,7 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
    if(Searchtext !== ""){
     try {
         setLoading(true)
-        const fetchdata = await getSearchPlaylistData(text,page,limit)
+        const fetchdata = await getSearchAlbumData(text,page,limit)
         const temp = Data
         const finalData = [...temp.data.results,...fetchdata.data.results]
         temp.data.results = finalData
@@ -41,24 +42,12 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
         paddingBottom:120,
         width:width,
         alignItems:"center",
+        gap:15,
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>
         }else{
-            return <EachPlaylistCard
-            name={item.item.name}
-            follower={"Total " + item.item.songCount + " Songs"}
-            key={item.index}
-            image={item.item.image[2].link}
-            id={item.item.id}
-            MainContainerStyle = {{
-                width:width * 0.45,
-                height:width * 0.65,
-            }}
-            ImageStyle={{
-                height:"60%",
-            }}
-            />
+            return <EachAlbumCard mainContainerStyle={{width:width*0.45}} image={item?.item?.image[2]?.link ?? ""} artists={item.item.artists} name={item.item.name} id={item.item.id}/>
         }
       }}/>}
       {Data?.data?.results?.length === 0 && <View style={{
@@ -66,7 +55,7 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
         alignItems:"center",
         justifyContent:"center",
       }}>
-        <PlainText text={"No Playlist found!"}/>
+        <PlainText text={"No Album found!"}/>
         <SmallText text={"Opps!  T_T"}/>
         </View> }
      </>
