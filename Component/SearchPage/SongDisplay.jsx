@@ -4,6 +4,8 @@ import { Dimensions, FlatList, View } from 'react-native'
 import { EachSongCard } from '../Global/EachSongCard'
 import { getSearchSongData } from '../../Api/Songs'
 import { LoadingComponent } from '../Global/Loading'
+import { PlainText } from '../Global/PlainText'
+import { SmallText } from '../Global/SmallText'
 
 export default function SongDisplay({data, limit, Searchtext}) {
   const [Data, setData] = useState(data)
@@ -11,7 +13,6 @@ export default function SongDisplay({data, limit, Searchtext}) {
   const [Page, setPage] = useState(1)
   const [Loading, setLoading] = useState(false)
   async function fetchSearchData(text,page){
-    console.log(totalPages);
    if (Page <= totalPages){
    if(Searchtext !== ""){
     try {
@@ -20,7 +21,6 @@ export default function SongDisplay({data, limit, Searchtext}) {
         const temp = Data
         const finalData = [...temp.data.results,...fetchdata.data.results]
         temp.data.results = finalData
-        console.log(temp);
         setData(temp)
       } catch (e) {
         console.log(e);
@@ -33,7 +33,7 @@ export default function SongDisplay({data, limit, Searchtext}) {
   const width = Dimensions.get("window").width
   return (
      <View>
-      <FlatList keyExtractor={(item, index) => String(index)} onEndReached={()=>{
+      {Data?.data?.results?.length !== 0 && <FlatList keyExtractor={(item, index) => String(index)} onEndReached={()=>{
         setPage(Page + 1)
         fetchSearchData(Searchtext, Page)
       }} contentContainerStyle={{
@@ -46,7 +46,15 @@ export default function SongDisplay({data, limit, Searchtext}) {
                 marginBottom:13,
             }}/>
         }
-      }}/>
+      }}/>}
+      {Data?.data?.results?.length === 0 && <View style={{
+        height:400,
+        alignItems:"center",
+        justifyContent:"center",
+      }}>
+        <PlainText text={"No Song found!"}/>
+        <SmallText text={"Opps!  T_T"}/>
+        </View> }
      </View>
   )
 }
