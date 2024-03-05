@@ -2,6 +2,9 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {RootRoute} from "./Route/RootRoute";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Dimensions } from "react-native";
+import ContextState from "./Context/ContextState";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 const Stack = createStackNavigator()
 export default function App(){
   const width = Dimensions.get("window").width
@@ -20,9 +23,15 @@ export default function App(){
       background:'black',
     },
   };
-  return  <NavigationContainer theme={MyTheme}>
+  return <GestureHandlerRootView style={{flex:1}}>
+    <ContextState>
+    <BottomSheetModalProvider>
+    <NavigationContainer theme={MyTheme}>
     <Stack.Navigator screenOptions={{headerShown:false}}>
       <Stack.Screen  name="LoginScreen" component={RootRoute} />
     </Stack.Navigator>
   </NavigationContainer>
+  </BottomSheetModalProvider>
+  </ContextState>
+  </GestureHandlerRootView>
 }
