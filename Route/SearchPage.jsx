@@ -52,9 +52,9 @@ export const SearchPage = () => {
       {!Loading && <View style={{
         paddingHorizontal:10,
       }}>
-          {ActiveTab === 0 && <SongDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
-          {ActiveTab === 1 && <PlaylistDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
-          {ActiveTab === 2 && <AlbumsDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
+          {ActiveTab === 0 && !Loading && <SongDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
+          {ActiveTab === 1 && !Loading && <PlaylistDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
+          {ActiveTab === 2 && !Loading && <AlbumsDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
       </View>}
     </MainWrapper>
   );

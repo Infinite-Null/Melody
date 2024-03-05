@@ -25,8 +25,8 @@ export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth
         borderRadius:10,
       }}/>
       <View>
-        <PlainText text={title.replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™")} style={{paddingRight:15,width:titleWidth ? titleWidth : width1 - 60}}/>
-        <SmallText text={artist} style={{paddingRight:15, width:artistWidth ? artistWidth : width1 - 60}}/>
+        <PlainText text={title.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™")} style={{paddingRight:15,width:titleWidth ? titleWidth : width1 - 60}}/>
+        <SmallText text={artist.toString()} style={{paddingRight:15, width:artistWidth ? artistWidth : width1 - 60}}/>
       </View>
     </View>
   );
