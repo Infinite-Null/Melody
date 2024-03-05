@@ -1,18 +1,16 @@
 import React from 'react'
 import { View, StyleSheet, Pressable} from "react-native";
 import { useTheme } from "@react-navigation/native";
-import BottomSheetMusic from '../BottomMusic/BottomSheetMusic'
+import BottomSheetMusic from '../MusicPlayer/BottomSheetMusic'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import Animated, { FadeInLeft, FadeInRight} from "react-native-reanimated";
+const bottomColor = "rgb(5,5,5)"
 export default function CustomTabBar({ state, descriptors, navigation }) {
   const theme = useTheme()
     return (
         <>
-          <BottomSheetMusic/>
-          <View style={{
-            ...styles.mainContainer,
-            backgroundColor:theme.colors.background,
-          }}>
+          <BottomSheetMusic color={bottomColor}/>
+          <View style={styles.mainContainer}>
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
             const label =
@@ -35,10 +33,9 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
               <View key = {index} style = {styles.mainItemContainer}>
                 <Pressable
                   onPress = {onPress}
-                  style = {{backgroundColor: isFocused ? "rgba(57,136,201,0.12)" : "rgba(0,0,0,0)", borderRadius: 20, height:40 }}>
+                  style = {{backgroundColor: "rgba(0,0,0,0)", borderRadius: 20, height:40 }}>
                   {!isFocused && <View style={{
                     flexDirection: "row",
-                    justifyContent: "center",
                     alignItems: "center",
                     flex: 1,
                     paddingHorizontal: 15,
@@ -54,6 +51,8 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
                     flex: 1,
                     paddingHorizontal: 15,
                     gap: 5,
+                    backgroundColor:"rgba(57,136,201,0.12)",
+                    borderRadius:15,
                   }}>
                     <Ionicons name={label !== "Discover" ? label.toString().toLowerCase() : "globe"}
                               color={ theme.colors.primary } size={14} />
@@ -75,10 +74,13 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       height:50,
       alignItems:"center",
+      backgroundColor:bottomColor,
+      borderTopColor:"rgba(0,0,0,0.26)",
+      borderTopWidth:1,
     },
     mainItemContainer: {
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       alignItems: 'center',
     },
   })

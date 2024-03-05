@@ -1,4 +1,4 @@
-import BottomSheetMusic from "../Component/BottomMusic/BottomSheetMusic";
+import BottomSheetMusic from "../Component/MusicPlayer/BottomSheetMusic";
 import Context from "./Context";
 
 
