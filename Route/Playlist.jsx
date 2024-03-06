@@ -53,7 +53,7 @@ export const Playlist = ({route}) => {
           paddingHorizontal:10,
           backgroundColor:theme.colors.background,
         }}>
-          {Data?.data?.songs?.map((e,i)=><EachSongCard key={i} image={e.image[2].link} id={e.id} width={"100%"} title={e.name} artist={e.primaryArtists} url={e.downloadUrl} style={{
+          {Data?.data?.songs?.map((e,i)=><EachSongCard key={i} duration={e.duration} image={e.image[2].link} id={e.id} width={"100%"} title={e.name} artist={e.primaryArtists} url={e.downloadUrl} style={{
             marginBottom:15,
           }}/>)}
         </View>}

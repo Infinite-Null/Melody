@@ -8,17 +8,6 @@ const BottomSheetMusic = ({color}) => {
   const snapPoints = useMemo(() => [115, '100%'], []);
   const bottomSheetRef = useRef(null)
   const [Index, setIndex] = useState(0);
-  function HandleBackOnFull() {
-    const backAction = () => {
-      setIndex(0)
-      backHandler.remove()
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-  }
   useEffect(() => {
     const backAction = () => {
       setIndex(0)

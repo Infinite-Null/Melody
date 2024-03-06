@@ -67,7 +67,7 @@ export const FullScreenMusic = ({color}) => {
              </View>
              <View style={{flexDirection:"row",alignItems:"center",justifyContent:"center", gap:20}}>
                <PreviousSongButton size={30}/>
-               <PlayPauseButton isFullScreen={true} isplaying={true}/>
+               <PlayPauseButton isFullScreen={true} />
                <NextSongButton size={30}/>
              </View>
              <View style={{

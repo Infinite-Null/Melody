@@ -23,6 +23,7 @@ export default function App(){
       background:'black',
     },
   };
+
   return <GestureHandlerRootView style={{flex:1}}>
     <ContextState>
     <BottomSheetModalProvider>

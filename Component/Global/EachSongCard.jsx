@@ -1,12 +1,23 @@
-import { Dimensions, View } from "react-native";
+import { Dimensions, Pressable, View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
+import { PlayOneSong } from "../../MusicPlayerFunctions";
 
-export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth}) => {
+export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration}) => {
   const width1 = Dimensions.get("window").width;
   return (
-    <View style={{
+    <Pressable onPress={()=>{
+       const song  = {
+         url:url[3].link,
+         title,
+         artist,
+         artwork:image,
+         duration,
+         id,
+       }
+        PlayOneSong(song)
+    }} style={{
       flexDirection:'row',
       gap:10,
       alignItems:"center",
@@ -28,6 +39,6 @@ export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth
         <PlainText text={title.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™")} style={{paddingRight:15,width:titleWidth ? titleWidth : width1 - 60}}/>
         <SmallText text={artist.toString()} style={{paddingRight:15, width:artistWidth ? artistWidth : width1 - 60}}/>
       </View>
-    </View>
+    </Pressable>
   );
 };
