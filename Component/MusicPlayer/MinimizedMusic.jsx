@@ -1,5 +1,5 @@
 import { Dimensions, Pressable, View } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";

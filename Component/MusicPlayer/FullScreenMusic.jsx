@@ -7,7 +7,6 @@ import LinearGradient from "react-native-linear-gradient";
 import { Heading } from "../Global/Heading";
 import { SmallText } from "../Global/SmallText";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import Slider from "@react-native-community/slider";
 import { PlayPauseButton } from "./PlayPauseButton";
 import { Spacer } from "../Global/Spacer";
 import { NextSongButton } from "./NextSongButton";
@@ -17,6 +16,7 @@ import { RepeatSongButton } from "./RepeatSongButton";
 import { LikeSongButton } from "./LikeSongButton";
 import { SaveMusicButton } from "./SaveMusicButton";
 import Context from "../../Context/Context";
+import { ProgressBar } from "./ProgressBar";
 
 export const FullScreenMusic = ({color}) => {
   const width = Dimensions.get("window").width
@@ -51,13 +51,7 @@ export const FullScreenMusic = ({color}) => {
            />
            <Heading text={currentPlaying?.title ?? "No music :("} style={{textAlign:"center", paddingHorizontal:10}}/>
            <SmallText text={currentPlaying?.artist ?? "Explore now!"}/>
-           <Slider
-             style={{width: width, height: 40}}
-             minimumValue={0}
-             maximumValue={1}
-             minimumTrackTintColor={theme.colors.text}
-             maximumTrackTintColor="rgba(44,44,44,1)"
-           />
+           <ProgressBar/>
            <Spacer/>
            <Spacer/>
            <View style={{flexDirection:"row",alignItems:"center",justifyContent:"space-around", width:"100%"}}>

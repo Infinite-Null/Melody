@@ -48,7 +48,7 @@ export const PlayPauseButton = ({isFullScreen}) => {
           alignItems:"center",
           justifyContent:"center",
         }}><FontAwesome6 name={"pause"} size={20} color={"black"}/></Pressable>}
-        {playerState === "buffering" && <ActivityIndicator size={"small"} color={"white"}/>}
+        {playerState === "buffering" && <ActivityIndicator size={"large"} color={"white"}/>}
       </>}
     </>
   );
