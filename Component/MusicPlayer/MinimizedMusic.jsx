@@ -1,5 +1,5 @@
 import { Dimensions, Pressable, View } from "react-native";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
@@ -7,9 +7,11 @@ import { PlayPauseButton } from "./PlayPauseButton";
 import { NextSongButton } from "./NextSongButton";
 import { PreviousSongButton } from "./PreviousSongButton";
 import FastImage from "react-native-fast-image";
+import Context from "../../Context/Context";
 
 export const MinimizedMusic = ({setIndex}) => {
   const size = Dimensions.get("window").height
+  const {currentPlaying} = useContext(Context)
   return (
     <Animated.View
       entering={FadeInUp}
@@ -31,7 +33,7 @@ export const MinimizedMusic = ({setIndex}) => {
       }}>
         <FastImage
           source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png',
+            uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
           }}
           style={{
             height: (size *  0.1) - 30,
@@ -46,8 +48,8 @@ export const MinimizedMusic = ({setIndex}) => {
           justifyContent:"center",
           paddingHorizontal:10,
         }}>
-          <PlainText text={"Happy"}/>
-          <SmallText text={"Marsmello"}/>
+          <PlainText text={currentPlaying?.title ?? "No music :("}/>
+          <SmallText text={currentPlaying?.artist ?? "Explore now!"} maxLine={1}/>
         </View>
       </Pressable>
      <View style={{gap:20,flexDirection:"row", alignItems:"center"}}>

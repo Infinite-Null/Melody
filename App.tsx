@@ -5,6 +5,8 @@ import { Dimensions } from "react-native";
 import ContextState from "./Context/ContextState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import TrackPlayer from "react-native-track-player";
+import { useEffect } from "react";
 const Stack = createStackNavigator()
 export default function App(){
   const width = Dimensions.get("window").width
@@ -23,7 +25,12 @@ export default function App(){
       background:'black',
     },
   };
-
+  async function setUpPlayer(){
+    await TrackPlayer.setupPlayer()
+  }
+  useEffect(()=>{
+    setUpPlayer()
+  },[])
   return <GestureHandlerRootView style={{flex:1}}>
     <ContextState>
     <BottomSheetModalProvider>

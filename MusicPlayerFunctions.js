@@ -13,7 +13,7 @@ async function PauseSong(){
   await TrackPlayer.pause();
 }
 
-async function GetPlayingStatus(){
-  return await TrackPlayer.getPlaybackState()
+async function GetCurrentSong(){
+  return await TrackPlayer.getActiveTrack()
 }
-export {PlayOneSong, PlaySong, PauseSong, GetPlayingStatus}
+export {PlayOneSong, PlaySong, PauseSong, GetCurrentSong}

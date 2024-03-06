@@ -2,24 +2,12 @@ import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { useTheme } from "@react-navigation/native";
 import { ActivityIndicator, Pressable } from "react-native";
 import {  PauseSong, PlaySong } from "../../MusicPlayerFunctions";
-import { useTrackPlayerEvents, Event } from "react-native-track-player";
-import { useState } from "react";
-const events = [
-  Event.PlaybackState,
-  Event.PlaybackError,
-];
+import { useContext } from "react";
+import Context from "../../Context/Context";
+
 export const PlayPauseButton = ({isFullScreen}) => {
   const theme = useTheme()
-
-  const [playerState, setPlayerState] = useState("paused")
-  useTrackPlayerEvents(events, (event) => {
-    if (event.type === Event.PlaybackError) {
-      console.warn('An error occured while playing the current track.');
-    }
-    if (event.type === Event.PlaybackState) {
-      setPlayerState(event.state);
-    }
-  });
+  const {playerState} = useContext(Context)
   return (
     <>
       {!isFullScreen &&  <>

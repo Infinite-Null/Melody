@@ -1,23 +1,28 @@
 import Context from "./Context";
-import { useEffect, useState } from "react";
-import { GetPlayingStatus } from "../MusicPlayerFunctions";
+import { useState } from "react";
+import { Event, useTrackPlayerEvents } from "react-native-track-player";
 
 
-
+const events = [
+    Event.PlaybackActiveTrackChanged,
+    Event.PlaybackError,
+    Event.PlaybackState,
+];
 const ContextState = (props)=>{
-    const [isplaying, setIsPlaying] = useState(false);
-    async function playBackStatus(){
-        const state = await GetPlayingStatus()
-        if (state.state === "paused"){
-            setIsPlaying(false)
-        } else {
-            setIsPlaying(true)
+    const [currentPlaying, setCurrentPlaying]  = useState({})
+    const [playerState, setPlayerState] = useState("paused")
+    useTrackPlayerEvents(events, (event) => {
+        if (event.type === Event.PlaybackError) {
+            console.warn('An error occured while playing the current track.');
         }
-    }
-    useEffect(() => {
-        playBackStatus()
-    }, []);
-    return <Context.Provider value={{isplaying,playBackStatus}}>
+        if (event.type === Event.PlaybackActiveTrackChanged) {
+            setCurrentPlaying(event.track)
+        }
+        if (event.type === Event.PlaybackState) {
+            setPlayerState(event.state);
+        }
+    });
+    return <Context.Provider value={{currentPlaying, playerState}}>
         {props.children}
     </Context.Provider>
 }
