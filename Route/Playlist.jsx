@@ -48,7 +48,7 @@ export const Playlist = ({route}) => {
       {!Loading &&  <>
       {Data?.data?.songs?.length > 0 && <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef}>
         <PlaylistTopHeader AnimatedRef={AnimatedRef} url={NotReleased?"https://cdn.dribbble.com/users/2426611/screenshots/8292520/404_presentaxxtion_4x.jpg" : Data?.data?.image[2]?.link ?? ""}/>
-        <PlaylistDetails name={Data?.data?.name ?? ""} liked={false} listener={Data?.data?.fanCount ?? ""} onPlay={()=>{}} Album={Album} releasedDate={Data?.data?.releaseDate ?? ""} notReleased = {NotReleased}/>
+        <PlaylistDetails name={Data?.data?.name ?? ""} liked={false} listener={Data?.data?.fanCount ?? ""} Album={Album} releasedDate={Data?.data?.releaseDate ?? ""} notReleased = {NotReleased} Data={Data}/>
         {!NotReleased && <View style={{
           paddingHorizontal:10,
           backgroundColor:theme.colors.background,

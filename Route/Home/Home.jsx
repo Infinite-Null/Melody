@@ -1,6 +1,6 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
-import { FlatList, ScrollView } from "react-native";
+import { FlatList, ScrollView} from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { RouteHeading } from "../../Component/Global/RouteHeading";
@@ -11,7 +11,6 @@ import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
-import Animated, { FadeInDown } from "react-native-reanimated";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
@@ -33,7 +32,7 @@ export const Home = () => {
     <MainWrapper>
       <LoadingComponent loading={Loading}/>
       {
-        !Loading &&  <Animated.View entering={FadeInDown.springify()}>
+        !Loading &&  <>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:20,
           }}>
@@ -70,7 +69,7 @@ export const Home = () => {
               paddingLeft:13,
             }} data={Data?.data?.albums ?? []} renderItem={(item)=><EachAlbumCard image={item?.item?.image[2]?.link ?? ""} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
           </ScrollView>
-        </Animated.View>
+        </>
       }
     </MainWrapper>
   );

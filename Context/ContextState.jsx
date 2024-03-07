@@ -19,7 +19,7 @@ const ContextState = (props)=>{
             setCurrentPlaying(event.track)
         }
         if (event.type === Event.PlaybackState) {
-            setPlayerState(event.state);
+            setPlayerState(event.state)
         }
     });
     return <Context.Provider value={{currentPlaying, playerState}}>

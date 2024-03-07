@@ -7,8 +7,23 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { PlayButton } from "./PlayButton";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
+import { AddPlaylist, PlayOneSong } from "../../MusicPlayerFunctions";
+import TrackPlayer from "react-native-track-player";
 
-export const PlaylistDetails = ({name,listener,liked,onPlay,Album,releasedDate,notReleased}) => {
+export const PlaylistDetails = ({name,listener,liked,Album,releasedDate,notReleased,Data}) => {
+  const ForMusicPlayer = Data.data.songs.map((e)=>{
+    return {
+      url:e.downloadUrl[3].link,
+      title:e.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      artist:e.primaryArtists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      artwork:e.image[2].link,
+      duration:e.duration,
+      id:e.id,
+    }
+  })
+  async function AddToPlayer(){
+    await AddPlaylist(ForMusicPlayer)
+  }
   const theme = useTheme()
   const width = Dimensions.get('window').width
   return (
@@ -31,7 +46,7 @@ export const PlaylistDetails = ({name,listener,liked,onPlay,Album,releasedDate,n
           <Spacer/>
           <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
         </View>
-        <PlayButton onPress={onPlay}/>
+        <PlayButton onPress={AddToPlayer}/>
       </>}
     </LinearGradient>
   );

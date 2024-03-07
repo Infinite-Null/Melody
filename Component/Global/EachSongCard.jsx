@@ -3,9 +3,12 @@ import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
 import { PlayOneSong } from "../../MusicPlayerFunctions";
+import { useContext } from "react";
+import Context from "../../Context/Context";
 
 export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration}) => {
   const width1 = Dimensions.get("window").width;
+  const {currentPlaying} = useContext(Context)
   return (
     <Pressable onPress={()=>{
        const song  = {
@@ -28,7 +31,7 @@ export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth
       width:width ? width : "100%",
       ...style,
     }}>
-      <FastImage source={{
+      <FastImage source={(id === currentPlaying?.id ?? "") ? require("../../Images/playing.gif") : {
         uri:image,
       }} style={{
         height:50,
