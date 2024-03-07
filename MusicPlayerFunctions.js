@@ -10,6 +10,10 @@ async function AddPlaylist (songs){
   await TrackPlayer.add(songs);
   await TrackPlayer.play();
 }
+
+async function AddSongsToQueue(songs){
+  await TrackPlayer.add(songs);
+}
 async function PlaySong(){
   await TrackPlayer.play();
 }
@@ -23,10 +27,12 @@ async function SetProgressSong(value){
 
 async function PlayNextSong(){
   await TrackPlayer.skipToNext();
+  PlaySong()
 }
 
 async function PlayPreviousSong(){
   await TrackPlayer.skipToPrevious();
+  PlaySong()
 }
 
-export {PlayOneSong, PlaySong, PauseSong, SetProgressSong, PlayNextSong, AddPlaylist, PlayPreviousSong}
+export {PlayOneSong, PlaySong, PauseSong, SetProgressSong, PlayNextSong, AddPlaylist, PlayPreviousSong, AddSongsToQueue}

@@ -7,8 +7,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { PlayButton } from "./PlayButton";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
-import { AddPlaylist, PlayOneSong } from "../../MusicPlayerFunctions";
-import TrackPlayer from "react-native-track-player";
+import { AddPlaylist } from "../../MusicPlayerFunctions";
+
 
 export const PlaylistDetails = ({name,listener,liked,Album,releasedDate,notReleased,Data}) => {
   const ForMusicPlayer = Data.data.songs.map((e)=>{
@@ -19,6 +19,8 @@ export const PlaylistDetails = ({name,listener,liked,Album,releasedDate,notRelea
       artwork:e.image[2].link,
       duration:e.duration,
       id:e.id,
+      language:e.language,
+      artistID:e?.primaryArtistsId,
     }
   })
   async function AddToPlayer(){

@@ -28,10 +28,10 @@ export const HorizontalScrollSongs = ({id}) => {
         paddingRight:50,
       }}>
         <TrendingSongLayout>
-          {Data.data.songs.slice(0,4).map((e,i)=><EachSongCard duration={e.duration} titleWidth={width * 0.63} artistWidth={width * 0.55} key={i} image={e.image[2].link} id={e.id} width={width * 0.7} title={e.name} artist={e.primaryArtists} url={e.downloadUrl}/>)}
+          {Data.data.songs.slice(0,4).map((e,i)=><EachSongCard artistID={e?.primaryArtistsId} language={e.language} duration={e.duration} titleWidth={width * 0.63} artistWidth={width * 0.55} key={i} image={e.image[2].link} id={e.id} width={width * 0.7} title={e.name} artist={e.primaryArtists} url={e.downloadUrl}/>)}
         </TrendingSongLayout>
         <TrendingSongLayout>
-          {Data.data.songs.slice(4,8).map((e,i)=><EachSongCard duration={e.duration} titleWidth={width * 0.63} artistWidth={width * 0.55} key={i} image={e.image[2].link} id={e.id} width={width * 0.7} title={e.name} artist={e.primaryArtists} url={e.downloadUrl}/>)}
+          {Data.data.songs.slice(4,8).map((e,i)=><EachSongCard artistID={e?.primaryArtistsId} language={e.language} duration={e.duration} titleWidth={width * 0.63} artistWidth={width * 0.55} key={i} image={e.image[2].link} id={e.id} width={width * 0.7} title={e.name} artist={e.primaryArtists} url={e.downloadUrl}/>)}
         </TrendingSongLayout>
       </ScrollView>}
       {Loading && <View style={{

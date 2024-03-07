@@ -6,9 +6,9 @@ import { PlayOneSong } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
 
-export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration}) => {
+export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration,language,artistID}) => {
   const width1 = Dimensions.get("window").width;
-  const {currentPlaying} = useContext(Context)
+  const {currentPlaying, playerState} = useContext(Context)
   return (
     <Pressable onPress={()=>{
        const song  = {
@@ -18,6 +18,8 @@ export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth
          artwork:image,
          duration,
          id,
+         language,
+         artistID:artistID,
        }
         PlayOneSong(song)
     }} style={{
@@ -31,7 +33,7 @@ export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth
       width:width ? width : "100%",
       ...style,
     }}>
-      <FastImage source={(id === currentPlaying?.id ?? "") ? require("../../Images/playing.gif") : {
+      <FastImage source={((id === currentPlaying?.id ?? "") && playerState === "playing") ? require("../../Images/playing.gif") : ((id === currentPlaying?.id ?? "") && playerState !== "playing" ) ? require("../../Images/songPaused.gif") : {
         uri:image,
       }} style={{
         height:50,
