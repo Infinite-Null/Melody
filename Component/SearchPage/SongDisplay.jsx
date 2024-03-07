@@ -37,7 +37,7 @@ export default function SongDisplay({data, limit, Searchtext}) {
         setPage(Page + 1)
         fetchSearchData(Searchtext, Page)
       }} contentContainerStyle={{
-        paddingBottom:120,
+        paddingBottom:220,
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>

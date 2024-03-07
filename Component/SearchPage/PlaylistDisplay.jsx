@@ -38,7 +38,7 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
         setPage(Page + 1)
         fetchSearchData(Searchtext, Page)
       }} contentContainerStyle={{
-        paddingBottom:120,
+        paddingBottom:220,
         width:width,
         alignItems:"center",
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{

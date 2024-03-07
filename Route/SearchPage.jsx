@@ -10,6 +10,7 @@ import { getSearchPlaylistData } from "../Api/Playlist";
 import PlaylistDisplay from "../Component/SearchPage/PlaylistDisplay";
 import { getSearchAlbumData } from "../Api/Album";
 import AlbumsDisplay from "../Component/SearchPage/AlbumDisplay";
+import { Spacer } from "../Component/Global/Spacer";
 
 export const SearchPage = () => {
   const [ActiveTab, setActiveTab] = useState(0)
@@ -44,6 +45,7 @@ export const SearchPage = () => {
   },[ActiveTab])
   return (
     <MainWrapper>
+      <Spacer/>
       <SearchBar onChange={(text)=>setSearchText(text)} onPressSearch={()=>{
         fetchSearchData(SearchText)
       }}/>

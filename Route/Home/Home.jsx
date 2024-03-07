@@ -11,6 +11,7 @@ import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
+import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
@@ -32,9 +33,9 @@ export const Home = () => {
     <MainWrapper>
       <LoadingComponent loading={Loading}/>
       {
-        !Loading &&  <>
+        !Loading &&  <Animated.View entering={FadeInDown.delay(200)}>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
-            paddingBottom:20,
+            paddingBottom:90,
           }}>
             <RouteHeading text={"Home"}/>
             <LargeBentooCard text={"Top Most Hitz Music Today"} subtext={"Today's hitz"} width={"100%"} image={require("../../Images/musicListning.png")} id={"110858205"}/>
@@ -69,7 +70,7 @@ export const Home = () => {
               paddingLeft:13,
             }} data={Data?.data?.albums ?? []} renderItem={(item)=><EachAlbumCard image={item?.item?.image[2]?.link ?? ""} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
           </ScrollView>
-        </>
+        </Animated.View>
       }
     </MainWrapper>
   );

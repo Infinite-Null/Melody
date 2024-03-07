@@ -39,7 +39,7 @@ export default function AlbumsDisplay({data, limit, Searchtext}) {
         setPage(Page + 1)
         fetchSearchData(Searchtext, Page)
       }} contentContainerStyle={{
-        paddingBottom:120,
+        paddingBottom:220,
         width:width,
         alignItems:"center",
         gap:15,
@@ -47,7 +47,7 @@ export default function AlbumsDisplay({data, limit, Searchtext}) {
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>
         }else{
-            return <EachAlbumCard mainContainerStyle={{width:width*0.45}} image={item?.item?.image[2]?.link ?? ""} artists={item?.item?.artists ?? []} name={item?.item?.name ?? ""} id={item?.item?.id ?? ""}/>
+            return <EachAlbumCard mainContainerStyle={{width:width * 0.45}} image={item?.item?.image[2]?.link ?? ""} artists={item?.item?.artists ?? []} name={item?.item?.name ?? ""} id={item?.item?.id ?? ""}/>
         }
       }}/>}
       {Data?.data?.results?.length === 0 && <View style={{
