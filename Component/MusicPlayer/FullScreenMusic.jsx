@@ -50,7 +50,7 @@ export const FullScreenMusic = ({color}) => {
              }}
            />
            <Heading text={currentPlaying?.title ?? "No music :("} style={{textAlign:"center", paddingHorizontal:10}}/>
-           <SmallText text={currentPlaying?.artist ?? "Explore now!"}/>
+           <SmallText text={currentPlaying?.artist ?? "Explore now!"} style={{textAlign:"center"}}/>
            <ProgressBar/>
            <Spacer/>
            <Spacer/>
@@ -69,7 +69,7 @@ export const FullScreenMusic = ({color}) => {
              <View style={{
                gap:25,
              }}>
-             <RepeatSongButton size={20}/>
+               <RepeatSongButton size={20}/>
                <SaveMusicButton size={25}/>
              </View>
            </View>
