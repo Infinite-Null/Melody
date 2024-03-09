@@ -37,6 +37,8 @@ export const SearchPage = () => {
       } finally {
         setLoading(false)
       }
+    } else {
+      setData([])
     }
   }
   useEffect(()=>{
@@ -46,8 +48,11 @@ export const SearchPage = () => {
   return (
     <MainWrapper>
       <Spacer/>
-      <SearchBar onChange={(text)=>setSearchText(text)} onPressSearch={()=>{
-        fetchSearchData(SearchText)
+      <SearchBar onChange={(text)=>{
+        setSearchText(text)
+        setTimeout(()=>{
+          fetchSearchData(SearchText)
+        },500)
       }}/>
       <Tabs tabs={["Songs","Playlists","Albums"]} setState={setActiveTab} state={ActiveTab}/>
       {Loading && <LoadingComponent loading={Loading}/>}

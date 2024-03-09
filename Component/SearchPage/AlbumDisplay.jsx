@@ -36,8 +36,10 @@ export default function AlbumsDisplay({data, limit, Searchtext}) {
   return (
      <>
      {Data?.data?.results?.length !== 0 && <FlatList numColumns={2} keyExtractor={(item, index) => String(index)} onEndReached={()=>{
-        setPage(Page + 1)
-        fetchSearchData(Searchtext, Page)
+       setTimeout(()=>{
+         setPage(Page + 1)
+         fetchSearchData(Searchtext, Page)
+       },200)
       }} contentContainerStyle={{
         paddingBottom:220,
         width:width,

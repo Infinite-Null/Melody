@@ -1,9 +1,9 @@
-import { Dimensions, Pressable, TextInput, View } from "react-native";
+import { Dimensions, TextInput, View } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import { useTheme } from "@react-navigation/native";
 import Animated, { FadeOutUp, FlipInXDown } from "react-native-reanimated";
 
-export const SearchBar = ({onPressSearch,onChange}) => {
+export const SearchBar = ({onChange}) => {
   const width = Dimensions.get("window").width
   const theme = useTheme()
   return (
@@ -25,7 +25,6 @@ export const SearchBar = ({onPressSearch,onChange}) => {
           color:"white",
         }} onChangeText={onChange} autoFocus={true}/>
       </Animated.View>
-      <Pressable onPress={onPressSearch}>
         <Animated.View entering={FlipInXDown.duration(200)} exiting={FadeOutUp.duration(200)} style={{
           backgroundColor:theme.colors.primary,
           height:50,
@@ -38,7 +37,6 @@ export const SearchBar = ({onPressSearch,onChange}) => {
         }}>
           <Feather name={"search"} size={width * 0.065} color={"black"}/>
         </Animated.View>
-      </Pressable>
     </View>
   );
 };

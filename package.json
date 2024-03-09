@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^6.9.22",
     "@react-navigation/stack": "^6.3.23",
     "axios": "^1.6.7",
+    "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-native": "0.73.4",
     "react-native-fast-image": "^8.6.3",

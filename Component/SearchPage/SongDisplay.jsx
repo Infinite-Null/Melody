@@ -34,8 +34,10 @@ export default function SongDisplay({data, limit, Searchtext}) {
   return (
      <View>
       {Data?.data?.results?.length !== 0 && <FlatList keyExtractor={(item, index) => String(index)} onEndReached={()=>{
-        setPage(Page + 1)
-        fetchSearchData(Searchtext, Page)
+        setTimeout(()=>{
+          setPage(Page + 1)
+          fetchSearchData(Searchtext, Page)
+        },200)
       }} contentContainerStyle={{
         paddingBottom:220,
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{
