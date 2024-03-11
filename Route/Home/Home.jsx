@@ -47,7 +47,7 @@ export const Home = () => {
             }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Trending Songs"}/>
-              <HorizontalScrollSongs id={"110858205"}/>
+              <HorizontalScrollSongs id={Data.data.charts[0].id}/>
               <Heading text={"Trending Albums"}/>
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
@@ -55,7 +55,7 @@ export const Home = () => {
             }} data={Data?.data?.trending?.albums ?? []} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Top Romantic"}/>
-              <HorizontalScrollSongs id={"142311984"}/>
+              <HorizontalScrollSongs id={Data?.data?.charts[1]?.id}/>
             </PaddingConatiner>
             <PaddingConatiner>
               <Heading text={"Top Charts"}/>

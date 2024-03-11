@@ -8,26 +8,34 @@ import { useEffect, useState } from "react";
 import { getPlaylistData } from "../Api/Playlist";
 import { LoadingComponent } from "../Component/Global/Loading";
 import { useTheme } from "@react-navigation/native";
-import { getAlbumData } from "../Api/Album";
 import { PlainText } from "../Component/Global/PlainText";
 import { SmallText } from "../Component/Global/SmallText";
+import { getPromiseSongData } from "../Api/Songs";
 
 export const Playlist = ({route}) => {
   const theme = useTheme();
   const AnimatedRef = useAnimatedRef()
   const [Loading, setLoading] = useState(true)
   const [Data, setData] = useState({});
-  const {id,Album} = route.params
+  const [Links, setLinks] = useState([]);
+  const {id} = route.params
   async function fetchPlaylistData(){
     try {
       setLoading(true)
       let data={}
-      if (Album === true) {
-        data = await getAlbumData(id)
-      }
-      else {
+      let SongLinks=[]
         data = await getPlaylistData(id)
-      }
+        const Songs = data.songs.map((e)=>{
+          return getPromiseSongData(e.id)
+        })
+        const SongData = await Promise.all(Songs)
+        SongLinks = SongData.map(e=>{
+          return {
+            url:e.data.data[0].downloadUrl,
+            image:e.data.data[0].image[2].url,
+          }
+        })
+      setLinks(SongLinks)
       setData(data)
     } catch (e) {
       console.log(e);
@@ -40,39 +48,28 @@ export const Playlist = ({route}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const NotReleased = Data?.data?.releaseDate === "" && Data?.data?.year === "0" && Data.data.songs[0].downloadUrl === false
   return (
     <MainWrapper>
       {Loading &&
         <LoadingComponent loading={Loading}/>}
       {!Loading &&  <>
-      {Data?.data?.songs?.length > 0 && <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef} contentContainerStyle={{
+      {Data?.songs?.length > 0 && <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef} contentContainerStyle={{
         paddingBottom:55,
         backgroundColor:"black",
       }}>
-        <PlaylistTopHeader AnimatedRef={AnimatedRef} url={NotReleased?"https://cdn.dribbble.com/users/2426611/screenshots/8292520/404_presentaxxtion_4x.jpg" : Data?.data?.image[2]?.link ?? ""}/>
-        <PlaylistDetails name={Data?.data?.name ?? ""} liked={false} listener={Data?.data?.fanCount ?? ""} Album={Album} releasedDate={Data?.data?.releaseDate ?? ""} notReleased = {NotReleased} Data={Data}/>
-        {!NotReleased && <View style={{
+        <PlaylistTopHeader AnimatedRef={AnimatedRef} url={Data?.image ?? ""} />
+        <PlaylistDetails name={Data?.listname ?? ""} liked={false} listener={Data?.follower_count ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data} Links={Links}/>
+        {<View style={{
           paddingHorizontal:10,
           backgroundColor:theme.colors.background,
         }}>
-          {Data?.data?.songs?.map((e,i)=><EachSongCard language={e.language} artistID={e?.primaryArtistsId} key={i} duration={e.duration} image={e.image[2].link} id={e.id} width={"100%"} title={e.name} artist={e.primaryArtists} url={e.downloadUrl} style={{
+          {Data?.songs?.map((e,i)=><EachSongCard language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={Links[i]?.image} id={e?.id} width={"100%"} title={e?.song} artist={e?.primary_artists} url={Links[i]?.url} style={{
             marginBottom:15,
           }}/>)}
         </View>}
-        {NotReleased && <View style={{
-          flex:1,
-          backgroundColor:"black",
-          alignItems:"center",
-          justifyContent:"center",
-          height:250,
-        }}>
-          <PlainText text={"Album not available"}/>
-          <SmallText text={"Not Available"}/>
-        </View>}
       </Animated.ScrollView>}
       </>}
-      {Data?.data?.songs?.length <= 0 && <View style={{
+      {Data?.songs?.length <= 0 && <View style={{
         flex: 1,
         alignItems:"center",
         justifyContent:"center",

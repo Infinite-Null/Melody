@@ -1,7 +1,8 @@
 import Animated, { interpolate, useAnimatedStyle, useScrollViewOffset } from "react-native-reanimated";
 import { Dimensions, View } from "react-native";
 
-export const PlaylistTopHeader = ({AnimatedRef,url}) => {
+export const PlaylistTopHeader = ({AnimatedRef,url, data}) => {
+  console.log(data);
   const SizeOfSmallImage = Dimensions.get('window').width * 0.5;
   const ScrollOffset = useScrollViewOffset(AnimatedRef)
   const AnimatedImageStyle = useAnimatedStyle(()=>{

@@ -1,15 +1,10 @@
 import axios from "axios";
+import { jiosavan } from "jiosavan";
 
 async function getPlaylistData(id){
-  let config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: 'https://saavn.dev/playlists?id=' + id,
-    headers: { },
-  };
   try {
-    const response = await axios.request(config);
-    return response.data
+    // const response = await axios.request(config);
+    return await jiosavan.getPlaylist(id)
   }
   catch (error) {
     throw error

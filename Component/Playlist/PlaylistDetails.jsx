@@ -10,17 +10,17 @@ import { useTheme } from "@react-navigation/native";
 import { AddPlaylist } from "../../MusicPlayerFunctions";
 
 
-export const PlaylistDetails = ({name,listener,liked,Album,releasedDate,notReleased,Data}) => {
-  const ForMusicPlayer = Data.data.songs.map((e)=>{
+export const PlaylistDetails = ({name,listener,liked,releasedDate,notReleased,Data,Links}) => {
+  const ForMusicPlayer = Data?.songs?.map((e,i)=>{
     return {
-      url:e.downloadUrl[3].link,
-      title:e.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artist:e.primaryArtists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artwork:e.image[2].link,
-      duration:e.duration,
-      id:e.id,
-      language:e.language,
-      artistID:e?.primaryArtistsId,
+      url:Links[i]?.url[4].url,
+      title:e?.song.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      artist:e?.primary_artists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      artwork:Links[i]?.image,
+      duration:e?.duration,
+      id:e?.id,
+      language:e?.language,
+      artistID:e?.primary_artists_id,
     }
   })
   async function AddToPlayer(){
@@ -42,13 +42,15 @@ export const PlaylistDetails = ({name,listener,liked,Album,releasedDate,notRelea
         }}>
           <Heading text={name}/>
           <View style={{flexDirection:"row",gap:5}}>
-            {!Album && <Ionicons name={"musical-note"} size={16}/>}
-            <SmallText text={Album ? "Released " + releasedDate : listener + " Listeners"}/>
+             <Ionicons name={"musical-note"} size={16}/>
+            <SmallText text={listener + " Listeners"}/>
           </View>
           <Spacer/>
           <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
         </View>
-        <PlayButton onPress={AddToPlayer}/>
+        <PlayButton onPress={()=>{
+          AddToPlayer()
+        }}/>
       </>}
     </LinearGradient>
   );

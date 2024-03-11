@@ -6,13 +6,13 @@ import { PlayOneSong } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
 
-export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration,language,artistID}) => {
+export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration,language,artistID, playlist}) => {
   const width1 = Dimensions.get("window").width;
   const {currentPlaying, playerState} = useContext(Context)
   return (
     <Pressable onPress={()=>{
        const song  = {
-         url:url[3].link,
+         url:url[4].url,
          title:title?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
          artist:artist?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
          artwork:image,
