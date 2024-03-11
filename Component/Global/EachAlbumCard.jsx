@@ -38,7 +38,7 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,
   }
   return (
     <Pressable onPress={()=>{
-      navigation.navigate("Playlist" , {id,Album:true})
+      navigation.navigate("Album" , {id})
     }} style={{
       borderRadius:10,
       height:230,

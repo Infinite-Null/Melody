@@ -4,7 +4,7 @@ async function getAlbumData(id){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'https://saavn.dev/albums?id=' + id,
+    url: "https://saavn.dev/api/albums?id=" + id,
     headers: { },
   };
   try {
