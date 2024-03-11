@@ -15,7 +15,7 @@ async function getSearchPlaylistData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/search/playlists?query=${searchText}&page=${page}&limit=${limit}`,
+    url: `https://jio-savan-api-sigma.vercel.app/search/playlists?query=${searchText}&page=${page}&limit=${limit}`,
     headers: { },
   };
   try {

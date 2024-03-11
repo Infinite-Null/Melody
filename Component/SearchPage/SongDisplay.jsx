@@ -31,6 +31,18 @@ export default function SongDisplay({data, limit, Searchtext}) {
    }
   }
   const width = Dimensions.get("window").width
+
+  function FormatArtist(data){
+    let artist = ""
+    data?.map((e,i)=>{
+      if(i === data.length - 1){
+        artist += e.name
+      }else{
+        artist += e.name + ", "
+      }
+    })
+    return artist
+  }
   return (
      <View>
       {Data?.data?.results?.length !== 0 && <FlatList keyExtractor={(item, index) => String(index)} onEndReached={()=>{
@@ -44,7 +56,7 @@ export default function SongDisplay({data, limit, Searchtext}) {
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>
         }else{
-            return <EachSongCard titleWidth={width * 0.63 } artistID={item.item?.primaryArtistsId} language={item.item.language} duration={item.item.duration} artistWidth={width * 0.55}  image={item?.item?.image[2]?.link ?? ""} id={item.item.id} width={width * 0.7} title={item.item.name} artist={item.item.primaryArtists} url={item.item.downloadUrl} style={{
+            return <EachSongCard titleWidth={width * 0.63 } artistID={item.item?.primaryArtistsId} language={item.item?.language} duration={item.item?.duration} artistWidth={width * 0.55}  image={item?.item?.image[2]?.url ?? ""} id={item.item?.id} width={width * 0.7} title={item.item?.name} artist={FormatArtist(item.item?.artists?.primary)} url={item.item?.downloadUrl} style={{
                 marginBottom:13,
             }}/>
         }

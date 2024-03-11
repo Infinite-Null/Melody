@@ -4,7 +4,7 @@ async function getSearchSongData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/search/songs?query=${searchText}&page=${page}&limit=${limit}`,
+    url: `https://saavn.dev/api/search/songs?query=${searchText}&page=${page}&limit=${limit}`,
     headers: { },
   };
   try {
