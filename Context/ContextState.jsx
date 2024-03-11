@@ -3,6 +3,7 @@ import { useState } from "react";
 import TrackPlayer, { Event, useTrackPlayerEvents } from "react-native-track-player";
 import { getRecommendedSongs } from "../Api/Recommended";
 import { AddSongsToQueue } from "../MusicPlayerFunctions";
+import FormatArtist from "../Utils/FormatArtists";
 
 
 const events = [
@@ -13,23 +14,22 @@ const events = [
 const ContextState = (props)=>{
     const [currentPlaying, setCurrentPlaying]  = useState({})
     const [playerState, setPlayerState] = useState("paused")
-    async function AddRecommendedSongs(index,id,language,artistid){
-        console.log(index,id,language,artistid);
+    async function AddRecommendedSongs(index,id){
         const tracks = await TrackPlayer.getQueue();
         const totalTracks = tracks.length - 1
         if (index >= totalTracks - 2){
-            const songs = await getRecommendedSongs(artistid,language,id)
-            if(songs.length != 0){
+            const songs = await getRecommendedSongs(id)
+            console.log(songs.data);
+            if (songs?.data?.length !== 0){
                 const ForMusicPlayer = songs.data.map((e)=> {
                     return {
-                        url:e.downloadUrl[3].link,
+                        url:e.downloadUrl[3].url,
                         title:e.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-                        artist:e.primaryArtists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-                        artwork:e.image[2].link,
+                        artist:FormatArtist(e?.artists?.primary).toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+                        artwork:e.image[2].url,
                         duration:e.duration,
                         id:e.id,
                         language:e.language,
-                        artistID:(e?.primaryArtistsId?.indexOf(",") === -1) ? e?.primaryArtistsId : e?.primaryArtistsId?.slice(0,e?.primaryArtistsId?.indexOf(","))?.replace(" ",""),
                     }
                 })
                 await AddSongsToQueue(ForMusicPlayer)

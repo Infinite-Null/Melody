@@ -1,10 +1,10 @@
 import axios from "axios";
 
-async function getRecommendedSongs(artist,language,song){
+async function getRecommendedSongs(id){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/artists/${artist}/recommendations/${song}?language=${language}`,
+    url: `https://saavn.dev/api/songs/${id}/suggestions`,
     headers: { },
   };
   try {
