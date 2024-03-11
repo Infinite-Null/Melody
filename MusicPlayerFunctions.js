@@ -37,6 +37,7 @@ async function PlayPreviousSong(){
 }
 async function SkipToTrack(trackIndex){
   await TrackPlayer.skip(trackIndex);
+  await PlaySong()
 }
 async function SetRepeatMode(mode){
   await setRepeatMode(mode)

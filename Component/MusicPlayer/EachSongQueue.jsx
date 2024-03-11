@@ -19,7 +19,6 @@ export const EachSongQueue = memo(function EachSongQueue({ title, artist, index,
       elevation:10,
       marginVertical:5,
       marginBottom:6,
-      width: "100%",
     }}>
       <FastImage source={((id === currentPlaying?.id ?? "") && playerState === "playing") ? require("../../Images/playing.gif") : ((id === currentPlaying?.id ?? "") && playerState !== "playing" ) ? require("../../Images/songPaused.gif") : {
         uri:image,

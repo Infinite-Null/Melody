@@ -25,4 +25,20 @@ async function getSearchSongData(searchText,page,limit){
   return axios.request(config);
 }
 
-export {getSearchSongData, getPromiseSongData}
+async function getLyricsSongData(id){
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `https://saavn.dev/api/songs/${id}/lyrics`,
+    headers: { },
+  };
+  try {
+    const response = await axios.request(config);
+    return response.data
+  }
+  catch (error) {
+    throw error
+  }
+}
+
+export {getSearchSongData, getPromiseSongData, getLyricsSongData}

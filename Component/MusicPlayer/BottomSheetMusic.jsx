@@ -32,6 +32,7 @@ const BottomSheetMusic = ({color}) => {
   }, []);
   return (
       <BottomSheet
+        enableOverDrag={false}
       handleIndicatorStyle={{
         height:0,
         width:0,
