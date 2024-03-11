@@ -50,8 +50,8 @@ const ContextState = (props)=>{
         if (event.type === Event.PlaybackActiveTrackChanged) {
             setCurrentPlaying(event.track)
             if (Repeat === Repeats.NoRepeat){
-                if (event.track?.id && event.track?.language && event.track?.artistID){
-                    AddRecommendedSongs(event.index,event.track?.id,event.track?.language,event.track?.artistID)
+                if (event.track?.id ){
+                    AddRecommendedSongs(event.index,event.track?.id)
                 }
             }
         }

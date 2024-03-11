@@ -4,11 +4,13 @@ import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
 import { memo, useContext } from "react";
 import Context from "../../Context/Context";
+import { SkipToTrack } from "../../MusicPlayerFunctions";
 
 export const EachSongQueue = memo(function EachSongQueue({ title, artist, index, image, id }) {
   const {currentPlaying, playerState} = useContext(Context)
   return (
     <Pressable onPress={()=>{
+      SkipToTrack(index)
     }} style={{
       flexDirection:'row',
       gap:10,
