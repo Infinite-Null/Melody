@@ -21,7 +21,7 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
         minHeight:height,
       }}>
         <Heading text={"Lyrics"}/>
-        <Text style={{
+        <Text selectable={true} style={{
           color:theme.colors.text,
           fontSize:width * 0.045,
           fontWeight:300,

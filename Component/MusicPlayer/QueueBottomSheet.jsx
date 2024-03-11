@@ -5,9 +5,9 @@ import { QueueRenderSongs } from "./QueueRenderSongs";
 
 const QueueBottomSheet = () => {
   const { Queue } = useContext(Context)
-  const backgroundColor = 'rgba(26,26,26,0.53)'
+  const backgroundColor = 'rgba(16,16,16,0.58)'
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => [155, '50%'], [])
+  const snapPoints = useMemo(() => [185, '50%'], [])
   return (
       <BottomSheet
         animateOnMount={false}
