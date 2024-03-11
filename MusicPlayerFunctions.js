@@ -1,4 +1,5 @@
 import TrackPlayer from "react-native-track-player";
+import { setRepeatMode } from "react-native-track-player/lib/trackPlayer";
 
 async function PlayOneSong(song){
   await  TrackPlayer.reset()
@@ -34,5 +35,11 @@ async function PlayPreviousSong(){
   await TrackPlayer.skipToPrevious();
   PlaySong()
 }
+async function SkipToTrack(trackIndex){
+  await TrackPlayer.skip(trackIndex);
+}
+async function SetRepeatMode(mode){
+  await setRepeatMode(mode)
+}
 
-export {PlayOneSong, PlaySong, PauseSong, SetProgressSong, PlayNextSong, AddPlaylist, PlayPreviousSong, AddSongsToQueue}
+export {PlayOneSong, PlaySong, PauseSong, SetProgressSong, PlayNextSong, AddPlaylist, PlayPreviousSong, AddSongsToQueue, SkipToTrack,SetRepeatMode}

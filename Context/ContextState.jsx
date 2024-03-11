@@ -4,6 +4,7 @@ import TrackPlayer, { Event, useTrackPlayerEvents } from "react-native-track-pla
 import { getRecommendedSongs } from "../Api/Recommended";
 import { AddSongsToQueue } from "../MusicPlayerFunctions";
 import FormatArtist from "../Utils/FormatArtists";
+import { Repeats } from "../Utils/Repeats";
 
 
 const events = [
@@ -14,12 +15,13 @@ const events = [
 const ContextState = (props)=>{
     const [currentPlaying, setCurrentPlaying]  = useState({})
     const [playerState, setPlayerState] = useState("paused")
+    const [Repeat, setRepeat] = useState(Repeats.NoRepeat);
+
     async function AddRecommendedSongs(index,id){
         const tracks = await TrackPlayer.getQueue();
         const totalTracks = tracks.length - 1
         if (index >= totalTracks - 2){
             const songs = await getRecommendedSongs(id)
-            console.log(songs.data);
             if (songs?.data?.length !== 0){
                 const ForMusicPlayer = songs.data.map((e)=> {
                     return {
@@ -42,15 +44,17 @@ const ContextState = (props)=>{
         }
         if (event.type === Event.PlaybackActiveTrackChanged) {
             setCurrentPlaying(event.track)
-            if (event.track?.id && event.track?.language && event.track?.artistID){
-                AddRecommendedSongs(event.index,event.track?.id,event.track?.language,event.track?.artistID)
+            if (Repeat === Repeats.NoRepeat){
+                if (event.track?.id && event.track?.language && event.track?.artistID){
+                    AddRecommendedSongs(event.index,event.track?.id,event.track?.language,event.track?.artistID)
+                }
             }
         }
         if (event.type === Event.PlaybackState) {
             setPlayerState(event.state)
         }
     });
-    return <Context.Provider value={{currentPlaying, playerState}}>
+    return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat}}>
         {props.children}
     </Context.Provider>
 }

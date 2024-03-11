@@ -69,7 +69,7 @@ export const FullScreenMusic = ({color}) => {
              <View style={{
                gap:25,
              }}>
-               <RepeatSongButton size={20}/>
+               <RepeatSongButton size={25}/>
                <SaveMusicButton size={25}/>
              </View>
            </View>
