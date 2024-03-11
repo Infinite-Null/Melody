@@ -10,13 +10,13 @@ import { AddPlaylist } from "../../MusicPlayerFunctions";
 import { PlayButton } from "../Playlist/PlayButton";
 
 
-export const AlbumDetails = ({name,releaseData,liked,releasedDate,notReleased,Data}) => {
+export const AlbumDetails = ({name,releaseData,liked,Data}) => {
   function FormatArtist(data){
     let artist = ""
     data?.map((e,i)=>{
-      if(i === data.length - 1){
+      if (i === data.length - 1){
         artist += e.name
-      }else{
+      } else {
         artist += e.name + ", "
       }
     })
@@ -34,7 +34,6 @@ export const AlbumDetails = ({name,releaseData,liked,releasedDate,notReleased,Da
       artistID:e?.primary_artists_id,
     }
   })
-  console.log(ForMusicPlayer);
   async function AddToPlayer(){
     await AddPlaylist(ForMusicPlayer)
   }
@@ -47,7 +46,6 @@ export const AlbumDetails = ({name,releaseData,liked,releasedDate,notReleased,Da
       justifyContent:"space-between",
       flexDirection:"row",
     }}>
-      {!notReleased && <>
         <View style={{
           paddingLeft:5,
           maxWidth:width * 0.8,
@@ -55,7 +53,7 @@ export const AlbumDetails = ({name,releaseData,liked,releasedDate,notReleased,Da
           <Heading text={name}/>
           <View style={{flexDirection:"row",gap:5}}>
             <Ionicons name={"musical-note"} size={16}/>
-            <SmallText text={"Released in "+releaseData }/>
+            <SmallText text={"Released in " + releaseData }/>
           </View>
           <Spacer/>
           <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
@@ -63,7 +61,6 @@ export const AlbumDetails = ({name,releaseData,liked,releasedDate,notReleased,Da
         <PlayButton onPress={()=>{
           AddToPlayer()
         }}/>
-      </>}
     </LinearGradient>
   );
 };

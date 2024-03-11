@@ -21,7 +21,6 @@ export const Album = ({route}) => {
     try {
       setLoading(true)
       const data = await getAlbumData(id)
-      console.log(data.data.image[2].url);
       setData(data)
     } catch (e) {
       console.log(e);

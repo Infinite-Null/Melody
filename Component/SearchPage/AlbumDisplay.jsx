@@ -6,9 +6,9 @@ import { PlainText } from '../Global/PlainText'
 import { SmallText } from '../Global/SmallText'
 import { EachAlbumCard } from '../Global/EachAlbumCard'
 import { getSearchAlbumData } from '../../Api/Album'
+import { it } from "@jest/globals";
 
 export default function AlbumsDisplay({data, limit, Searchtext}) {
-    console.log(data);
   const [Data, setData] = useState(data)
   const totalPages = Math.ceil(Data?.data?.total ?? 1 / limit)
   const [Page, setPage] = useState(1)
@@ -31,7 +31,17 @@ export default function AlbumsDisplay({data, limit, Searchtext}) {
    }
    }
   }
-
+  function FormatArtist(data){
+    let artist = ""
+    data?.map((e,i)=>{
+      if (i === data.length - 1){
+        artist += e.name
+      } else {
+        artist += e.name + ", "
+      }
+    })
+    return artist
+  }
   const width = Dimensions.get("window").width
   return (
      <>
@@ -49,7 +59,7 @@ export default function AlbumsDisplay({data, limit, Searchtext}) {
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>
         }else{
-            return <EachAlbumCard mainContainerStyle={{width:width * 0.45}} image={item?.item?.image[2]?.link ?? ""} artists={item?.item?.artists ?? []} name={item?.item?.name ?? ""} id={item?.item?.id ?? ""}/>
+            return <EachAlbumCard Search={true} mainContainerStyle={{width:width * 0.45}} image={item?.item?.image[2]?.url ?? ""} artists={FormatArtist(item.item?.artists?.primary)} name={item?.item?.name ?? ""} id={item?.item?.id ?? ""}/>
         }
       }}/>}
       {Data?.data?.results?.length === 0 && <View style={{

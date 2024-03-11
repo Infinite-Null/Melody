@@ -20,7 +20,7 @@ async function getSearchAlbumData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/search/albums?query=${searchText}&page=${page}&limit=${limit}`,
+    url: `https://saavn.dev/api/search/albums?query=${searchText}&page=${page}&limit=${limit}`,
     headers: { },
   };
   try {

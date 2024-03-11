@@ -5,31 +5,33 @@ import { memo } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 
-export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,mainContainerStyle}) {
+export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,mainContainerStyle,Search}) {
   const navigation = useNavigation()
   let artistsNames = ""
-  if (artists.length > 3){
-    for (let i = 0; i < 3; i++){
-      if ( i === 2){
-        artistsNames += artists[i].name
-      } else {
-        const additionName = artists[i].name + ", "
-        artistsNames += additionName
+  if (!Search){
+    if (artists.length > 3){
+      for (let i = 0; i < 3; i++){
+        if ( i === 2){
+          artistsNames += artists[i].name
+        } else {
+          const additionName = artists[i].name + ", "
+          artistsNames += additionName
+        }
       }
+      artistsNames += " ..."
+    } else {
+      artists.map((e,i)=>{
+        if (i === artists.length - 1){
+          artistsNames += e.name
+        } else {
+          const additionName = e.name + ", "
+          artistsNames += additionName
+        }
+      })
     }
-    artistsNames += " ..."
-  } else {
-    artists.map((e,i)=>{
-      if (i === artists.length - 1){
-        artistsNames += e.name
-      } else {
-        const additionName = e.name + ", "
-        artistsNames += additionName
-      }
-    })
   }
   function formattedText (text){
-    if (text.length>=45){
+    if (text.length >= 45){
       return text.slice(0,45) + "..."
     }
     else {
@@ -66,7 +68,7 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,
             padding:10,
           }}>
             <PlainText text={formattedText(name)}/>
-            <SmallText text={artistsNames}/>
+            <SmallText text={!Search ? artistsNames : artists}/>
           </View>
         </View>
       </ImageBackground>
