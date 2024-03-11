@@ -8,9 +8,12 @@ import { PlayButton } from "./PlayButton";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
 import { AddPlaylist } from "../../MusicPlayerFunctions";
+import { useContext } from "react";
+import Context from "../../Context/Context";
 
 
 export const PlaylistDetails = ({name,listener,liked,releasedDate,notReleased,Data,Links}) => {
+  const {updateTrack} = useContext(Context)
   const ForMusicPlayer = Data?.songs?.map((e,i)=>{
     return {
       url:Links[i]?.url[4].url,
@@ -25,6 +28,7 @@ export const PlaylistDetails = ({name,listener,liked,releasedDate,notReleased,Da
   })
   async function AddToPlayer(){
     await AddPlaylist(ForMusicPlayer)
+    updateTrack()
   }
   const theme = useTheme()
   const width = Dimensions.get('window').width

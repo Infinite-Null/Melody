@@ -1,33 +1,18 @@
-import React, { useCallback, useMemo, useRef } from "react";
-import { StyleSheet } from 'react-native';
-import BottomSheet, { BottomSheetFlatList, BottomSheetScrollView, BottomSheetView } from "@gorhom/bottom-sheet";
-import { EachSongQueue } from "./EachSongQueue";
-import { useFocusEffect } from "@react-navigation/native";
+import React, { useContext, useMemo, useRef } from "react";
+import BottomSheet from "@gorhom/bottom-sheet";
+import Context from "../../Context/Context";
+import { QueueRenderSongs } from "./QueueRenderSongs";
 
 const QueueBottomSheet = () => {
+  const { Queue } = useContext(Context)
   const backgroundColor = 'rgba(26,26,26,0.53)'
-  // ref
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => [155, '50%'], []);
-  const styles = StyleSheet.create({
-    contentContainer: {
-      flex: 1,
-      alignItems: 'center',
-      backgroundColor:backgroundColor,
-      paddingHorizontal:10
-    },
-  });
-  // callbacks
-  const handleSheetChanges = useCallback((index) => {
-    console.log('handleSheetChanges', index);
-  }, []);
-
-  // renders
+  const snapPoints = useMemo(() => [155, '50%'], [])
   return (
       <BottomSheet
+        animateOnMount={false}
         snapPoints={snapPoints}
         ref={bottomSheetRef}
-        onChange={handleSheetChanges}
         style={{
           backgroundColor,
         }}
@@ -41,12 +26,7 @@ const QueueBottomSheet = () => {
           backgroundColor:backgroundColor,
         }}
       >
-        <BottomSheetFlatList
-          contentContainerStyle={{paddingHorizontal:20, paddingBottom:100}}
-          data={[1,2,3,4,5,6,7,8,9,0]}
-          keyExtractor={(i) => i}
-          renderItem={()=><EachSongQueue title={"Hello"}  artist={"Ankit Kumar Shah"} />}
-        />
+        <QueueRenderSongs key={1} Queue={Queue}/>
       </BottomSheet>
   );
 };

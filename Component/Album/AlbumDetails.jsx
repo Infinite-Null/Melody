@@ -8,9 +8,12 @@ import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
 import { AddPlaylist } from "../../MusicPlayerFunctions";
 import { PlayButton } from "../Playlist/PlayButton";
+import { useContext } from "react";
+import Context from "../../Context/Context";
 
 
 export const AlbumDetails = ({name,releaseData,liked,Data}) => {
+  const {updateTrack} = useContext(Context)
   function FormatArtist(data){
     let artist = ""
     data?.map((e,i)=>{
@@ -36,6 +39,7 @@ export const AlbumDetails = ({name,releaseData,liked,Data}) => {
   })
   async function AddToPlayer(){
     await AddPlaylist(ForMusicPlayer)
+    updateTrack()
   }
   const theme = useTheme()
   const width = Dimensions.get('window').width

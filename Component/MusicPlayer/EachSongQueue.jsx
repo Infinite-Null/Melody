@@ -1,10 +1,12 @@
 import { Pressable, View } from "react-native";
-import { PlayOneSong } from "../../MusicPlayerFunctions";
 import FastImage from "react-native-fast-image";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
+import { memo, useContext } from "react";
+import Context from "../../Context/Context";
 
-export const EachSongQueue = ({ title, artist }) => {
+export const EachSongQueue = memo(function EachSongQueue({ title, artist, index, image, id }) {
+  const {currentPlaying, playerState} = useContext(Context)
   return (
     <Pressable onPress={()=>{
     }} style={{
@@ -17,7 +19,9 @@ export const EachSongQueue = ({ title, artist }) => {
       marginBottom:6,
       width: "100%",
     }}>
-      <FastImage source={ require("../../Images/playing.gif")} style={{
+      <FastImage source={((id === currentPlaying?.id ?? "") && playerState === "playing") ? require("../../Images/playing.gif") : ((id === currentPlaying?.id ?? "") && playerState !== "playing" ) ? require("../../Images/songPaused.gif") : {
+        uri:image,
+      }} style={{
         height:50,
         width:50,
         borderRadius:10,
@@ -28,4 +32,4 @@ export const EachSongQueue = ({ title, artist }) => {
       </View>
     </Pressable>
   );
-};
+})

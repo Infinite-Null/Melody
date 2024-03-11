@@ -3,25 +3,26 @@ import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
 import { PlayOneSong } from "../../MusicPlayerFunctions";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import Context from "../../Context/Context";
 
-export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration,language,artistID, playlist}) => {
+export const EachSongCard = memo(function EachSongCard({title,artist,image,width,id,url,style, artistWidth,titleWidth,duration,language,artistID}) {
   const width1 = Dimensions.get("window").width;
-  const {currentPlaying, playerState} = useContext(Context)
+  const {currentPlaying, playerState, updateTrack} = useContext(Context)
   return (
     <Pressable onPress={()=>{
-       const song  = {
-         url:url[4].url,
-         title:title?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-         artist:artist?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-         artwork:image,
-         duration,
-         id,
-         language,
-         artistID:artistID,
-       }
-        PlayOneSong(song)
+      const song  = {
+        url:url[4].url,
+        title:title?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+        artist:artist?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+        artwork:image,
+        duration,
+        id,
+        language,
+        artistID:artistID,
+      }
+      PlayOneSong(song)
+      updateTrack()
     }} style={{
       flexDirection:'row',
       gap:10,
@@ -46,4 +47,4 @@ export const EachSongCard = ({title,artist,image,width,id,url,style, artistWidth
       </View>
     </Pressable>
   );
-};
+})

@@ -16,7 +16,11 @@ const ContextState = (props)=>{
     const [currentPlaying, setCurrentPlaying]  = useState({})
     const [playerState, setPlayerState] = useState("paused")
     const [Repeat, setRepeat] = useState(Repeats.NoRepeat);
-
+    const [Queue, setQueue] = useState([]);
+    async function updateTrack (){
+        const tracks = await TrackPlayer.getQueue();
+        setQueue(tracks)
+    }
     async function AddRecommendedSongs(index,id){
         const tracks = await TrackPlayer.getQueue();
         const totalTracks = tracks.length - 1
@@ -35,6 +39,7 @@ const ContextState = (props)=>{
                     }
                 })
                 await AddSongsToQueue(ForMusicPlayer)
+                updateTrack()
             }
         }
     }
@@ -54,7 +59,7 @@ const ContextState = (props)=>{
             setPlayerState(event.state)
         }
     });
-    return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat}}>
+    return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat, Queue, updateTrack}}>
         {props.children}
     </Context.Provider>
 }
