@@ -19,7 +19,7 @@ export const MinimizedMusic = ({setIndex}) => {
       style={{
         flexDirection: 'row',
         justifyContent:"space-between",
-        height:60,
+        height:65,
         paddingHorizontal:15,
         paddingTop:5,
         alignItems:"center",

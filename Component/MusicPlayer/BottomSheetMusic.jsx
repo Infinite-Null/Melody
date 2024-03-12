@@ -55,7 +55,7 @@ const BottomSheetMusic = ({color}) => {
           backgroundColor:color,
         }}>
           {Index === 0 &&  <MinimizedMusic  setIndex={setIndex}/>}
-          {Index === 1 && <FullScreenMusic color={color}/>}
+          <FullScreenMusic color={color}/>
         </BottomSheetView>
       </BottomSheet>
   );
