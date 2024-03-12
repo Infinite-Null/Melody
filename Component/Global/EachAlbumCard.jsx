@@ -3,6 +3,7 @@ import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import { memo } from "react";
 import { useNavigation } from "@react-navigation/native";
+import LinearGradient from "react-native-linear-gradient";
 
 
 export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,mainContainerStyle,Search}) {
@@ -63,13 +64,12 @@ export const EachAlbumCard = memo(function EachAlbumCard({image,name,artists,id,
           justifyContent:"flex-end",
           backgroundColor:"rgba(0,0,0,0.27)",
         }}>
-          <View style={{
-            backgroundColor:"rgba(31,35,96,0.55)",
+          <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.56)', 'rgb(0,0,0)']} style={{
             padding:10,
           }}>
             <PlainText text={formattedText(name)}/>
             <SmallText text={!Search ? artistsNames : artists}/>
-          </View>
+          </LinearGradient>
         </View>
       </ImageBackground>
     </Pressable>

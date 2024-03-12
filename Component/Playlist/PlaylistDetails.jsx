@@ -12,7 +12,7 @@ import { useContext } from "react";
 import Context from "../../Context/Context";
 
 
-export const PlaylistDetails = ({name,listener,liked,releasedDate,notReleased,Data,Links}) => {
+export const PlaylistDetails = ({name,listener,liked,notReleased,Data,Links}) => {
   const {updateTrack} = useContext(Context)
   const ForMusicPlayer = Data?.songs?.map((e,i)=>{
     return {

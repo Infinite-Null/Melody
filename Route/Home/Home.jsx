@@ -46,7 +46,6 @@ export const Home = () => {
               paddingLeft:13,
             }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link} id={item.item.id}/>}/>
             <PaddingConatiner>
-              <Heading text={"Trending Songs"}/>
               <HorizontalScrollSongs id={Data.data.charts[0].id}/>
               <Heading text={"Trending Albums"}/>
             </PaddingConatiner>
@@ -54,7 +53,6 @@ export const Home = () => {
               paddingLeft:13,
             }} data={Data?.data?.trending?.albums ?? []} renderItem={(item)=><EachAlbumCard image={item.item.image[2].link} artists={item.item.artists} key={item.index} name={item.item.name} id={item.item.id}/>}/>
             <PaddingConatiner>
-              <Heading text={"Top Romantic"}/>
               <HorizontalScrollSongs id={Data?.data?.charts[1]?.id}/>
             </PaddingConatiner>
             <PaddingConatiner>

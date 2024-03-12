@@ -1,20 +1,19 @@
-import { Dimensions, ImageBackground, View } from "react-native";
+import { Dimensions, ImageBackground, Pressable, View } from "react-native";
 import FastImage from "react-native-fast-image";
-import { Heading } from "../Global/Heading";
 import { PlainText } from "../Global/PlainText";
 
-export const EachLibraryCard = () => {
+export const EachLibraryCard = ({image, text}) => {
   const width = Dimensions.get("window").width
   const containerWidth = width * 0.45
   return (
-    <View style={{
+    <Pressable style={{
       marginVertical:8,
       height:containerWidth,
       width:containerWidth,
       borderRadius:7,
       overflow:"hidden",
     }}>
-      <ImageBackground blurRadius={10} source={require("../../Images/Liked.png")} style={{
+      <ImageBackground blurRadius={10} source={image} style={{
         height:containerWidth,
         width:containerWidth,
       }}>
@@ -24,7 +23,7 @@ export const EachLibraryCard = () => {
           flex:1,
           backgroundColor:"rgba(0,0,0,0.53)",
         }}>
-          <FastImage source={require("../../Images/Liked.png")} style={{
+          <FastImage source={image} style={{
             height:"80%",
             width:"100%",
           }}/>
@@ -32,11 +31,12 @@ export const EachLibraryCard = () => {
             flex:1,
             alignItems:"center",
             justifyContent:"center",
+            paddingHorizontal:15,
           }}>
-            <PlainText text={"Liked Songs"}/>
+            <PlainText text={text}/>
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </Pressable>
   );
 };

@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import { getPlaylistData } from "../../Api/Playlist";
 import { LoadingComponent } from "./Loading";
 import { getPromiseSongData } from "../../Api/Songs";
+import { Heading } from "./Heading";
 
 export const HorizontalScrollSongs = ({id}) => {
   const width = Dimensions.get("window").width
   const [Loading, setLoading] = useState(true)
   const [Data, setData] = useState({});
   const [Links, setLinks] = useState([]);
+
   async function fetchPlaylistData(){
     try {
       setLoading(true)
@@ -37,6 +39,7 @@ export const HorizontalScrollSongs = ({id}) => {
     fetchPlaylistData()
   }, []);
   return ( <>
+      <Heading text={Loading ? "Please Wait..." : Data?.listname}/>
       {!Loading && <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
         paddingRight:50,
       }}>
