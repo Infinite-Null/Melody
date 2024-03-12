@@ -25,6 +25,7 @@ export const ProgressBar = () => {
         onValueChange={(progress)=>{
           SetProgressSong(progress)
         }}
+        tapToSeek={true}
         style={{width: width, height: 40}}
         minimumValue={0}
         maximumValue={duration}
