@@ -75,10 +75,11 @@ export const FullScreenMusic = ({color}) => {
                borderRadius: 10,
              }}
            />
-           <Heading text={currentPlaying?.title ?? "No music :("} style={{textAlign:"center", paddingHorizontal:10}}/>
-           <SmallText text={currentPlaying?.artist ?? "Explore now!"} style={{textAlign:"center"}}/>
-           <ProgressBar/>
            <Spacer/>
+           <Heading text={currentPlaying?.title ?? "No music :("} style={{textAlign:"center", paddingHorizontal:2}} nospace={true}/>
+           <SmallText text={currentPlaying?.artist ?? "Explore now!"} style={{textAlign:"center", paddingHorizontal:2}}/>
+           <Spacer/>
+           <ProgressBar/>
            <View style={{flexDirection:"row",alignItems:"center",justifyContent:"space-around", width:"100%"}}>
              <View >
                <LikeSongButton size={20} />

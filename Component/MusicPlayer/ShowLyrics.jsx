@@ -12,14 +12,12 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
   const width = Dimensions.get("window").width
   const theme = useTheme()
   return (
-    <Modal visible={ShowDailog} style={{
-      backgroundColor:"black",
-    }} statusBarTranslucent={true} presentationStyle={"pageSheet"}>
+    <Modal transparent={true} visible={ShowDailog} statusBarTranslucent={true} >
       <View style={{
-        backgroundColor:"black",
+        backgroundColor:"rgba(0,0,0,0.75)",
         paddingHorizontal:20,
         paddingVertical:50,
-      }}>{!Loading && <ScrollView contentContainerStyle={{
+      }}>{!Loading && <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
         minHeight:height,
       }}>
         <Heading text={"Lyrics"} style={{
@@ -54,7 +52,7 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
              fontWeight:"900",
            }}>Close</Text>
          </Pressable>
-         <Pressable onPress={()=>Clipboard.setString('mail@mail.com')} style={{
+         <Pressable onPress={()=>Clipboard.setString(Lyric?.lyrics?.replaceAll("<br>","\n") ?? "")} style={{
            flex:1,
            backgroundColor:theme.colors.primary,
            alignItems:"center",

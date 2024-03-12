@@ -7,7 +7,7 @@ const QueueBottomSheet = () => {
   const { Queue } = useContext(Context)
   const backgroundColor = 'rgba(16,16,16,0.58)'
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => [185, '50%'], [])
+  const snapPoints = useMemo(() => ["19%", '50%'], [])
   return (
       <BottomSheet
         animateOnMount={false}
