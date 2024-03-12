@@ -18,12 +18,12 @@ export const Playlist = ({route}) => {
   const [Loading, setLoading] = useState(true)
   const [Data, setData] = useState({});
   const [Links, setLinks] = useState([]);
-  const {id} = route.params
+  const {id, image, name, follower} = route.params
   async function fetchPlaylistData(){
     try {
       setLoading(true)
-      let data={}
-      let SongLinks=[]
+      let data = {}
+      let SongLinks = []
         data = await getPlaylistData(id)
         const Songs = data.songs.map((e)=>{
           return getPromiseSongData(e.id)
@@ -50,16 +50,15 @@ export const Playlist = ({route}) => {
 
   return (
     <MainWrapper>
-      {Loading &&
-        <LoadingComponent loading={Loading}/>}
-      {!Loading &&  <>
-      {Data?.songs?.length > 0 && <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef} contentContainerStyle={{
+       <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef} contentContainerStyle={{
         paddingBottom:55,
         backgroundColor:"black",
       }}>
-        <PlaylistTopHeader AnimatedRef={AnimatedRef} url={Data?.image ?? ""} />
-        <PlaylistDetails name={Data?.listname ?? ""} liked={false} listener={Data?.follower_count ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data} Links={Links}/>
-        {<View style={{
+        <PlaylistTopHeader AnimatedRef={AnimatedRef} url={image} />
+        <PlaylistDetails name={name} liked={false} listener={follower ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data} Links={Links} Loading={Loading}/>
+         {Loading &&
+           <LoadingComponent loading={Loading} height={200}/>}
+        {!Loading && <View style={{
           paddingHorizontal:10,
           backgroundColor:theme.colors.background,
         }}>
@@ -67,8 +66,7 @@ export const Playlist = ({route}) => {
             marginBottom:15,
           }}/>)}
         </View>}
-      </Animated.ScrollView>}
-      </>}
+      </Animated.ScrollView>
       {Data?.songs?.length <= 0 && <View style={{
         flex: 1,
         alignItems:"center",

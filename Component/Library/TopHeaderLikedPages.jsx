@@ -1,7 +1,7 @@
 import Animated, { interpolate, useAnimatedStyle, useScrollViewOffset } from "react-native-reanimated";
 import { Dimensions, View } from "react-native";
 
-export const PlaylistTopHeader = ({AnimatedRef,url}) => {
+export const LikedPagesTopHeader = ({AnimatedRef,url}) => {
   const SizeOfSmallImage = Dimensions.get('window').width * 0.5;
   const ScrollOffset = useScrollViewOffset(AnimatedRef)
   const AnimatedImageStyle = useAnimatedStyle(()=>{
@@ -29,17 +29,13 @@ export const PlaylistTopHeader = ({AnimatedRef,url}) => {
       <View style={{
         elevation:10,
       }}>
-        <Animated.Image source={{
-          uri:url,
-        }} style={[{
+        <Animated.Image source={url} style={[{
           height:SizeOfSmallImage,
           width: SizeOfSmallImage,
           borderRadius:10,
         },AnimatedImageStyle]}/>
       </View>
-      <Animated.Image blurRadius={10} source={{
-        uri:url,
-      }} style={[{
+      <Animated.Image blurRadius={10} source={url} style={[{
         height:SizeOfSmallImage * 2,
         width: "100%",
         position:"absolute",

@@ -17,24 +17,25 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
         backgroundColor:"rgba(0,0,0,0.75)",
         paddingHorizontal:20,
         paddingVertical:50,
-      }}>{!Loading && <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
+      }}><ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
         minHeight:height,
       }}>
-        <Heading text={"Lyrics"} style={{
-          textAlign:"center",
-          fontSize:width * 0.1,
-          color:theme.colors.primary,
-        }}/>
-        <Text selectable={true} style={{
-          color:theme.colors.text,
-          fontSize:width * 0.055,
-          fontWeight:300,
-          paddingRight:10,
-          textAlign:"center",
-        }}>{Lyric?.lyrics?.replaceAll("<br>","\n")}</Text>
+        {Loading && <LoadingComponent loading={true} height={height - 70}/>}
+        {!Loading && <>
+          <Heading text={"Lyrics"} style={{
+            textAlign:"center",
+            fontSize:width * 0.1,
+            color:theme.colors.primary,
+          }}/>
+          <Text selectable={true} style={{
+            color:theme.colors.text,
+            fontSize:width * 0.055,
+            fontWeight:300,
+            paddingRight:10,
+            textAlign:"center",
+          }}>{Lyric?.lyrics?.replaceAll("<br>","\n")}</Text></>}
         <Spacer height={300}/>
-      </ScrollView>}
-        {Loading && <LoadingComponent loading={true} height={height}/>}
+      </ScrollView>
         <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(0,0,0,0.07)','rgba(0,0,0,0.7)','rgb(0,0,0)', 'rgb(7,7,7)' ]} style={{flexDirection:"row", gap:4, position:"absolute", alignItems:"center", justifyContent:"center",height:120, paddingTop:70 , bottom:0, width:width + 20 }}>
          <Pressable onPress={()=>{
            setShowDailog(false)
@@ -49,7 +50,7 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
          }}>
            <Text style={{
              color:"black",
-             fontWeight:"900",
+             fontWeight:"500",
            }}>Close</Text>
          </Pressable>
          <Pressable onPress={()=>Clipboard.setString(Lyric?.lyrics?.replaceAll("<br>","\n") ?? "")} style={{
@@ -63,7 +64,7 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
          }}>
            <Text style={{
              color:"black",
-             fontWeight:"900",
+             fontWeight:"500",
            }}>Copy</Text>
          </Pressable>
         </LinearGradient>

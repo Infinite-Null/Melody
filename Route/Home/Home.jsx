@@ -38,7 +38,7 @@ export const Home = () => {
             paddingBottom:90,
           }}>
             <RouteHeading text={"Home"}/>
-            <LargeBentooCard text={"Top Most Hitz Music Today"} subtext={"Today's hitz"} width={"100%"} image={require("../../Images/musicListning.png")} id={"110858205"}/>
+            <LargeBentooCard text={"Top Most Hits Music Today"} subtext={"Today's hits"} width={"100%"} image={require("../../Images/musicListning.png")} id={"110858205"}/>
             <PaddingConatiner>
               <Heading text={"Recommended"}/>
             </PaddingConatiner>

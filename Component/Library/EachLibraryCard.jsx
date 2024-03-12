@@ -1,12 +1,18 @@
 import { Dimensions, ImageBackground, Pressable, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { PlainText } from "../Global/PlainText";
+import { useNavigation } from "@react-navigation/native";
 
-export const EachLibraryCard = ({image, text}) => {
+export const EachLibraryCard = ({image, text, isLikedSong}) => {
   const width = Dimensions.get("window").width
   const containerWidth = width * 0.45
+  const navigation = useNavigation()
   return (
-    <Pressable style={{
+    <Pressable onPress={()=>{
+      if (isLikedSong) {
+        navigation.navigate("LikedSongs")
+      }
+    }} style={{
       marginVertical:8,
       height:containerWidth,
       width:containerWidth,

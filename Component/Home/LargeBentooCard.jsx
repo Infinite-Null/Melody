@@ -30,7 +30,7 @@ export const LargeBentooCard = ({width,text,subtext,image,id}) => {
            <Heading text={text}/>
            <PlainText text={subtext}/>
            <BentooButton text={"Listen Now"} onPress={()=>{
-             navigation.navigate("Playlist",{id})
+             navigation.navigate("Playlist",{id,image:"https://c.saavncdn.com/editorial/charts_TrendingToday_134351_20230826113717.jpg",name:text,follower:subtext})
            }}/>
          </View>
          <FastImage source={image} style={{
