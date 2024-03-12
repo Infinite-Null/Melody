@@ -1,6 +1,6 @@
 import { Dimensions, ImageBackground, View } from "react-native";
 import FastImage from "react-native-fast-image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import LinearGradient from "react-native-linear-gradient";
 import { Heading } from "../Global/Heading";
 import { SmallText } from "../Global/SmallText";
@@ -55,7 +55,16 @@ export const FullScreenMusic = ({color}) => {
      }}>
        <View style={{flex:1,backgroundColor:"rgba(0,0,0,0.44)"}}>
          <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)','rgba(9,9,9,0.84)', 'rgba(0,0,0,0.86)', color]} style={{flex:1,alignItems:"center"}}>
-          <Spacer height={50}/>
+          <View style={{
+            width:"90%",
+            marginTop:30,
+            height:60,
+            alignItems:"center",
+            justifyContent:"flex-end",
+            flexDirection:"row",
+          }}>
+            <GetLyricsButton onPress={GetLyrics} />
+          </View>
            <FastImage
              source={{
                uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
@@ -70,24 +79,17 @@ export const FullScreenMusic = ({color}) => {
            <SmallText text={currentPlaying?.artist ?? "Explore now!"} style={{textAlign:"center"}}/>
            <ProgressBar/>
            <Spacer/>
-           <Spacer/>
            <View style={{flexDirection:"row",alignItems:"center",justifyContent:"space-around", width:"100%"}}>
-             <View style={{
-               gap:25,
-             }}>
-               <SaveMusicButton size={25}/>
-               <LikeSongButton size={20} liked={true}/>
+             <View >
+               <LikeSongButton size={20} />
              </View>
              <View style={{flexDirection:"row",alignItems:"center",justifyContent:"center", gap:20}}>
                <PreviousSongButton size={30}/>
                <PlayPauseButton isFullScreen={true} />
                <NextSongButton size={30}/>
              </View>
-             <View style={{
-               gap:25,
-             }}>
+             <View >
                <RepeatSongButton size={25}/>
-               <GetLyricsButton onPress={GetLyrics}/>
              </View>
            </View>
          </LinearGradient>
