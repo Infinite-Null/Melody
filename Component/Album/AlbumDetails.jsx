@@ -3,7 +3,6 @@ import { Heading } from "../Global/Heading";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SmallText } from "../Global/SmallText";
 import { Spacer } from "../Global/Spacer";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
 import { AddPlaylist } from "../../MusicPlayerFunctions";
@@ -61,7 +60,7 @@ export const AlbumDetails = ({name,releaseData,liked,Data}) => {
             <SmallText text={"Released in " + releaseData }/>
           </View>
           <Spacer/>
-          <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
+          {/*<AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>*/}
         </View>
         <PlayButton onPress={()=>{
           AddToPlayer()

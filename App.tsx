@@ -25,12 +25,12 @@ export default function App(){
       background:'black',
     },
   };
-  async function setUpPlayer(){
-    await TrackPlayer.setupPlayer()
-  }
-  useEffect(()=>{
-    setUpPlayer()
-  },[])
+  // async function setUpPlayer(){
+  //   await TrackPlayer.setupPlayer()
+  // }
+  // useEffect(()=>{
+  //   setUpPlayer()
+  // },[])
   return <GestureHandlerRootView style={{flex:1}}>
     <ContextState>
     <BottomSheetModalProvider>

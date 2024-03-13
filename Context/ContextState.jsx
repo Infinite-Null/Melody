@@ -1,5 +1,5 @@
 import Context from "./Context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TrackPlayer, { Event, useTrackPlayerEvents } from "react-native-track-player";
 import { getRecommendedSongs } from "../Api/Recommended";
 import { AddSongsToQueue } from "../MusicPlayerFunctions";
@@ -43,6 +43,8 @@ const ContextState = (props)=>{
             }
         }
     }
+
+
     useTrackPlayerEvents(events, (event) => {
         if (event.type === Event.PlaybackError) {
             console.warn('An error occured while playing the current track.');
@@ -59,6 +61,23 @@ const ContextState = (props)=>{
             setPlayerState(event.state)
         }
     });
+    async function InitialSetup(){
+        await TrackPlayer.setupPlayer()
+        await getCurrentSong()
+        await getCurrentState()
+        await updateTrack()
+    }
+    async function getCurrentSong(){
+        const song = await TrackPlayer.getActiveTrack()
+        setCurrentPlaying(song)
+    }
+    async function getCurrentState(){
+        const state = await TrackPlayer.getPlaybackState()
+        setPlayerState(state.state)
+    }
+    useEffect(() => {
+        InitialSetup()
+    }, []);
     return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat, Queue, updateTrack}}>
         {props.children}
     </Context.Provider>
