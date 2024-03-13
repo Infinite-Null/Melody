@@ -5,7 +5,7 @@ import { MinimizedMusic } from "./MinimizedMusic";
 import { FullScreenMusic } from "./FullScreenMusic";
 
 const BottomSheetMusic = ({color}) => {
-  const snapPoints = useMemo(() => [115, '100%'], []);
+  const snapPoints = [115, '100%'];
   const bottomSheetRef = useRef(null)
   const [Index, setIndex] = useState(0);
   useEffect(() => {
@@ -32,7 +32,7 @@ const BottomSheetMusic = ({color}) => {
   }, []);
   return (
       <BottomSheet
-        enableOverDrag={false}
+         enableOverDrag={false}
       handleIndicatorStyle={{
         height:0,
         width:0,
