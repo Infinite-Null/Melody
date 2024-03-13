@@ -31,6 +31,7 @@ export const AlbumDetails = ({name,releaseData,liked,Data}) => {
       title:e?.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
       artist:FormatArtist(e?.artists?.primary)?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
       artwork:e?.image[2]?.url,
+      image:e?.image[2]?.url,
       duration:e?.duration,
       id:e?.id,
       language:e?.language,

@@ -1,9 +1,6 @@
 import { Dimensions, View } from "react-native";
 import { Heading } from "../Global/Heading";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { SmallText } from "../Global/SmallText";
 import { Spacer } from "../Global/Spacer";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
 import { AddPlaylist } from "../../MusicPlayerFunctions";
@@ -12,23 +9,28 @@ import Context from "../../Context/Context";
 import { PlayButton } from "../Playlist/PlayButton";
 
 
-export const LikedDetails = ({name,listener,liked,notReleased,Data,Links}) => {
+export const LikedDetails = ({name,Data}) => {
   const {updateTrack} = useContext(Context)
-  const ForMusicPlayer = Data?.songs?.map((e,i)=>{
-    return {
-      url:Links[i]?.url[4].url,
-      title:e?.song.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artist:e?.primary_artists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artwork:Links[i]?.image,
-      duration:e?.duration,
-      id:e?.id,
-      language:e?.language,
-      artistID:e?.primary_artists_id,
-    }
+  const ForMusicPlayer = Data?.map((e)=>{
+   if (e) {return {
+       url:e.url,
+       title:e?.title,
+       artist:e?.artist,
+       artwork:e?.image,
+       duration:e?.duration,
+       id:e?.id,
+       language:e?.language,
+       artistID:e?.primary_artists_id,
+     }}
   })
   async function AddToPlayer(){
-    await AddPlaylist(ForMusicPlayer)
-    updateTrack()
+    if (ForMusicPlayer[0]){
+      await AddPlaylist(ForMusicPlayer)
+      updateTrack()
+    } else {
+      await AddPlaylist(ForMusicPlayer.splice(1,ForMusicPlayer.length))
+      updateTrack()
+    }
   }
   const theme = useTheme()
   const width = Dimensions.get('window').width
@@ -39,7 +41,6 @@ export const LikedDetails = ({name,listener,liked,notReleased,Data,Links}) => {
       justifyContent:"space-between",
       flexDirection:"row",
     }}>
-      {!notReleased && <>
         <View style={{
           paddingLeft:5,
           maxWidth:width * 0.8,
@@ -48,9 +49,8 @@ export const LikedDetails = ({name,listener,liked,notReleased,Data,Links}) => {
           <Spacer/>
         </View>
         <PlayButton onPress={()=>{
-          // AddToPlayer()
+          AddToPlayer()
         }}/>
-      </>}
     </LinearGradient>
   );
 };

@@ -47,7 +47,7 @@ export const HorizontalScrollSongs = ({id}) => {
           {Data?.songs?.slice(0,4)?.map((e,i)=><EachSongCard language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} titleWidth={width * 0.63} artistWidth={width * 0.55} duration={e?.duration} width={width * 0.7} image={Links[i]?.image} id={e?.id} title={e?.song} artist={e?.primary_artists} url={Links[i]?.url} />)}
         </TrendingSongLayout>
         <TrendingSongLayout>
-          {Data?.songs?.slice(4,8)?.map((e,i)=><EachSongCard language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} titleWidth={width * 0.63} artistWidth={width * 0.55} duration={e?.duration} width={width * 0.7} image={Links[i]?.image} id={e?.id} title={e?.song} artist={e?.primary_artists} url={Links[i]?.url} />)}
+          {Data?.songs?.slice(4,8)?.map((e,i)=><EachSongCard language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} titleWidth={width * 0.63} artistWidth={width * 0.55} duration={e?.duration} width={width * 0.7} image={Links[i + 4]?.image} id={e?.id} title={e?.song} artist={e?.primary_artists} url={Links[i + 4]?.url} />)}
         </TrendingSongLayout>
       </ScrollView>}
       {Loading && <View style={{

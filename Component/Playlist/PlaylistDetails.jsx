@@ -20,6 +20,7 @@ export const PlaylistDetails = ({name,listener,liked,notReleased,Data,Links, Loa
       title:e?.song.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
       artist:e?.primary_artists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
       artwork:Links[i]?.image,
+      image:Links[i]?.image,
       duration:e?.duration,
       id:e?.id,
       language:e?.language,
