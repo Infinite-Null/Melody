@@ -55,7 +55,7 @@ export const Playlist = ({route}) => {
         backgroundColor:"black",
       }}>
         <PlaylistTopHeader AnimatedRef={AnimatedRef} url={image} />
-        <PlaylistDetails name={name} liked={false} listener={follower ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data} Links={Links} Loading={Loading}/>
+        <PlaylistDetails id={id} image={image} name={name} follower={follower} listener={follower ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data} Links={Links} Loading={Loading}/>
          {Loading &&
            <LoadingComponent loading={Loading} height={200}/>}
         {!Loading && <View style={{

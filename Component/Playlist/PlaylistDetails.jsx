@@ -1,6 +1,5 @@
 import { Dimensions, View } from "react-native";
 import { Heading } from "../Global/Heading";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { SmallText } from "../Global/SmallText";
 import { Spacer } from "../Global/Spacer";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -10,9 +9,11 @@ import { useTheme } from "@react-navigation/native";
 import { AddPlaylist } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
+import { LikedPlaylist } from "./LikedPlaylist";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-export const PlaylistDetails = ({name,listener,liked,notReleased,Data,Links, Loading}) => {
+export const PlaylistDetails = ({name,listener,liked,notReleased,Data,Links, Loading, id, image, follower}) => {
   const {updateTrack} = useContext(Context)
   const ForMusicPlayer = Data?.songs?.map((e,i)=>{
     return {
@@ -47,11 +48,11 @@ export const PlaylistDetails = ({name,listener,liked,notReleased,Data,Links, Loa
         }}>
           <Heading text={name}/>
           <View style={{flexDirection:"row",gap:5}}>
-             <Ionicons name={"musical-note"} size={16}/>
+            <Ionicons name={"musical-note"} size={16}/>
             <SmallText text={listener}/>
           </View>
           <Spacer/>
-          <AntDesign size={20} name={liked ? "heart" : "hearto"} color={liked ? 'rgb(227,97,97)' : theme.colors.text}/>
+          <LikedPlaylist id={id} image={image} name={name} follower={follower}/>
         </View>
         <PlayButton Loading={Loading} onPress={()=>{
           if (!Loading){
