@@ -9,7 +9,7 @@ import Context from "../../Context/Context";
 import { PlayButton } from "../Playlist/PlayButton";
 
 
-export const LikedDetails = ({name,Data}) => {
+export const LikedDetails = ({name,Data, dontShowPlayButton}) => {
   const {updateTrack} = useContext(Context)
   const ForMusicPlayer = Data?.map((e)=>{
    if (e) {return {
@@ -48,9 +48,9 @@ export const LikedDetails = ({name,Data}) => {
           <Heading text={name}/>
           <Spacer/>
         </View>
-        <PlayButton onPress={()=>{
-          AddToPlayer()
-        }}/>
+      {!dontShowPlayButton && <PlayButton onPress={() => {
+        AddToPlayer();
+      }} />}
     </LinearGradient>
   );
 };

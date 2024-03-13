@@ -19,7 +19,7 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
       height:290,
       padding:10,
       elevation:3,
-      marginRight:10,
+      marginHorizontal:5,
       ...MainContainerStyle,
     }}>
     <Pressable onPress={()=>{ navigation.navigate("Playlist",{id,image,name,follower})}} style={{

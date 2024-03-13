@@ -2,6 +2,7 @@ import { Playlist } from "../Playlist";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Library } from "./Library";
 import { LikedSongPage } from "./LikedSongPage";
+import { LikedPlaylistPage } from "./LikedPlaylistPage";
 const Stack = createNativeStackNavigator();
 export const LibraryRoute = () => {
   return (
@@ -9,6 +10,7 @@ export const LibraryRoute = () => {
       <Stack.Screen  name="LibraryPage" component={Library} />
       <Stack.Screen  name="Playlist" component={Playlist} />
       <Stack.Screen name={"LikedSongs"} component={LikedSongPage}/>
+      <Stack.Screen name={"LikedPlaylists"} component={LikedPlaylistPage}/>
     </Stack.Navigator>
   );
 };

@@ -11,9 +11,9 @@ export const Library = () => {
           <LibraryRouteHeading text={"Library"}/>
       <ScrollView>
         <View style={{flexWrap:'wrap', flexDirection:"row", width:width, justifyContent:"space-evenly"}}>
-          <EachLibraryCard text={"Liked Songs"} image={require("../../Images/LikedSong.png")} isLikedSong={true}/>
-          <EachLibraryCard text={"Liked Playlists"} image={require("../../Images/LikedPlaylist.png")}/>
-          <EachLibraryCard text={"Liked Albums"} image={require("../../Images/LikedAlbum.png")}/>
+          <EachLibraryCard text={"Liked Songs"} image={require("../../Images/LikedSong.png")} navigate={"LikedSongs"}/>
+          <EachLibraryCard text={"Liked Playlists"} image={require("../../Images/LikedPlaylist.png")} navigate={"LikedPlaylists"}/>
+          <EachLibraryCard text={"Liked Albums"} image={require("../../Images/LikedAlbum.png")} navigate={"LikedPlaylists"}/>
           <View style={{width: width * 0.45}}/>
         </View>
       </ScrollView>
