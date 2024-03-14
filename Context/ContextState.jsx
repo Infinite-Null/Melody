@@ -27,22 +27,27 @@ const ContextState = (props)=>{
         const tracks = await TrackPlayer.getQueue();
         const totalTracks = tracks.length - 1
         if (index >= totalTracks - 2){
-            const songs = await getRecommendedSongs(id)
-            if (songs?.data?.length !== 0){
-                const ForMusicPlayer = songs.data.map((e)=> {
-                    return {
-                        url:e.downloadUrl[3].url,
-                        title:e.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-                        artist:FormatArtist(e?.artists?.primary).toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-                        artwork:e.image[2].url,
-                        duration:e.duration,
-                        id:e.id,
-                        language:e.language,
-                    }
-                })
-                await AddSongsToQueue(ForMusicPlayer)
-                updateTrack()
-            }
+           try {
+               const songs = await getRecommendedSongs(id)
+               if (songs?.data?.length !== 0){
+                   const ForMusicPlayer = songs.data.map((e)=> {
+                       return {
+                           url:e.downloadUrl[3].url,
+                           title:e.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+                           artist:FormatArtist(e?.artists?.primary).toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+                           artwork:e.image[2].url,
+                           duration:e.duration,
+                           id:e.id,
+                           language:e.language,
+                       }
+                   })
+                   await AddSongsToQueue(ForMusicPlayer)
+               }
+           } catch (e) {
+               console.log(e);
+           } finally {
+               await updateTrack()
+           }
         }
     }
 
