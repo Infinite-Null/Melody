@@ -13,7 +13,7 @@ import { LikedPlaylist } from "./LikedPlaylist";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-export const PlaylistDetails = ({name,listener,liked,notReleased,Data,Links, Loading, id, image, follower}) => {
+export const PlaylistDetails = ({name,listener,notReleased,Data,Links, Loading, id, image, follower}) => {
   const {updateTrack} = useContext(Context)
   const ForMusicPlayer = Data?.songs?.map((e,i)=>{
     return {

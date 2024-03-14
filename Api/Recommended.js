@@ -1,6 +1,7 @@
 import axios from "axios";
 
 async function getRecommendedSongs(id){
+  console.log(id);
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
