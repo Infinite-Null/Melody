@@ -13,6 +13,8 @@ const events = [
     Event.PlaybackState,
 ];
 const ContextState = (props)=>{
+    const [Index, setIndex] = useState(0);
+    const [QueueIndex, setQueueIndex] = useState(0);
     const [currentPlaying, setCurrentPlaying]  = useState({})
     const [playerState, setPlayerState] = useState("paused")
     const [Repeat, setRepeat] = useState(Repeats.NoRepeat);
@@ -78,7 +80,7 @@ const ContextState = (props)=>{
     useEffect(() => {
         InitialSetup()
     }, []);
-    return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat, Queue, updateTrack}}>
+    return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat, Queue, updateTrack, Index, setIndex, QueueIndex, setQueueIndex}}>
         {props.children}
     </Context.Provider>
 }
