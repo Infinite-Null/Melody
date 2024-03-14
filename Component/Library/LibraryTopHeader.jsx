@@ -1,8 +1,9 @@
-import { Dimensions,  Text, View } from "react-native";
+import { Dimensions, Pressable, Text, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { SpaceBetween } from "../../Layout/SpaceBetween";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Spacer } from "../Global/Spacer";
+import FastImage from "react-native-fast-image";
 
 
 export const LibraryRouteHeading = ({text}) => {
@@ -15,13 +16,17 @@ export const LibraryRouteHeading = ({text}) => {
       <SpaceBetween style={{
         paddingHorizontal:20,
       }}>
-        <View style={{
-          backgroundColor:theme.colors.primary,
+        <View  style={{
           borderRadius:1000,
           elevation:10,
+          height:40,
+          width:40,
           padding:2,
         }}>
-          <MaterialCommunityIcons name={"music-note-outline"} size={width * 0.065} color={"black"}/>
+          <FastImage source={require("../../Images/Logo.png")} style={{
+            flex:1,
+            borderRadius:1000,
+          }}/>
         </View>
         <Text style={{
           fontWeight:500,

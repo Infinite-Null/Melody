@@ -24,6 +24,7 @@ export const LikedDetails = ({name,Data, dontShowPlayButton}) => {
      }}
   })
   async function AddToPlayer(){
+    console.log(ForMusicPlayer);
     if (ForMusicPlayer[0]){
       await AddPlaylist(ForMusicPlayer)
       updateTrack()

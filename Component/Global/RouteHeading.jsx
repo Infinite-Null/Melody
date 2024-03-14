@@ -2,8 +2,8 @@ import { Dimensions, Pressable, Text, View } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { SpaceBetween } from "../../Layout/SpaceBetween";
 import Feather from "react-native-vector-icons/Feather";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Spacer } from "./Spacer";
+import FastImage from "react-native-fast-image";
 
 export const RouteHeading = ({text}) => {
   const theme = useTheme()
@@ -17,12 +17,16 @@ export const RouteHeading = ({text}) => {
         paddingHorizontal:20,
       }}>
         <View style={{
-          backgroundColor:theme.colors.primary,
           borderRadius:1000,
           elevation:10,
+          height:40,
+          width:40,
           padding:2,
         }}>
-          <MaterialCommunityIcons name={"music-note-outline"} size={width * 0.065} color={"black"}/>
+          <FastImage source={require("../../Images/Logo.png")} style={{
+            flex:1,
+            borderRadius:1000,
+          }}/>
         </View>
         <Text style={{
           fontWeight:500,

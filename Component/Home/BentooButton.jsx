@@ -7,7 +7,6 @@ export const BentooButton = ({text,onPress}) => {
   return (
     <Pressable onPress={onPress} style={{
       backgroundColor:theme.colors.primary,
-      width:100,
       padding:10,
       alignItems:"center",
       justifyContent:'center',
