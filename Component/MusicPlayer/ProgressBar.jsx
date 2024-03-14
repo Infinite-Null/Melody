@@ -30,9 +30,9 @@ export const ProgressBar = () => {
         minimumValue={0}
         maximumValue={duration}
         value={(position >= duration) ? 0 : position}
-        minimumTrackTintColor={theme.colors.text}
+        minimumTrackTintColor={theme.colors.primary}
         maximumTrackTintColor="rgba(44,44,44,1)"
-        thumbTintColor={"white"}
+        thumbTintColor={theme.colors.primary}
       />
       <View style={{flexDirection:"row", justifyContent:"space-between", width:"90%"}}>
         <SmallText text={(position >= duration) ? "0:00" : formatTime(position)}/>

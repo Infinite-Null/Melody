@@ -25,7 +25,7 @@ export const LibraryRouteHeading = ({text}) => {
         }}>
           <FastImage source={require("../../Images/Logo.png")} style={{
             flex:1,
-            borderRadius:1000,
+            borderRadius:10,
           }}/>
         </View>
         <Text style={{

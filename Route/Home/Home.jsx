@@ -11,7 +11,7 @@ import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
-import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
+import Animated, { FadeInDown } from "react-native-reanimated";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});

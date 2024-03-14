@@ -1,17 +1,20 @@
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import { Heading } from "../Global/Heading";
 import { PlainText } from "../Global/PlainText";
 import { useNavigation, useTheme } from "@react-navigation/native";
-import { BentooButton } from "./BentooButton";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import FastImage from "react-native-fast-image";
+import { SmallText } from "../Global/SmallText";
+import { Spacer } from "../Global/Spacer";
 
 export const LargeBentooCard = ({width,text,subtext,image,id}) => {
   const theme = useTheme()
   const navigation = useNavigation()
   return (
    <PaddingConatiner>
-     <View style={{
+     <Pressable onPress={()=>{
+       navigation.navigate("Playlist",{id,image:"https://c.saavncdn.com/editorial/charts_TrendingToday_134351_20230826113717.jpg",name:text,follower:subtext})
+     }} style={{
        width:width,
        height:180,
        borderRadius:10,
@@ -29,8 +32,11 @@ export const LargeBentooCard = ({width,text,subtext,image,id}) => {
          }}>
            <Heading text={text}/>
            <PlainText text={subtext}/>
-           <BentooButton text={"Listen Now"} onPress={()=>{
-             navigation.navigate("Playlist",{id,image:"https://c.saavncdn.com/editorial/charts_TrendingToday_134351_20230826113717.jpg",name:text,follower:subtext})
+           <Spacer/>
+           <Spacer/>
+           <SmallText text={"Listen Now →"} color={"black"} style={{
+             fontWeight:"bold",
+             color:'white',
            }}/>
          </View>
          <FastImage source={image} style={{
@@ -40,7 +46,7 @@ export const LargeBentooCard = ({width,text,subtext,image,id}) => {
            position:'absolute',
            right:0,
          }}/>
-     </View>
+     </Pressable>
    </PaddingConatiner>
   );
 };

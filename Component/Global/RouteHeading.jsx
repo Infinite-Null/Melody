@@ -25,7 +25,7 @@ export const RouteHeading = ({text}) => {
         }}>
           <FastImage source={require("../../Images/Logo.png")} style={{
             flex:1,
-            borderRadius:1000,
+            borderRadius:10,
           }}/>
         </View>
         <Text style={{
@@ -33,9 +33,13 @@ export const RouteHeading = ({text}) => {
           color:theme.colors.text,
           fontSize:width * 0.06,
         }}>{text}</Text>
-        <Pressable onPress={()=>{
+        <Pressable style={{
+          padding:11,
+          backgroundColor:theme.colors.primary,
+          borderRadius:10,
+        }} onPress={()=>{
           navigation.navigate("Search")
-        }}><Feather name={"search"} size={width * 0.065} color={theme.colors.text}/></Pressable>
+        }}><Feather name={"search"} size={width * 0.045} color={'black'}/></Pressable>
       </SpaceBetween>
       <Spacer/>
       <Spacer/>
