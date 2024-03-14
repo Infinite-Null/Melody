@@ -3,6 +3,7 @@ import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import { EachSongQueue } from "./EachSongQueue";
 
 export const QueueRenderSongs = memo(function QueueRenderSongs({ Queue }) {
+  console.log(Queue);
   return <BottomSheetFlatList
     contentContainerStyle={{paddingHorizontal:20, paddingBottom:100, paddingRight:60}}
     data={Queue}
