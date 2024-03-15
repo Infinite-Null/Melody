@@ -56,7 +56,7 @@ export const FullScreenMusic = ({color}) => {
          <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)','rgba(9,9,9,0.84)', 'rgba(0,0,0,0.86)', color]} style={{flex:1,alignItems:"center"}}>
           <View style={{
             width:"90%",
-            marginTop:30,
+            marginTop:5,
             height:60,
             alignItems:"center",
             justifyContent:"flex-end",

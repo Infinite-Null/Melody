@@ -13,13 +13,15 @@ import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { getSearchSongData } from "../../Api/Songs";
+import { GetLanguageValue } from "../../LocalStorage/Languages";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
   async function fetchHomePageData(){
     try {
       setLoading(true)
-      const data = await getHomePageData("hindi,english")
+      const Languages = await GetLanguageValue()
+      const data = await getHomePageData(Languages)
       setData(data)
     } catch (e) {
       console.log(e);
