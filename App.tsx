@@ -6,6 +6,7 @@ import ContextState from "./Context/ContextState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { RouteOnboarding } from "./Route/OnboardingScreen/RouteOnboarding";
+import { InitialScreen } from "./Route/InitialScreen";
 const Stack = createStackNavigator()
 export default function App(){
   const width = Dimensions.get("window").width
@@ -29,6 +30,7 @@ export default function App(){
     <BottomSheetModalProvider>
     <NavigationContainer theme={MyTheme}>
     <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Screen  name="Initial" component={InitialScreen} />
       <Stack.Screen  name="Onboarding" component={RouteOnboarding} />
       <Stack.Screen  name="MainRoute" component={RootRoute} />
     </Stack.Navigator>
