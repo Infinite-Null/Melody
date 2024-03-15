@@ -4,7 +4,7 @@ async function getSearchSongData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/api/search/songs?query=${searchText}&page=${page}&limit=${limit}`,
+    url: `https://jio-savan-api-update-vo4f.vercel.app/api/search/songs?query=${searchText}&page=${page}&limit=${limit}`,
     headers: { },
   };
   try {
@@ -19,7 +19,7 @@ async function getSearchSongData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/api/songs/${id}`,
+    url: `https://jio-savan-api-update-vo4f.vercel.app/api/songs/${id}`,
     headers: { },
   };
   return axios.request(config);
