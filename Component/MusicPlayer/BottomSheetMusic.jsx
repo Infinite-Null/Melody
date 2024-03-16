@@ -32,7 +32,7 @@ const BottomSheetMusic = ({color}) => {
   }, []);
   return (
       <BottomSheet
-        detached={false}
+         detached={false}
          enableOverDrag={false}
          handleIndicatorStyle={{
         height:0,
@@ -56,7 +56,7 @@ const BottomSheetMusic = ({color}) => {
           backgroundColor:color,
         }}>
           {Index !== 1 &&  <MinimizedMusic  setIndex={setIndex}/>}
-          <FullScreenMusic color={color}/>
+          <FullScreenMusic color={color} Index={Index}/>
         </BottomSheetView>
       </BottomSheet>
   );

@@ -10,9 +10,9 @@ export const InitialScreen = ({navigation}) => {
   async function InitialCall(){
     const lang = await GetLanguageValue()
     if (lang !== ''){
-      navigation.navigate("MainRoute")
+      navigation.replace("MainRoute")
     } else {
-      navigation.navigate("Onboarding")
+      navigation.replace("Onboarding")
     }
   }
   useEffect(() => {

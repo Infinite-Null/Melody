@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, Pressable} from "react-native";
 import { useTheme } from "@react-navigation/native";
 import BottomSheetMusic from '../MusicPlayer/BottomSheetMusic'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import Animated, { FadeInLeft, FadeInRight} from "react-native-reanimated";
+import Context from "../../Context/Context";
 const bottomColor = "rgb(5,5,5)"
 export default function CustomTabBar({ state, descriptors, navigation }) {
+ const {setIndex} = useContext(Context)
+  useEffect(() => {
+    setIndex(0)
+  }, []);
   const theme = useTheme()
     return (
         <>

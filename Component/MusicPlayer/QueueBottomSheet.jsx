@@ -3,15 +3,15 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import Context from "../../Context/Context";
 import { QueueRenderSongs } from "./QueueRenderSongs";
 
-const QueueBottomSheet = () => {
+const QueueBottomSheet = ({Index}) => {
+  console.log(Index);
   const { Queue } = useContext(Context)
   const backgroundColor = 'rgba(16,16,16,0.58)'
   const bottomSheetRef = useRef(null);
-  const {QueueIndex} = useContext(Context)
   return (
       <BottomSheet
         enablePanDownToClose={false}
-        index={QueueIndex}
+        index={Index}
         animateOnMount={false}
         snapPoints={['19%', '50%']}
         ref={bottomSheetRef}

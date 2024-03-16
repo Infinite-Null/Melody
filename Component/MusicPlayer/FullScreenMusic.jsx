@@ -18,7 +18,7 @@ import QueueBottomSheet from "./QueueBottomSheet";
 import { getLyricsSongData } from "../../Api/Songs";
 import { ShowLyrics } from "./ShowLyrics";
 
-export const FullScreenMusic = ({color}) => {
+export const FullScreenMusic = ({color, Index}) => {
   const width = Dimensions.get("window").width
   const {currentPlaying} = useContext(Context)
   const [ShowDailog, setShowDailog] = useState(false);
@@ -95,7 +95,7 @@ export const FullScreenMusic = ({color}) => {
          </LinearGradient>
        </View>
      </ImageBackground>
-     <QueueBottomSheet/>
+     <QueueBottomSheet Index={Index - 1}/>
    </Animated.View>
   );
 };
