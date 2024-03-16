@@ -2,29 +2,28 @@ import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { useTheme } from "@react-navigation/native";
 import { ActivityIndicator, Pressable } from "react-native";
 import {  PauseSong, PlaySong } from "../../MusicPlayerFunctions";
-import { useContext } from "react";
-import Context from "../../Context/Context";
+import { usePlaybackState } from "react-native-track-player";
 
 export const PlayPauseButton = ({isFullScreen}) => {
   const theme = useTheme()
-  const {playerState} = useContext(Context)
+  const playerState = usePlaybackState();
   return (
     <>
       {!isFullScreen &&  <>
-        {playerState !== "playing" && playerState !== "buffering" && <Pressable style={{
+        {playerState.state !== "playing" && playerState.state !== "buffering" && <Pressable style={{
           padding:5,
         }}  onPress={()=>{
           PlaySong()
         }}><FontAwesome6 name={"play"} size={20} color={theme.colors.text}/></Pressable>}
-        {playerState === "playing" && <Pressable style={{
+        {playerState.state === "playing" && <Pressable style={{
           padding:5,
         }} onPress={()=>{
           PauseSong()
         }}><FontAwesome6 name={"pause"} size={20} color={theme.colors.text}/></Pressable>}
-        {playerState === "buffering" && <ActivityIndicator size={"small"} color={"white"}/>}
+        {playerState.state === "buffering" && <ActivityIndicator size={"small"} color={"white"}/>}
       </>}
       {isFullScreen && <>
-        {playerState !== "playing" && playerState !== "buffering" && <Pressable onPress={()=>{
+        {playerState.state !== "playing" && playerState.state !== "buffering" && <Pressable onPress={()=>{
           PlaySong()
         }} style={{
           backgroundColor:theme.colors.primary,
@@ -37,7 +36,7 @@ export const PlayPauseButton = ({isFullScreen}) => {
         }}>
           <FontAwesome6 name={"play"} size={20} color={"black"}/>
         </Pressable>}
-        {playerState === "playing" &&  <Pressable onPress={()=>{
+        {playerState.state === "playing" &&  <Pressable onPress={()=>{
           PauseSong()
         }} style={{
           backgroundColor:theme.colors.primary,
@@ -48,7 +47,7 @@ export const PlayPauseButton = ({isFullScreen}) => {
           alignItems:"center",
           justifyContent:"center",
         }}><FontAwesome6 name={"pause"} size={20} color={"black"}/></Pressable>}
-        {playerState === "buffering" && <ActivityIndicator size={"large"} color={"white"}/>}
+        {playerState.state === "buffering" && <ActivityIndicator size={"large"} color={"white"}/>}
       </>}
     </>
   );

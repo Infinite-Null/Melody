@@ -1,11 +1,8 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
-import Context from "../../Context/Context";
 import { QueueRenderSongs } from "./QueueRenderSongs";
 
 const QueueBottomSheet = ({Index}) => {
-  console.log(Index);
-  const { Queue } = useContext(Context)
   const backgroundColor = 'rgba(16,16,16,0.58)'
   const bottomSheetRef = useRef(null);
   return (
@@ -28,7 +25,7 @@ const QueueBottomSheet = ({Index}) => {
           backgroundColor:backgroundColor,
         }}
       >
-        <QueueRenderSongs key={1} Queue={Queue}/>
+        <QueueRenderSongs key={1} Index={Index}/>
       </BottomSheet>
   );
 };

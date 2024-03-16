@@ -2,12 +2,13 @@ import { Pressable, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
-import { memo, useContext } from "react";
-import Context from "../../Context/Context";
+import { memo } from "react";
 import { SkipToTrack } from "../../MusicPlayerFunctions";
+import { useActiveTrack, usePlaybackState } from "react-native-track-player";
 
 export const EachSongQueue = memo(function EachSongQueue({ title, artist, index, image, id }) {
-  const {currentPlaying, playerState} = useContext(Context)
+  const playerState= usePlaybackState()
+  const currentPlaying = useActiveTrack()
   return (
     <Pressable onPress={()=>{
       SkipToTrack(index)
@@ -20,7 +21,7 @@ export const EachSongQueue = memo(function EachSongQueue({ title, artist, index,
       marginVertical:5,
       marginBottom:6,
     }}>
-      <FastImage source={((id === currentPlaying?.id ?? "") && playerState === "playing") ? require("../../Images/playing.gif") : ((id === currentPlaying?.id ?? "") && playerState !== "playing" ) ? require("../../Images/songPaused.gif") : {
+      <FastImage source={((id === currentPlaying?.id ?? "") && playerState.state === "playing") ? require("../../Images/playing.gif") : ((id === currentPlaying?.id ?? "") && playerState.state !== "playing" ) ? require("../../Images/songPaused.gif") : {
         uri:image,
       }} style={{
         height:50,

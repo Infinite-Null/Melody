@@ -8,10 +8,11 @@ import { NextSongButton } from "./NextSongButton";
 import { PreviousSongButton } from "./PreviousSongButton";
 import FastImage from "react-native-fast-image";
 import Context from "../../Context/Context";
+import { useActiveTrack } from "react-native-track-player";
 
 export const MinimizedMusic = ({setIndex}) => {
   const size = Dimensions.get("window").height
-  const {currentPlaying} = useContext(Context)
+  const currentPlaying = useActiveTrack()
   return (
     <Animated.View
       entering={FadeInUp}

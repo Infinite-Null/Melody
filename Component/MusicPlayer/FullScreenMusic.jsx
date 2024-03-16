@@ -1,6 +1,6 @@
 import { Dimensions, ImageBackground, View } from "react-native";
 import FastImage from "react-native-fast-image";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import LinearGradient from "react-native-linear-gradient";
 import { Heading } from "../Global/Heading";
 import { SmallText } from "../Global/SmallText";
@@ -11,16 +11,16 @@ import { NextSongButton } from "./NextSongButton";
 import { PreviousSongButton } from "./PreviousSongButton";
 import { RepeatSongButton } from "./RepeatSongButton";
 import { LikeSongButton } from "./LikeSongButton";
-import Context from "../../Context/Context";
 import { ProgressBar } from "./ProgressBar";
 import { GetLyricsButton } from "./GetLyricsButton";
 import QueueBottomSheet from "./QueueBottomSheet";
 import { getLyricsSongData } from "../../Api/Songs";
 import { ShowLyrics } from "./ShowLyrics";
+import { useActiveTrack } from "react-native-track-player";
 
 export const FullScreenMusic = ({color, Index}) => {
   const width = Dimensions.get("window").width
-  const {currentPlaying} = useContext(Context)
+  const currentPlaying = useActiveTrack()
   const [ShowDailog, setShowDailog] = useState(false);
   const [Lyric, setLyric] = useState({});
   const [Loading, setLoading] = useState(false);

@@ -5,6 +5,7 @@ import { getRecommendedSongs } from "../Api/Recommended";
 import { AddSongsToQueue } from "../MusicPlayerFunctions";
 import FormatArtist from "../Utils/FormatArtists";
 import { Repeats } from "../Utils/Repeats";
+import { GetQueueSongs, SetQueueSongs } from "../LocalStorage/storeQueue";
 
 
 const events = [
@@ -16,12 +17,12 @@ const ContextState = (props)=>{
     const [Index, setIndex] = useState(0);
     const [QueueIndex, setQueueIndex] = useState(0);
     const [currentPlaying, setCurrentPlaying]  = useState({})
-    const [playerState, setPlayerState] = useState("paused")
     const [Repeat, setRepeat] = useState(Repeats.NoRepeat);
     const [Queue, setQueue] = useState([]);
     async function updateTrack (){
         const tracks = await TrackPlayer.getQueue();
         setQueue(tracks)
+        await SetQueueSongs(tracks)
     }
     async function AddRecommendedSongs(index,id){
         const tracks = await TrackPlayer.getQueue();
@@ -64,28 +65,22 @@ const ContextState = (props)=>{
                 }
             }
         }
-        if (event.type === Event.PlaybackState) {
-            setPlayerState(event.state)
-        }
     });
     async function InitialSetup(){
         await TrackPlayer.setupPlayer()
         await getCurrentSong()
-        await getCurrentState()
-        await updateTrack()
+        // await updateTrack()
+        const tracks =  await GetQueueSongs()
+        setQueue(tracks)
     }
     async function getCurrentSong(){
         const song = await TrackPlayer.getActiveTrack()
         setCurrentPlaying(song)
     }
-    async function getCurrentState(){
-        const state = await TrackPlayer.getPlaybackState()
-        setPlayerState(state.state)
-    }
     useEffect(() => {
         InitialSetup()
     }, []);
-    return <Context.Provider value={{currentPlaying, playerState, Repeat, setRepeat, Queue, updateTrack, Index, setIndex, QueueIndex, setQueueIndex}}>
+    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, Queue, updateTrack, Index, setIndex, QueueIndex, setQueueIndex}}>
         {props.children}
     </Context.Provider>
 }

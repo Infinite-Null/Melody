@@ -1,5 +1,5 @@
 // service.js
-import TrackPlayer, { AppKilledPlaybackBehavior, Capability } from "react-native-track-player";
+import TrackPlayer, { Capability } from "react-native-track-player";
 import { Event } from 'react-native-track-player';
 export const PlaybackService = async function() {
   await TrackPlayer.setupPlayer()
@@ -9,9 +9,6 @@ export const PlaybackService = async function() {
   TrackPlayer.addEventListener(Event.RemotePrevious, () => TrackPlayer.skipToPrevious());
   TrackPlayer.addEventListener(Event.RemoteSeek, (e) => TrackPlayer.seekTo(e.position));
   await TrackPlayer.updateOptions({
-    android: {
-      appKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
-    },
     // Media controls capabilities
     capabilities: [
       Capability.Play,
