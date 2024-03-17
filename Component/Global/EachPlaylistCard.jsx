@@ -12,7 +12,7 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
   const theme = useTheme()
   const navigation = useNavigation()
   return (
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(36,41,62,0.64)','rgb(60,110,204)','rgba(29,58,129,0.96)', theme.colors.background]} style={{
+    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(95,113,185,0.4)','rgba(60,110,204,0.27)','rgba(42,46,49,0.69)',theme.colors.background]} style={{
       borderRadius:10,
       overflow:"hidden",
       width:220,
