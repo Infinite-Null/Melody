@@ -4,7 +4,7 @@ async function getSearchSongData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://jio-savan-api-update-vo4f.vercel.app/api/search/songs?query=${searchText}&page=${page}&limit=${limit}`,
+    url: `https://jiosavan-api-with-playlist.vercel.app/api/search/songs?query=${searchText}&page=${page}&limit=${limit}`,
     headers: { },
   };
   try {
@@ -14,22 +14,13 @@ async function getSearchSongData(searchText,page,limit){
   catch (error) {
     throw error
   }
-}
- function getPromiseSongData(id){
-  let config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: `https://jio-savan-api-update-vo4f.vercel.app/api/songs/${id}`,
-    headers: { },
-  };
-  return axios.request(config);
 }
 
 async function getLyricsSongData(id){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/api/songs/${id}/lyrics`,
+    url: `https://jiosavan-api-with-playlist.vercel.app/api/songs/${id}/lyrics`,
     headers: { },
   };
   try {
@@ -41,4 +32,4 @@ async function getLyricsSongData(id){
   }
 }
 
-export {getSearchSongData, getPromiseSongData, getLyricsSongData}
+export {getSearchSongData, getLyricsSongData}

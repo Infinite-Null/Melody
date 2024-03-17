@@ -4,7 +4,7 @@ async function getAlbumData(id){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: "https://jio-savan-api-update-vo4f.vercel.app/api/albums?id=" + id,
+    url: "https://jiosavan-api-with-playlist.vercel.app/api/albums?id=" + id,
     headers: { },
   };
   try {
@@ -20,7 +20,7 @@ async function getSearchAlbumData(searchText,page,limit){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://jio-savan-api-update-vo4f.vercel.app/api/search/albums?query=${searchText}&page=${page}&limit=${limit}`,
+    url: `https://jiosavan-api-with-playlist.vercel.app/api/search/albums?query=${searchText}&page=${page}&limit=${limit}`,
     headers: { },
   };
   try {

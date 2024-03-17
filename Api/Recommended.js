@@ -5,7 +5,7 @@ async function getRecommendedSongs(id){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://saavn.dev/api/songs/${id}/suggestions`,
+    url: `https://jiosavan-api-with-playlist.vercel.app/api/songs/${id}/suggestions`,
     headers: { },
   };
   try {

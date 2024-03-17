@@ -1,10 +1,15 @@
 import axios from "axios";
-import { jiosavan } from "jiosavan";
 
 async function getPlaylistData(id){
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: `https://jiosavan-api-with-playlist.vercel.app/api/playlists?id=${id}`,
+    headers: { },
+  };
   try {
-    // const response = await axios.request(config);
-    return await jiosavan.getPlaylist(id)
+    const response = await axios.request(config);
+    return response.data
   }
   catch (error) {
     throw error

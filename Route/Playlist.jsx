@@ -10,32 +10,21 @@ import { LoadingComponent } from "../Component/Global/Loading";
 import { useTheme } from "@react-navigation/native";
 import { PlainText } from "../Component/Global/PlainText";
 import { SmallText } from "../Component/Global/SmallText";
-import { getPromiseSongData } from "../Api/Songs";
+import FormatArtist from "../Utils/FormatArtists";
 
 export const Playlist = ({route}) => {
   const theme = useTheme();
   const AnimatedRef = useAnimatedRef()
   const [Loading, setLoading] = useState(true)
   const [Data, setData] = useState({});
-  const [Links, setLinks] = useState([]);
+  // const [Links, setLinks] = useState([]);
   const {id, image, name, follower} = route.params
   async function fetchPlaylistData(){
     try {
       setLoading(true)
       let data = {}
-      let SongLinks = []
-        data = await getPlaylistData(id)
-        const Songs = data.songs.map((e)=>{
-          return getPromiseSongData(e.id)
-        })
-        const SongData = await Promise.all(Songs)
-        SongLinks = SongData.map(e=>{
-          return {
-            url:e.data.data[0].downloadUrl,
-            image:e.data.data[0].image[2].url,
-          }
-        })
-      setLinks(SongLinks)
+      data = await getPlaylistData(id)
+      console.log(data);
       setData(data)
     } catch (e) {
       console.log(e);
@@ -55,14 +44,14 @@ export const Playlist = ({route}) => {
         backgroundColor:"black",
       }}>
         <PlaylistTopHeader AnimatedRef={AnimatedRef} url={image} />
-        <PlaylistDetails id={id} image={image} name={name} follower={follower} listener={follower ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data} Links={Links} Loading={Loading}/>
+        <PlaylistDetails id={id} image={image} name={name} follower={follower} listener={follower ?? ""} releasedDate={Data?.data?.releaseDate ?? ""} Data={Data}  Loading={Loading}/>
          {Loading &&
            <LoadingComponent loading={Loading} height={200}/>}
         {!Loading && <View style={{
           paddingHorizontal:10,
           backgroundColor:theme.colors.background,
         }}>
-          {Data?.songs?.map((e,i)=><EachSongCard language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={Links[i]?.image} id={e?.id} width={"100%"} title={e?.song} artist={e?.primary_artists} url={Links[i]?.url} style={{
+          {Data?.data?.songs?.map((e,i)=><EachSongCard artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={"100%"} title={e?.name}  url={e?.downloadUrl} style={{
             marginBottom:15,
           }}/>)}
         </View>}

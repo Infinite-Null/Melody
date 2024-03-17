@@ -11,17 +11,18 @@ import { useContext } from "react";
 import Context from "../../Context/Context";
 import { LikedPlaylist } from "./LikedPlaylist";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import FormatArtist from "../../Utils/FormatArtists";
 
 
-export const PlaylistDetails = ({name,listener,notReleased,Data,Links, Loading, id, image, follower}) => {
+export const PlaylistDetails = ({name,listener,notReleased,Data, Loading, id, image, follower}) => {
   const {updateTrack} = useContext(Context)
-  const ForMusicPlayer = Data?.songs?.map((e,i)=>{
+  const ForMusicPlayer = Data?.data?.songs?.map((e,i)=>{
     return {
-      url:Links[i]?.url[4].url,
-      title:e?.song.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artist:e?.primary_artists.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artwork:Links[i]?.image,
-      image:Links[i]?.image,
+      url:e?.downloadUrl[4].url,
+      title:e?.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      artist:FormatArtist(e?.artists?.primary)?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      artwork:e?.image[2]?.url,
+      image:e?.image[2]?.url,
       duration:e?.duration,
       id:e?.id,
       language:e?.language,

@@ -10,6 +10,7 @@ import { PlainText } from "../Component/Global/PlainText";
 import { SmallText } from "../Component/Global/SmallText";
 import { getAlbumData } from "../Api/Album";
 import { AlbumDetails } from "../Component/Album/AlbumDetails";
+import FormatArtist from "../Utils/FormatArtists";
 
 export const Album = ({route}) => {
   const theme = useTheme();
@@ -32,17 +33,6 @@ export const Album = ({route}) => {
     fetchAlbumData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  function FormatArtist(data){
-    let artist = ""
-    data?.map((e,i)=>{
-      if (i === data.length - 1){
-        artist += e.name
-      } else {
-        artist += e.name + ", "
-      }
-    })
-    return artist
-  }
   return (
     <MainWrapper>
       {Loading &&
