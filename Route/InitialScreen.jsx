@@ -33,7 +33,7 @@ export const InitialScreen = ({navigation}) => {
        <Animated.Text entering={FadeIn.delay(300)} style={{
          fontSize:15,
          color:theme.colors.primary,
-       }}>Muisc for free</Animated.Text>
+       }}>Music for free</Animated.Text>
      </View>
    </MainWrapper>
   );
