@@ -1,79 +1,112 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<br/>
+<p align="center">
+  <a href="https://github.com/Infinite-Null/Melody">
+    <img src="Images/Logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-# Getting Started
+  <h3 align="center">Melody</h3>
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+  <p align="center">
+    Your Ad-Free Music Haven!
+    <br/>
+    <br/>
+    <a href="https://github.com/Infinite-Null/Melody/issues">Report Bug</a>
+    .
+    <a href="https://github.com/Infinite-Null/Melody/issues">Request Feature</a>
+  </p>
+</p>
 
-## Step 1: Start the Metro Server
+![Downloads](https://img.shields.io/github/downloads/Infinite-Null/Melody/total) ![Contributors](https://img.shields.io/github/contributors/Infinite-Null/Melody?color=dark-green) ![Forks](https://img.shields.io/github/forks/Infinite-Null/Melody?style=social) ![Stargazers](https://img.shields.io/github/stars/Infinite-Null/Melody?style=social) ![Issues](https://img.shields.io/github/issues/Infinite-Null/Melody) ![License](https://img.shields.io/github/license/Infinite-Null/Melody) 
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Table Of Contents
 
-To start Metro, run the following command from the _root_ of your React Native project:
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Authors](#authors)
+* [Acknowledgements](#acknowledgements)
 
-```bash
-# using npm
-npm start
+## About The Project
 
-# OR using Yarn
-yarn start
+![Screen Shot](images/screenshot.png)
+
+Introducing Melody: Your Ultimate Ad-Free Music Companion! Developed with React Native and harnessing the power of JioSavan's Unofficial API, Melody offers you a seamless music streaming experience at your fingertips. Dive into a world of limitless tunes, curated playlists, and personalized recommendations—all without interruptions 
+
+## Built With
+
+Crafted using cutting-edge technology and powered by the JioSavan Unofficial API (both New and Old versions), Melody offers a seamless streaming experience.
+
+Built with React Native and enhanced with React Native Reanimated, Melody delivers a smooth and intuitive interface.
+
+With React Native Track Player at its core, Melody guarantees high-quality audio playback.
+
+* [JioSavan Unofficial API New Version](https://jiosavan-api-with-playlist.vercel.app/)
+* [JioSavan Unofficial API Old Version](https://jio-savan-api-m39q.vercel.app/)
+* [React Native](https://reactnative.dev/)
+* [React Native Track Player](https://rntp.dev/)
+* [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+* npm
+* React Native
+
+### Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/Infinite-Null/Melody
 ```
 
-## Step 2: Start your Application
+2. Install NPM packages
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```sh
+npm install
 ```
 
-### For iOS
+3. Run the project
 
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```sh
+npm run start
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## Usage
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-## Step 3: Modifying your App
+_For more examples, please refer to the [Documentation](https://example.com)_
 
-Now that you have successfully run the app, let's modify it.
+## Roadmap
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+See the [open issues](https://github.com/Infinite-Null/Melody/issues) for a list of proposed features (and known issues).
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## Contributing
 
-## Congratulations! :tada:
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/Infinite-Null/Melody/issues/new) to discuss it, or directly create a pull request after you edit the *README.md* file with necessary changes.
+* Please make sure you check your spelling and grammar.
+* Create individual PR for each suggestion.
+* Please also read through the [Code Of Conduct](https://github.com/Infinite-Null/Melody/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
 
-You've successfully run and modified your React Native App. :partying_face:
+### Creating A Pull Request
 
-### Now what?
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## License
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Distributed under the MIT License. See [LICENSE](https://github.com/Infinite-Null/Melody/blob/main/LICENSE.md) for more information.
