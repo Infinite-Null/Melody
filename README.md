@@ -105,3 +105,16 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See [LICENSE](https://github.com/Infinite-Null/Melody/blob/main/LICENSE.md) for more information.
+
+## Disclaimer
+
+```
+Musify does not possess or maintain any association with the songs and other content accessible through the app.
+All songs and other content are the property of their respective owners and are safeguarded by copyright law.
+Musify holds no liability for any copyright infringement or other violations of intellectual property rights
+that may arise from the use of the songs and other content accessible through the app.
+Musify employs third-party plugins and assumes no responsibility for any harm or damage to the respective owners or
+any other parties resulting from the utilization of the songs and other content through the third-party plugins.
+By using the app, you consent to utilizing the songs and other content exclusively for personal,
+non-commercial purposes and in accordance with all applicable laws and regulations.
+```
