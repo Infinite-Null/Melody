@@ -34,6 +34,23 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
         }
       })
       await AddPlaylist(ForMusicPlayer)
+    } else if (isLibraryLiked){
+      const Final = []
+      Data?.map((e,i)=>{
+        if (i >= index) {
+          Final.push({
+            url:e.url,
+            title:e?.title,
+            artist:e?.artist,
+            artwork:e?.artwork,
+            duration:e?.duration,
+            id:e?.id,
+            language:e?.language,
+            artistID:e?.primary_artists_id,
+          })
+        }
+      })
+      await AddPlaylist(Final)
     } else {
       const song  = {
         url:isLibraryLiked ? url : url[4].url,

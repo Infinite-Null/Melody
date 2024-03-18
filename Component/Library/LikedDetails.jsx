@@ -9,29 +9,11 @@ import Context from "../../Context/Context";
 import { PlayButton } from "../Playlist/PlayButton";
 
 
-export const LikedDetails = ({name,Data, dontShowPlayButton}) => {
+export const LikedDetails = ({name, Data, dontShowPlayButton}) => {
   const {updateTrack} = useContext(Context)
-  const ForMusicPlayer = Data?.map((e)=>{
-   if (e) {return {
-       url:e.url,
-       title:e?.title,
-       artist:e?.artist,
-       artwork:e?.image,
-       duration:e?.duration,
-       id:e?.id,
-       language:e?.language,
-       artistID:e?.primary_artists_id,
-     }}
-  })
   async function AddToPlayer(){
-    console.log(ForMusicPlayer);
-    if (ForMusicPlayer[0]){
-      await AddPlaylist(ForMusicPlayer)
+      await AddPlaylist(Data)
       updateTrack()
-    } else {
-      await AddPlaylist(ForMusicPlayer.splice(1,ForMusicPlayer.length))
-      updateTrack()
-    }
   }
   const theme = useTheme()
   const width = Dimensions.get('window').width
