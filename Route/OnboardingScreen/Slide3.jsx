@@ -4,17 +4,14 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import FastImage from "react-native-fast-image";
 import { Heading } from "../../Component/Global/Heading";
 import { BottomNextAndPrevious } from "../../Component/RouteOnboarding/BottomNextAndPrevious";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SetUserNameValue } from "../../LocalStorage/StoreUserName";
+import { useTheme } from "@react-navigation/native";
 
 export const Slide3 = ({navigation}) => {
   const width = Dimensions.get("window").width
+  const theme  = useTheme()
   const [Name, setName] = useState("");
-  // useEffect(() => {
-  //   return () => {
-  //     console.log(Name);
-  //   };
-  // }, [Name]);
  async function NextPress(name){
    if (name === ""){
      // eslint-disable-next-line no-alert
@@ -37,7 +34,7 @@ export const Slide3 = ({navigation}) => {
           borderRadius:100,
         }}/></Animated.View>
         <Animated.View  entering={FadeInDown.delay(500)}><Heading text={"What should I call you?"} nospace={true} style={{marginTop:10}}/></Animated.View>
-          <TextInput value={Name} onChangeText={(text)=>{
+          <TextInput placeholderTextColor={theme.colors.text} value={Name} onChangeText={(text)=>{
             setName(text)
           }} textAlign={'center'} placeholder={"Enter your name"} style={{
             borderWidth:2,
@@ -45,6 +42,7 @@ export const Slide3 = ({navigation}) => {
             borderRadius:10,
             padding:10,
             width:width * 0.5,
+            color:theme.colors.text,
           }}/>
       </View>
       <BottomNextAndPrevious delay={100} nextText={"Let's Go"} showPrevious={true} onPreviousPress={()=>{
