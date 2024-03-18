@@ -56,7 +56,7 @@ export default function SongDisplay({data, limit, Searchtext}) {
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>
         }else{
-            return <EachSongCard titleWidth={width * 0.63 } artistID={item.item?.primaryArtistsId} language={item.item?.language} duration={item.item?.duration} artistWidth={width * 0.55}  image={item?.item?.image[2]?.url ?? ""} id={item.item?.id} width={width * 0.7} title={item.item?.name} artist={FormatArtist(item.item?.artists?.primary)} url={item.item?.downloadUrl} style={{
+            return <EachSongCard  artistID={item.item?.primaryArtistsId} language={item.item?.language} duration={item.item?.duration} image={item?.item?.image[2]?.url ?? ""} id={item.item?.id} width={width * 0.95} title={item.item?.name} artist={FormatArtist(item.item?.artists?.primary)} url={item.item?.downloadUrl} style={{
                 marginBottom:13,
             }}/>
         }

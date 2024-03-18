@@ -74,9 +74,9 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
     <View style={{
       flexDirection:'row',
       width:width ? width : width1,
-      marginRight:20,
+      marginRight:10,
       alignItems:"center",
-      paddingRight:20,
+      paddingRight:4,
       // backgroundColor:"red"
     }}>
       <Pressable onPress={()=>{
@@ -112,8 +112,8 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
         <View style={{
           flex:1,
         }}>
-          <PlainText text={title?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.7}}/>
-          <SmallText text={artist?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.7}}/>
+          <PlainText text={title?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.67}}/>
+          <SmallText text={artist?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.67}}/>
         </View>
       </Pressable>
       <Pressable onPress={()=>{
