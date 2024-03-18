@@ -1,7 +1,6 @@
-import { Dimensions, Pressable, Text, View } from "react-native";
+import { Dimensions,Text, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { SpaceBetween } from "../../Layout/SpaceBetween";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Spacer } from "../Global/Spacer";
 import FastImage from "react-native-fast-image";
 
@@ -12,9 +11,11 @@ export const LibraryRouteHeading = ({text}) => {
   return (
     <>
       <Spacer/>
-      <Spacer/>
-      <SpaceBetween style={{
-        paddingHorizontal:20,
+      <View style={{
+        paddingHorizontal:10,
+        flexDirection:"row",
+        alignItems:"center",
+        gap: 10,
       }}>
         <View  style={{
           borderRadius:1000,
@@ -25,7 +26,7 @@ export const LibraryRouteHeading = ({text}) => {
         }}>
           <FastImage source={require("../../Images/Logo.png")} style={{
             flex:1,
-            borderRadius:10,
+            borderRadius:1000,
           }}/>
         </View>
         <Text style={{
@@ -34,8 +35,7 @@ export const LibraryRouteHeading = ({text}) => {
           fontSize:width * 0.06,
         }}>{text}</Text>
       <View/>
-      </SpaceBetween>
-      <Spacer/>
+      </View>
       <Spacer/>
     </>
   );

@@ -3,7 +3,7 @@ import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
 import { FlatList, ScrollView} from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
-import { RouteHeading } from "../../Component/Global/RouteHeading";
+import { RouteHeading } from "../../Component/Home/RouteHeading";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import { EachAlbumCard } from "../../Component/Global/EachAlbumCard";
 import { RenderTopCharts } from "../../Component/Home/RenderTopCharts";
@@ -42,7 +42,7 @@ export const Home = () => {
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:90,
           }}>
-            <RouteHeading text={"Home"}/>
+            <RouteHeading />
             <LargeBentooCard text={"Top Most Hits Music Today"} subtext={"Today's hits"} width={"100%"} image={require("../../Images/musicListning.png")} id={"110858205"}/>
             <PaddingConatiner>
               <Heading text={"Recommended"}/>

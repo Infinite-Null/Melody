@@ -7,7 +7,7 @@ export const MainWrapper = memo(function MainWrapper({children}) {
   const theme = useTheme()
   return (
     <SafeAreaView style={{flex:1,backgroundColor:theme.colors.background}}>
-      <StatusBar backgroundColor={theme.colors.background} animated={true} networkActivityIndicatorVisible={false} />
+      <StatusBar backgroundColor={theme.colors.background} animated={true} />
       {children}
     </SafeAreaView>
   );
