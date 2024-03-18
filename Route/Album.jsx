@@ -48,7 +48,7 @@ export const Album = ({route}) => {
             paddingHorizontal:10,
             backgroundColor:theme.colors.background,
           }}>
-            {Data?.data?.songs?.map((e,i)=><EachSongCard artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={"100%"} title={e?.name}  url={e?.downloadUrl} style={{
+            {Data?.data?.songs?.map((e,i)=><EachSongCard isFromPlaylist={true} Data={Data} index={i} artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={"100%"} title={e?.name}  url={e?.downloadUrl} style={{
               marginBottom:15,
             }}/>)}
           </View>}
