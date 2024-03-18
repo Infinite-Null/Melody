@@ -1,75 +1,55 @@
-import { Dimensions, PermissionsAndroid, Platform, Pressable, ToastAndroid, View } from "react-native";
+import { Dimensions, Pressable,View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
-import { PlayOneSong } from "../../MusicPlayerFunctions";
+import { AddPlaylist, PlayOneSong } from "../../MusicPlayerFunctions";
 import { memo, useContext } from "react";
 import Context from "../../Context/Context";
 import { useActiveTrack, usePlaybackState } from "react-native-track-player";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import DeviceInfo from "react-native-device-info";
-import ReactNativeBlobUtil from "react-native-blob-util";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
-import { useTheme } from "@react-navigation/native";
+import { EachSongDownoadComponent } from "./EachSongDownoadComponent";
+import FormatArtist from "../../Utils/FormatArtists";
 
-export const EachSongCard = memo(function EachSongCard({title,artist,image,id,url,duration,language,artistID,isLibraryLiked, width, titleandartistwidth}) {
-  const theme = useTheme()
-  const actualDownload = () => {
-    let dirs = ReactNativeBlobUtil.fs.dirs
-    ToastAndroid.showWithGravity(
-      `Download Started`,
-      ToastAndroid.SHORT,
-      ToastAndroid.CENTER,
-    );
-    ReactNativeBlobUtil
-      .config({
-        addAndroidDownloads:{
-          useDownloadManager:true,
-          path:dirs.LegacyMusicDir + `/Melody/${FormatTitleAndArtist(title)}.m4a`,
-          notification:true,
-          title:`${FormatTitleAndArtist(title)}`,
-        },
-        fileCache: true,
-      })
-      .fetch('GET', url[4].url, {
-      })
-      .then((res) => {
-        console.log('The file saved to ', res.path())
-        ToastAndroid.showWithGravity(
-          "Download successfully Completed",
-          ToastAndroid.SHORT,
-          ToastAndroid.CENTER,
-        );
-      })
-  }
-  const getPermission = async () => {
-    if (Platform.OS === 'ios') {
-      actualDownload();
-    } else {
-      try {
-        let deviceVersion = DeviceInfo.getSystemVersion();
-        let granted = PermissionsAndroid.RESULTS.DENIED;
-        if (deviceVersion >= 13) {
-          granted = PermissionsAndroid.RESULTS.GRANTED;
-        } else {
-          granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          );
-        }
-        console.log(granted);
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            actualDownload();
-          } else {
-            console.log("please grant permission");
-          }
-      } catch (err) {
-        console.log("display error",err)    }
-    }
-  };
+export const EachSongCard = memo(function EachSongCard({title,artist,image,id,url,duration,language,artistID,isLibraryLiked, width, titleandartistwidth, isFromPlaylist, Data, index}) {
   const width1 = Dimensions.get("window").width;
   const {updateTrack} = useContext(Context)
   const currentPlaying = useActiveTrack()
   const playerState = usePlaybackState()
+  async function AddSongToPlayer (){
+    if (isFromPlaylist){
+      const ForMusicPlayer = []
+      Data?.data?.songs?.map((e,i)=>{
+        if (i >= index){
+          ForMusicPlayer.push({
+            url:e?.downloadUrl[4].url,
+            title:FormatTitleAndArtist(e?.name),
+            artist:FormatTitleAndArtist(FormatArtist(e?.artists?.primary)),
+            artwork:e?.image[2]?.url,
+            image:e?.image[2]?.url,
+            duration:e?.duration,
+            id:e?.id,
+            language:e?.language,
+            artistID:e?.primary_artists_id,
+          })
+        }
+      })
+      await AddPlaylist(ForMusicPlayer)
+    } else {
+      const song  = {
+        url:isLibraryLiked ? url : url[4].url,
+        title:FormatTitleAndArtist(title),
+        artist:FormatTitleAndArtist(artist),
+        artwork:image,
+        duration,
+        id,
+        language,
+        artistID:artistID,
+        image:image,
+      }
+      PlayOneSong(song)
+    }
+    updateTrack()
+  }
   return (
     <View style={{
       flexDirection:'row',
@@ -79,21 +59,7 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
       paddingRight:4,
       // backgroundColor:"red"
     }}>
-      <Pressable onPress={()=>{
-        const song  = {
-          url:isLibraryLiked ? url : url[4].url,
-          title:FormatTitleAndArtist(title),
-          artist:FormatTitleAndArtist(artist),
-          artwork:image,
-          duration,
-          id,
-          language,
-          artistID:artistID,
-          image:image,
-        }
-        PlayOneSong(song)
-        updateTrack()
-      }} style={{
+      <Pressable onPress={AddSongToPlayer} style={{
         flexDirection:'row',
         gap:10,
         alignItems:"center",
@@ -116,15 +82,7 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
           <SmallText text={artist?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.67}}/>
         </View>
       </Pressable>
-      <Pressable onPress={()=>{
-        getPermission()
-      }} style={{
-        padding:10,
-        backgroundColor:"rgb(28,28,28)",
-        borderRadius:100,
-      }}>
-        <AntDesign name={"download"} size={17} color={theme.colors.text}/>
-      </Pressable>
+     <EachSongDownoadComponent url={isLibraryLiked ? url : url[4].url} title={title}/>
     </View>
   );
 })

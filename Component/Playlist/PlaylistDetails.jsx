@@ -2,7 +2,6 @@ import { Dimensions, View } from "react-native";
 import { Heading } from "../Global/Heading";
 import { SmallText } from "../Global/SmallText";
 import { Spacer } from "../Global/Spacer";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import { PlayButton } from "./PlayButton";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
@@ -12,6 +11,7 @@ import Context from "../../Context/Context";
 import { LikedPlaylist } from "./LikedPlaylist";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FormatArtist from "../../Utils/FormatArtists";
+import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 
 
 export const PlaylistDetails = ({name,listener,notReleased,Data, Loading, id, image, follower}) => {
@@ -19,8 +19,8 @@ export const PlaylistDetails = ({name,listener,notReleased,Data, Loading, id, im
   const ForMusicPlayer = Data?.data?.songs?.map((e,i)=>{
     return {
       url:e?.downloadUrl[4].url,
-      title:e?.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artist:FormatArtist(e?.artists?.primary)?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
+      title:FormatTitleAndArtist(e?.name),
+      artist:FormatTitleAndArtist(FormatArtist(e?.artists?.primary)),
       artwork:e?.image[2]?.url,
       image:e?.image[2]?.url,
       duration:e?.duration,

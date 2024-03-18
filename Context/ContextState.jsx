@@ -18,11 +18,11 @@ const ContextState = (props)=>{
     const [QueueIndex, setQueueIndex] = useState(0);
     const [currentPlaying, setCurrentPlaying]  = useState({})
     const [Repeat, setRepeat] = useState(Repeats.NoRepeat);
-    const [Queue, setQueue] = useState([]);
+    // const [Queue, setQueue] = useState([]);
     async function updateTrack (){
         const tracks = await TrackPlayer.getQueue();
-        setQueue(tracks)
         await SetQueueSongs(tracks)
+        // setQueue(tracks)
     }
     async function AddRecommendedSongs(index,id){
         const tracks = await TrackPlayer.getQueue();
@@ -80,7 +80,7 @@ const ContextState = (props)=>{
     useEffect(() => {
         InitialSetup()
     }, []);
-    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, Queue, updateTrack, Index, setIndex, QueueIndex, setQueueIndex}}>
+    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex}}>
         {props.children}
     </Context.Provider>
 }
