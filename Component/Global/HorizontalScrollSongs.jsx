@@ -30,14 +30,12 @@ export const HorizontalScrollSongs = ({id}) => {
   return ( <>
       {id && <>
         <Heading text={Loading ? "Please Wait..." : Data?.data?.name}/>
-        {!Loading && <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
-          paddingRight:50,
-        }}>
+        {!Loading && <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <TrendingSongLayout>
-            {Data?.data?.songs?.slice(0,4)?.map((e,i)=><EachSongCard titleWidth={width * 0.63} artistWidth={width * 0.55}  artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={"100%"} title={e?.name}  url={e?.downloadUrl}/>)}
+            {Data?.data?.songs?.slice(0,4)?.map((e,i)=><EachSongCard   artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={width * 0.85} title={e?.name}  url={e?.downloadUrl} titleandartistwidth={width * 0.5}/>)}
           </TrendingSongLayout>
           <TrendingSongLayout>
-            {Data?.data?.songs?.slice(4,8)?.map((e,i)=><EachSongCard titleWidth={width * 0.63} artistWidth={width * 0.55}  artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={"100%"} title={e?.name}  url={e?.downloadUrl} />)}
+            {Data?.data?.songs?.slice(4,8)?.map((e,i)=><EachSongCard  artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={width * 0.85} title={e?.name}  url={e?.downloadUrl} titleandartistwidth={width * 0.5}/>)}
           </TrendingSongLayout>
         </ScrollView>}
         {Loading && <View style={{

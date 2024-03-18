@@ -10,8 +10,10 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import DeviceInfo from "react-native-device-info";
 import ReactNativeBlobUtil from "react-native-blob-util";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
+import { useTheme } from "@react-navigation/native";
 
-export const EachSongCard = memo(function EachSongCard({title,artist,image,id,url,duration,language,artistID,isLibraryLiked}) {
+export const EachSongCard = memo(function EachSongCard({title,artist,image,id,url,duration,language,artistID,isLibraryLiked, width, titleandartistwidth}) {
+  const theme = useTheme()
   const actualDownload = () => {
     let dirs = ReactNativeBlobUtil.fs.dirs
     ToastAndroid.showWithGravity(
@@ -71,7 +73,7 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
   return (
     <View style={{
       flexDirection:'row',
-      width:width1,
+      width:width ? width : width1,
       marginRight:20,
       alignItems:"center",
       paddingRight:20,
@@ -110,8 +112,8 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
         <View style={{
           flex:1,
         }}>
-          <PlainText text={title?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width: width1 * 0.7}}/>
-          <SmallText text={artist?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width: width1 * 0.7}}/>
+          <PlainText text={title?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.7}}/>
+          <SmallText text={artist?.toString()?.replaceAll("&quot;","\"")?.replaceAll("&amp;","and")?.replaceAll("&#039;","'")?.replaceAll("&trade;","™")} style={{width:titleandartistwidth ? titleandartistwidth : width1 * 0.7}}/>
         </View>
       </Pressable>
       <Pressable onPress={()=>{
@@ -121,7 +123,7 @@ export const EachSongCard = memo(function EachSongCard({title,artist,image,id,ur
         backgroundColor:"rgb(28,28,28)",
         borderRadius:100,
       }}>
-        <AntDesign name={"download"} size={17}/>
+        <AntDesign name={"download"} size={17} color={theme.colors.text}/>
       </Pressable>
     </View>
   );
