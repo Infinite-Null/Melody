@@ -1,15 +1,10 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
-import { View } from "react-native";
-import { PlainText } from "../../Component/Global/PlainText";
-import { SmallText } from "../../Component/Global/SmallText";
+import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
 
 export const Discover = () => {
   return (
    <MainWrapper>
-     <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-       <PlainText text={"Coming Soon"} nospace={true}/>
-       <SmallText text={"More features are on the way"}/>
-     </View>
+     <LargeBentooCard text={"Top Most Hits Music Today"} subtext={"Today's hits"} width={"100%"} image={require("../../Images/musicListning.png")} id={"110858205"}/>
    </MainWrapper>
   );
 };
