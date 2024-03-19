@@ -6,6 +6,7 @@ import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import FastImage from "react-native-fast-image";
 import { SmallText } from "../Global/SmallText";
 import { Spacer } from "../Global/Spacer";
+import LinearGradient from "react-native-linear-gradient";
 
 export const LargeBentooCard = ({width,text,subtext,image,id}) => {
   const theme = useTheme()
@@ -20,11 +21,15 @@ export const LargeBentooCard = ({width,text,subtext,image,id}) => {
        borderRadius:10,
        flexDirection:"row",
      }}>
-       <FastImage source={require("../../Images/background.jpg")} style={{
+       <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(120,120,120,0)', 'rgba(0,0,0,0.56)', 'rgb(0,0,0)']} style={{
+        flex:1,
+       }}>
+       <FastImage source={image} style={{
          width:"100%",
          position:'absolute',
          height:"100%",
          borderRadius:10,
+         zIndex:-1,
        }}/>
          <View style={{
            padding:theme.colors.spacing,
@@ -39,13 +44,7 @@ export const LargeBentooCard = ({width,text,subtext,image,id}) => {
              color:'white',
            }}/>
          </View>
-         <FastImage source={image} style={{
-           height:"100%",
-           width:"50%",
-           objectFit:"cover",
-           position:'absolute',
-           right:0,
-         }}/>
+       </LinearGradient>
      </Pressable>
    </PaddingConatiner>
   );
