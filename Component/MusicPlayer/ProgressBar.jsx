@@ -5,6 +5,7 @@ import { useTheme } from "@react-navigation/native";
 import { useProgress } from "react-native-track-player";
 import { SetProgressSong } from "../../MusicPlayerFunctions";
 import { SmallText } from "../Global/SmallText";
+import { value } from "lodash/seq";
 
 export const ProgressBar = () => {
   const width = Dimensions.get("window").width
@@ -22,10 +23,14 @@ export const ProgressBar = () => {
   return (
     <>
       <Slider
-        onValueChange={(progress)=>{
+        step={1}
+        // onValueChange={(progress)=>{
+        //   console.log(value);
+        //   SetProgressSong(progress)
+        // }}
+        onSlidingComplete={(progress)=>{
           SetProgressSong(progress)
         }}
-        tapToSeek={true}
         style={{width: width, height: 40}}
         minimumValue={0}
         maximumValue={duration}

@@ -38,8 +38,8 @@ export const RouteHeading = () => {
     setUserName(FormatName(name))
   }
   function FormatName(name){
-    if (name.length >= 7){
-      return name.slice(0,8) + " ..."
+    if (name.length >= 10){
+      return name.slice(0,11) + "..."
     } else {
       return name
     }

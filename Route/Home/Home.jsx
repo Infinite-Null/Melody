@@ -1,6 +1,5 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
-import { LargeBentooCard } from "../../Component/Home/LargeBentooCard";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { RouteHeading } from "../../Component/Home/RouteHeading";
@@ -14,8 +13,6 @@ import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { getSearchSongData } from "../../Api/Songs";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
-import { EachSmallCardHome } from "../../Component/Home/EachSmallCardHome";
-import { Spacer } from "../../Component/Global/Spacer";
 import { DisplayTopSection } from "../../Component/Home/DisplayTopSection";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
@@ -35,7 +32,7 @@ export const Home = () => {
   useEffect(() => {
     fetchHomePageData()
     // just to activate server
-    getSearchSongData("random",1,2)
+    // getSearchSongData("random",1,2)
   }, []);
   return (
     <MainWrapper>

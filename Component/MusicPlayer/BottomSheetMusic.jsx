@@ -32,6 +32,7 @@ const BottomSheetMusic = ({color}) => {
   }, []);
   return (
       <BottomSheet
+        enableContentPanningGesture={false}
          detached={false}
          enableOverDrag={false}
          handleIndicatorStyle={{
