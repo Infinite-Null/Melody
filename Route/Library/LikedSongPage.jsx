@@ -34,6 +34,7 @@ export const LikedSongPage = () => {
         })
       }
     })
+    console.log(Final);
     setLikedSongs(Final)
   }
   useEffect(() => {

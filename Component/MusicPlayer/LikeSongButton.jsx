@@ -18,10 +18,12 @@ export const LikeSongButton = memo(function LikeSongButton({size}) {
     }
   }
   async function LikeASong(){
-    setLiked(true)
     const LikedSongs = await GetLikedSongs()
     if (!LikedSongs.songs[currentPlaying.id]) {
-      await  SetLikedSongs(currentPlaying?.title,currentPlaying?.artist,currentPlaying?.image,currentPlaying?.id,currentPlaying?.url,currentPlaying?.duration,currentPlaying?.language)
+      if (currentPlaying.title && currentPlaying.artist && currentPlaying.image && currentPlaying.id && currentPlaying.url && currentPlaying.duration ){
+        setLiked(true)
+        await  SetLikedSongs(currentPlaying?.title,currentPlaying?.artist,currentPlaying?.image,currentPlaying?.id,currentPlaying?.url,currentPlaying?.duration,currentPlaying?.language)
+      }
     } else {
       setLiked(false)
       await DeleteALikedSong(currentPlaying.id)
