@@ -21,7 +21,7 @@ export const EachSmallCardHome = ({ name, subtitle, image, isPlaylist,id, naviga
       gap:10,
       alignItems:"center",
       justifyContent:"space-between",
-      backgroundColor:"rgb(40,45,51)",
+      backgroundColor:"rgb(28,32,33)",
       paddingRight:10,
       borderRadius:10,
       flex:1,
@@ -29,7 +29,9 @@ export const EachSmallCardHome = ({ name, subtitle, image, isPlaylist,id, naviga
       <FastImage source={isPlaylist ? {uri:image} : image} style={{
         height:ContainerHeight,
         width:ContainerHeight,
-        borderRadius:10,
+        borderTopLeftRadius:10,
+        borderBottomLeftRadius:10,
+        elevation:10,
       }}/>
       <View style={{
         flex:1,

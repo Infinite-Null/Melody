@@ -7,7 +7,7 @@ export const PlainText = ({text,style, numberOfLine}) => {
   return (
     <Text numberOfLines={numberOfLine ? numberOfLine : 2}  style={{
       color:theme.colors.text,
-      fontSize:width * 0.04,
+      fontSize:width * 0.035,
       fontWeight:500,
       paddingRight:10,
       ...style,

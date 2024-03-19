@@ -11,7 +11,7 @@ export const Heading = ({text, style, nospace}) => {
      <Text numberOfLines={2} style={{
        fontWeight:600,
        color:theme.colors.text,
-       fontSize:width * 0.06,
+       fontSize:width * 0.055,
        ...style,
      }}>{text}</Text>
      {!nospace && <Spacer/>}

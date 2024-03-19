@@ -6,7 +6,7 @@ export const SmallText = ({text, color, style, maxLine, selectable}) => {
   return (
     <Text selectable={selectable} numberOfLines={maxLine ? maxLine : 2} style={{
       color:(!color) ? theme.colors.textSecondary : color,
-      fontSize:theme.colors.fontSize - 5,
+      fontSize:10,
       ...style,
     }}>{text}</Text>
   );
