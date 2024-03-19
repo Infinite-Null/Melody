@@ -14,10 +14,14 @@ export const RenderTopCharts = ({playlist}) => {
   return (
     <>
       {data.map((e,i)=><View style={{
-        gap:10,
+        gap:5,
       }}>
         {/* eslint-disable-next-line no-shadow */}
-        {e.map((e,index) => <EachPlaylistCard image={e.image[2].link} name={e.title} follower={e.subtitle} key={i+index} id={e.id}/>)}
+        {e.map((e,index) => <View style={{
+          marginRight:10,
+        }}>
+          <EachPlaylistCard image={e.image[2].link} name={e.title} follower={e.subtitle} key={i+index} id={e.id}/>
+        </View>)}
       </View>)}
     </>
   );

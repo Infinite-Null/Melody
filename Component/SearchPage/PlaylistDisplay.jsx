@@ -40,8 +40,7 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
          fetchSearchData(Searchtext, Page)
        },200)
       }} contentContainerStyle={{
-        paddingBottom:220,
-        width:width,
+         paddingBottom:220,
         alignItems:"center",
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{
         if(item.item.LoadingComponent  === true){
@@ -55,10 +54,10 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
             id={item.item.id}
             MainContainerStyle = {{
                 width:width * 0.45,
-                height:width * 0.65,
+                marginHorizontal:10,
             }}
             ImageStyle={{
-                height:"60%",
+                height:"70%",
             }}
             />
         }

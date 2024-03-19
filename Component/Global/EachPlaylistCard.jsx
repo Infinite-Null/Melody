@@ -12,30 +12,21 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
   const theme = useTheme()
   const navigation = useNavigation()
   return (
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(95,113,185,0.4)','rgba(60,110,204,0.27)','rgba(42,46,49,0.69)',theme.colors.background]} style={{
-      borderRadius:10,
-      overflow:"hidden",
-      width:220,
-      height:290,
-      padding:10,
-      elevation:3,
-      marginHorizontal:5,
-      ...MainContainerStyle,
-    }}>
     <Pressable onPress={()=>{ navigation.navigate("Playlist" , {id,image,name,follower})}} style={{
-      height:"100%",
-      width:"100%",
+      width:180,
+      height:240,
+      ...MainContainerStyle,
     }}>
       <FastImage source={{
         uri:image,
       }} style={{
-        height:200,
+        height:180,
         width:"100%",
         borderRadius:10,
         ...ImageStyle,
       }}/>
       <SpaceBetween style={{
-        height:70,
+        height:55,
       }}>
         <View style={{
           width:"85%",
@@ -45,6 +36,6 @@ export const EachPlaylistCard = memo(function EachPlaylistCard ({image, name, fo
         </View>
         <FontAwesome5 name={"play"} size={15} color={theme.colors.text}/>
       </SpaceBetween>
-    </Pressable></LinearGradient>
+    </Pressable>
   );
 })
