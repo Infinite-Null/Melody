@@ -1,11 +1,23 @@
 import { Heading } from "../../Component/Global/Heading";
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
-import { Pressable, ScrollView, View } from "react-native";
+import { Pressable, ScrollView, ToastAndroid, View } from "react-native";
 import { PlainText } from "../../Component/Global/PlainText";
 import { Dropdown } from "react-native-element-dropdown";
+import {
+  GetDownloadPath,
+  GetFontSizeValue,
+  GetPlaybackQuality,
+  SetDownloadPath, SetFontSizeValue,
+  SetPlaybackQuality,
+} from "../../LocalStorage/AppSettings";
+import { useEffect, useState } from "react";
+import { SmallText } from "../../Component/Global/SmallText";
 
 export const SettingsPage = () => {
+  const [Font, setFont] = useState("");
+  const [Playback, setPlayback] = useState("");
+  const [Download, setDownload] = useState("");
   const FontSize = [
     { value: 'Small' },
     { value: 'Medium' },
@@ -22,6 +34,48 @@ export const SettingsPage = () => {
     { value: 'Music' },
     { value: 'Downloads' },
   ]
+  async function GetFontSize(){
+    const data = await GetFontSizeValue()
+    setFont(data)
+  }
+  async function GetPlayBack(){
+    const data = await GetPlaybackQuality()
+    setPlayback(data)
+  }
+  async function GetDownLoad(){
+    const data = await GetDownloadPath()
+    setDownload(data)
+  }
+
+  async function SetDownLoad({ value }){
+    await SetDownloadPath(value)
+    ToastAndroid.showWithGravity(
+      `Download path changed to ${value}`,
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+  }
+  async function SetPlayBack({ value }){
+    await SetPlaybackQuality(value)
+    ToastAndroid.showWithGravity(
+      `Playback quality changed to ${value}`,
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+  }
+  async function SetFont({ value }){
+    await SetFontSizeValue(value)
+    ToastAndroid.showWithGravity(
+      `Font size changed to ${value}`,
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+  }
+  useEffect(() => {
+    GetFontSize()
+    GetPlayBack()
+    GetDownLoad()
+  }, []);
   return (
     <MainWrapper>
        <PaddingConatiner>
@@ -29,9 +83,10 @@ export const SettingsPage = () => {
          <ScrollView>
            <EachSettingsButton text={"Change Name"}/>
            <EachSettingsButton text={"Select Languages"}/>
-           <EachDropDownWithLabel data={FontSize} text={"Change font size"}/>
-           <EachDropDownWithLabel data={PlaybackQuality} text={"Playback quality"}/>
-           <EachDropDownWithLabel data={DownloadPath} text={"Change Download Path"}/>
+           <EachDropDownWithLabel data={FontSize} text={"Font size"} placeholder={Font} OnChange={SetFont}/>
+           <EachDropDownWithLabel data={PlaybackQuality} text={"Playback quality"} placeholder={Playback} OnChange={SetPlayBack}/>
+           <EachDropDownWithLabel data={DownloadPath} text={"Download Path"} placeholder={Download} OnChange={SetDownLoad}/>
+           <SmallText text={"Note: If you change font size please restart app"}/>
          </ScrollView>
        </PaddingConatiner>
     </MainWrapper>
@@ -51,7 +106,7 @@ function EachSettingsButton({text}) {
     <PlainText text={"→"}/>
   </Pressable>
 }
-function EachDropDownWithLabel({data, text}){
+function EachDropDownWithLabel({data, text, placeholder, OnChange}){
   return <View style={{
     backgroundColor:"rgb(43,45,55)",
     padding:20,
@@ -62,13 +117,14 @@ function EachDropDownWithLabel({data, text}){
     marginBottom:10,
   }}>
     <PlainText text={text}/>
-    <Dropdown containerStyle={{
-      backgroundColor:"rgb(43,45,55)",
-      borderRadius:10,
+    <Dropdown placeholder={placeholder} itemTextStyle={{
+      color:"rgb(26,26,26)",
+    }} containerStyle={{
+      backgroundColor:"rgb(236,236,236)",
+      borderRadius:5,
       borderWidth:0,
     }} style={{
       width:120,
-    }} data={data} labelField="value" valueField="value" onChange={()=>{
-    }}/>
+    }} data={data} labelField="value" valueField="value" onChange={OnChange}/>
   </View>
 }
