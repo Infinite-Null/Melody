@@ -2,6 +2,7 @@ import { Playlist } from "../Playlist";
 import { createStackNavigator } from '@react-navigation/stack';
 import { Discover } from "./Discover";
 import { SearchPage } from "../SearchPage";
+import { LanguageDetailPage } from "../../Component/Discover/LanguageDetailPage";
 const Stack = createStackNavigator();
 
 export const DiscoverRoute = () => {
@@ -10,6 +11,7 @@ export const DiscoverRoute = () => {
       <Stack.Screen  name="DiscoverPage" component={Discover} />
       <Stack.Screen  name="Playlist" component={Playlist} />
       <Stack.Screen  name="Search" component={SearchPage} />
+      <Stack.Screen  name="LanguageDetail" component={LanguageDetailPage} />
     </Stack.Navigator>
   );
 };
