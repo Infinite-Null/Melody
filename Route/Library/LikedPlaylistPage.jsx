@@ -6,6 +6,7 @@ import { GetLikedPlaylist } from "../../LocalStorage/StoreLikedPlaylists";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { View } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 
 
 export const LikedPlaylistPage = () => {
@@ -30,16 +31,18 @@ export const LikedPlaylistPage = () => {
     }}>
       <LikedPagesTopHeader AnimatedRef={AnimatedRef} url={require("../../Images/LikedPlaylist.png")} />
       <LikedDetails name={"Liked Playlists"} dontShowPlayButton={true}/>
-      <View style={{backgroundColor:theme.colors.background, flexDirection:'row', alignItems:"center", justifyContent:"space-between", flexWrap:"wrap"}}>
-        {LikedPlaylist.map((e,i)=>{
-          if (e){
-            return <EachPlaylistCard name={e.name} image={e.image} id={e.id} follower={e.follower} MainContainerStyle={{
-              width:"47%",
-            }}/>
-          }
-        })}
-        <View/>
-      </View>
+      <PaddingConatiner>
+        <View style={{backgroundColor:theme.colors.background, flexDirection:'row', alignItems:"center", justifyContent:"space-between", flexWrap:"wrap"}}>
+          {LikedPlaylist.map((e,i)=>{
+            if (e){
+              return <EachPlaylistCard name={e.name} image={e.image} id={e.id} follower={e.follower} MainContainerStyle={{
+                width:"48%",
+              }}/>
+            }
+          })}
+          <View/>
+        </View>
+      </PaddingConatiner>
     </Animated.ScrollView>
   );
 };
