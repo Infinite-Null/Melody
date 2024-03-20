@@ -45,7 +45,7 @@ export default function SongDisplay({data, limit, Searchtext}) {
   }
   return (
      <View>
-      {Data?.data?.results?.length !== 0 && <FlatList keyExtractor={(item, index) => String(index)} onEndReached={()=>{
+      {Data?.data?.results?.length !== 0 && <FlatList showsVerticalScrollIndicator={false} keyExtractor={(item, index) => String(index)} onEndReached={()=>{
         setTimeout(()=>{
           setPage(Page + 1)
           fetchSearchData(Searchtext, Page)

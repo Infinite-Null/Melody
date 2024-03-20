@@ -34,7 +34,7 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
   const width = Dimensions.get("window").width
   return (
      <>
-     {Data?.data?.results?.length !== 0 && <FlatList numColumns={2} keyExtractor={(item, index) => String(index)} onEndReached={()=>{
+     {Data?.data?.results?.length !== 0 && <FlatList showsVerticalScrollIndicator={false} numColumns={2} keyExtractor={(item, index) => String(index)} onEndReached={()=>{
        setTimeout(()=>{
          setPage(Page + 1)
          fetchSearchData(Searchtext, Page)

@@ -18,6 +18,7 @@ export const SearchPage = () => {
   const [Loading, setLoading] = useState(false)
   const [Data, setData] = useState({});
   const limit = 20
+  const TimeOuts= []
   async function fetchSearchData(text){
     if (SearchText !== ""){
       try {
@@ -50,9 +51,15 @@ export const SearchPage = () => {
       <Spacer/>
       <SearchBar onChange={(text)=>{
         setSearchText(text)
-        setTimeout(()=>{
+        const id = setTimeout(()=>{
           fetchSearchData(SearchText)
-        },500)
+        },1000)
+        TimeOuts.push(id)
+        TimeOuts.map((e,i)=>{
+          if ( i < TimeOuts.length - 1){
+            e.clearTimeout()
+          }
+        })
       }}/>
       <Tabs tabs={["Songs","Playlists","Albums"]} setState={setActiveTab} state={ActiveTab}/>
       {Loading && <LoadingComponent loading={Loading}/>}
