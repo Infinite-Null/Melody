@@ -9,8 +9,8 @@ export const EachMomentsandGenres = ({text, color}) => {
       navigation.navigate("ShowPlaylistofType",{Searchtext:text.toLowerCase()})
     }} style={{
       backgroundColor:"rgb(42,41,41)",
-      maxWidth:100,
       borderRadius:10,
+      paddingRight:10,
       alignItems:"center",
       justifyContent:"flex-start",
       flexDirection:'row',

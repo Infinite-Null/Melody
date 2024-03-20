@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import { SmallText } from "../../Component/Global/SmallText";
 
-export const SettingsPage = () => {
+export const SettingsPage = ({navigation}) => {
   const [Font, setFont] = useState("");
   const [Playback, setPlayback] = useState("");
   const [Download, setDownload] = useState("");
@@ -81,8 +81,12 @@ export const SettingsPage = () => {
        <PaddingConatiner>
          <Heading text={"SETTINGS"}/>
          <ScrollView>
-           <EachSettingsButton text={"Change Name"}/>
-           <EachSettingsButton text={"Select Languages"}/>
+           <EachSettingsButton text={"Change Name"} OnPress={()=>{
+             navigation.navigate("ChangeName")
+           }}/>
+           <EachSettingsButton text={"Select Languages"} OnPress={()=>{
+             navigation.navigate("SelectLanguages")
+           }}/>
            <EachDropDownWithLabel data={FontSize} text={"Font size"} placeholder={Font} OnChange={SetFont}/>
            <EachDropDownWithLabel data={PlaybackQuality} text={"Playback quality"} placeholder={Playback} OnChange={SetPlayBack}/>
            <EachDropDownWithLabel data={DownloadPath} text={"Download Path"} placeholder={Download} OnChange={SetDownLoad}/>
@@ -93,8 +97,8 @@ export const SettingsPage = () => {
   );
 };
 
-function EachSettingsButton({text}) {
-  return <Pressable style={{
+function EachSettingsButton({text, OnPress}) {
+  return <Pressable onPress={OnPress} style={{
     backgroundColor:"rgb(43,45,55)",
     padding:20,
     borderRadius:10,
@@ -117,7 +121,9 @@ function EachDropDownWithLabel({data, text, placeholder, OnChange}){
     marginBottom:10,
   }}>
     <PlainText text={text}/>
-    <Dropdown placeholder={placeholder} itemTextStyle={{
+    <Dropdown placeholder={placeholder} placeholderStyle={{
+      color:"white",
+    }} itemTextStyle={{
       color:"rgb(26,26,26)",
     }} containerStyle={{
       backgroundColor:"rgb(236,236,236)",

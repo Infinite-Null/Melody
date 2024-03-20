@@ -9,13 +9,12 @@ export const EachLanguageCard = ({language}) => {
       navigation.navigate("LanguageDetail",{language:language.toLowerCase()})
     }} style={{
       backgroundColor:"rgb(42,41,41)",
-      maxWidth:100,
-      padding:10,
+      padding:15,
       borderRadius:10,
       alignItems:"center",
       justifyContent:"center",
     }}>
-      <PlainText text={language}/>
+      <PlainText text={language} style={{paddingRight:0}}/>
     </Pressable>
   );
 };

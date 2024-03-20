@@ -7,6 +7,8 @@ import { Album } from "../Album";
 import { LikedSongPage } from "../Library/LikedSongPage";
 import { LikedPlaylistPage } from "../Library/LikedPlaylistPage";
 import { SettingsPage } from "./SettingsPage";
+import { ChangeName } from "./ChangeName";
+import { SelectLanguages } from "./SelectLanguages";
 const Stack = createNativeStackNavigator();
 export const HomeRoute = () => {
   return (
@@ -18,6 +20,8 @@ export const HomeRoute = () => {
       <Stack.Screen name={"LikedSongs"} component={LikedSongPage}/>
       <Stack.Screen name={"LikedPlaylists"} component={LikedPlaylistPage}/>
       <Stack.Screen name={"Settings"} component={SettingsPage}/>
+      <Stack.Screen name={"ChangeName"} component={ChangeName}/>
+      <Stack.Screen name={"SelectLanguages"} component={SelectLanguages}/>
     </Stack.Navigator>
   );
 };
