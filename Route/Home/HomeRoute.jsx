@@ -6,6 +6,7 @@ import { SearchPage } from "../SearchPage";
 import { Album } from "../Album";
 import { LikedSongPage } from "../Library/LikedSongPage";
 import { LikedPlaylistPage } from "../Library/LikedPlaylistPage";
+import { SettingsPage } from "./SettingsPage";
 const Stack = createNativeStackNavigator();
 export const HomeRoute = () => {
   return (
@@ -16,6 +17,7 @@ export const HomeRoute = () => {
       <Stack.Screen  name="Search" component={SearchPage} />
       <Stack.Screen name={"LikedSongs"} component={LikedSongPage}/>
       <Stack.Screen name={"LikedPlaylists"} component={LikedPlaylistPage}/>
+      <Stack.Screen name={"Settings"} component={SettingsPage}/>
     </Stack.Navigator>
   );
 };

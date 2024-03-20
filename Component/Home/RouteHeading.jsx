@@ -86,7 +86,9 @@ export const RouteHeading = () => {
         }} onPress={()=>{
           navigation.navigate("Search")
         }}><Feather name={"search"} size={width * 0.055} color={theme.colors.text}/></Pressable>
-        <Pressable style={{
+        <Pressable onPress={()=>{
+          navigation.navigate("Settings")
+        }} style={{
           padding:5,
           backgroundColor:"rgba(0,0,0,0)",
           borderRadius:10,

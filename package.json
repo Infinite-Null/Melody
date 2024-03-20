@@ -26,6 +26,7 @@
     "react-native-blob-util": "^0.19.8",
     "react-native-bouncy-checkbox": "^3.0.7",
     "react-native-device-info": "^10.13.1",
+    "react-native-element-dropdown": "^2.10.2",
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.15.0",
     "react-native-linear-gradient": "^2.8.3",

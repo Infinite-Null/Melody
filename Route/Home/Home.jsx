@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { getSearchSongData } from "../../Api/Songs";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
 import { DisplayTopSection } from "../../Component/Home/DisplayTopSection";
 export const Home = () => {
@@ -31,8 +30,6 @@ export const Home = () => {
   }
   useEffect(() => {
     fetchHomePageData()
-    // just to activate server
-    // getSearchSongData("random",1,2)
   }, []);
   return (
     <MainWrapper>
