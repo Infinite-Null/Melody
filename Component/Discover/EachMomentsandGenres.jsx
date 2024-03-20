@@ -6,7 +6,7 @@ export const EachMomentsandGenres = ({text, color}) => {
   const navigation = useNavigation()
   return (
     <Pressable onPress={()=>{
-      // navigation.navigate("LanguageDetail",{language:language.toLowerCase()})
+      navigation.navigate("ShowPlaylistofType",{Searchtext:text.toLowerCase()})
     }} style={{
       backgroundColor:"rgb(42,41,41)",
       maxWidth:100,

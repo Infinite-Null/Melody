@@ -6,7 +6,6 @@ import { PlainText } from '../Global/PlainText'
 import { SmallText } from '../Global/SmallText'
 import { EachAlbumCard } from '../Global/EachAlbumCard'
 import { getSearchAlbumData } from '../../Api/Album'
-import { it } from "@jest/globals";
 
 export default function AlbumsDisplay({data, limit, Searchtext}) {
   const [Data, setData] = useState(data)
@@ -53,7 +52,7 @@ export default function AlbumsDisplay({data, limit, Searchtext}) {
       }} contentContainerStyle={{
         paddingBottom:220,
         width:width,
-        alignItems:"center",
+        alignItems:"flex-start",
         gap:15,
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{
         if(item.item.LoadingComponent  === true){

@@ -1,9 +1,13 @@
 import { Image, Pressable, Text} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
-export const SmallBentooCard = ({width , image , text}) => {
+export const SmallBentooCard = ({width , image , text, navigate}) => {
+  const navigation = useNavigation()
   return (
-    <Pressable style={{
+    <Pressable onPress={()=>{
+      navigation.navigate("ShowPlaylistofType",{Searchtext:navigate.toLowerCase()})
+    }} style={{
       height:170,
       borderRadius:10,
       elevation:10,

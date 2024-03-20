@@ -41,7 +41,7 @@ export default function PlaylistDisplay({data, limit, Searchtext}) {
        },200)
       }} contentContainerStyle={{
          paddingBottom:220,
-        alignItems:"center",
+        alignItems:"flex-start",
       }} data={[...Data?.data?.results ?? [], {LoadingComponent:true}]} renderItem={(item)=>{
         if(item.item.LoadingComponent  === true){
             return <LoadingComponent loading={Loading} height={100}/>
