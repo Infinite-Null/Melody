@@ -1,5 +1,5 @@
 import { Dimensions, Pressable, View } from "react-native";
-import React, { useContext } from "react";
+import React from "react";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
@@ -7,7 +7,6 @@ import { PlayPauseButton } from "./PlayPauseButton";
 import { NextSongButton } from "./NextSongButton";
 import { PreviousSongButton } from "./PreviousSongButton";
 import FastImage from "react-native-fast-image";
-import Context from "../../Context/Context";
 import { useActiveTrack } from "react-native-track-player";
 
 export const MinimizedMusic = ({setIndex}) => {

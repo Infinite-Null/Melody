@@ -5,7 +5,8 @@ import { getRecommendedSongs } from "../Api/Recommended";
 import { AddSongsToQueue } from "../MusicPlayerFunctions";
 import FormatArtist from "../Utils/FormatArtists";
 import { Repeats } from "../Utils/Repeats";
-import { GetQueueSongs, SetQueueSongs } from "../LocalStorage/storeQueue";
+import { SetQueueSongs } from "../LocalStorage/storeQueue";
+import { EachSongMenuModal } from "../Component/Global/EachSongMenuModal";
 
 
 const events = [
@@ -18,6 +19,10 @@ const ContextState = (props)=>{
     const [QueueIndex, setQueueIndex] = useState(0);
     const [currentPlaying, setCurrentPlaying]  = useState({})
     const [Repeat, setRepeat] = useState(Repeats.NoRepeat);
+    const [Visible, setVisible] = useState({
+        visible:false,
+    });
+
     // const [Queue, setQueue] = useState([]);
     async function updateTrack (){
         const tracks = await TrackPlayer.getQueue();
@@ -70,8 +75,6 @@ const ContextState = (props)=>{
         await TrackPlayer.setupPlayer()
         await getCurrentSong()
         // await updateTrack()
-        const tracks =  await GetQueueSongs()
-        setQueue(tracks)
     }
     async function getCurrentSong(){
         const song = await TrackPlayer.getActiveTrack()
@@ -80,8 +83,9 @@ const ContextState = (props)=>{
     useEffect(() => {
         InitialSetup()
     }, []);
-    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex}}>
+    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex, setVisible}}>
         {props.children}
+         <EachSongMenuModal setVisible={setVisible} Visible={Visible}/>
     </Context.Provider>
 }
 
