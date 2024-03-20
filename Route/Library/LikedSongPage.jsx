@@ -48,7 +48,7 @@ export const LikedSongPage = () => {
       <LikedDetails name={"Liked Songs"} Data={LikedSongs}/>
      <View style={{paddingHorizontal:10, backgroundColor:theme.colors.background}}>
        {LikedSongs.map((e,i) =>{
-         return <EachSongCard width={width * 0.95} Data={LikedSongs} index={i} isLibraryLiked={true} url={e?.url} id={e?.id} title={e?.title} artist={e?.artist} image={e?.artwork} language={e?.language} duration={e?.duration} artistID={e?.artistID} key={i}/>
+         return <EachSongCard width={width * 0.95} Data={LikedSongs} index={i}  url={e?.url} id={e?.id} title={e?.title} artist={e?.artist} image={e?.artwork} language={e?.language} duration={e?.duration} artistID={e?.artistID} key={i}/>
        })}
      </View>
     </Animated.ScrollView>

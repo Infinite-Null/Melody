@@ -5,7 +5,7 @@ import { Spacer } from "../Global/Spacer";
 import { PlayButton } from "./PlayButton";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
-import { AddPlaylist } from "../../MusicPlayerFunctions";
+import { AddPlaylist, getIndexQuality } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
 import { LikedPlaylist } from "./LikedPlaylist";
@@ -16,20 +16,21 @@ import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 
 export const PlaylistDetails = ({name,listener,notReleased,Data, Loading, id, image, follower}) => {
   const {updateTrack} = useContext(Context)
-  const ForMusicPlayer = Data?.data?.songs?.map((e,i)=>{
-    return {
-      url:e?.downloadUrl[4].url,
-      title:FormatTitleAndArtist(e?.name),
-      artist:FormatTitleAndArtist(FormatArtist(e?.artists?.primary)),
-      artwork:e?.image[2]?.url,
-      image:e?.image[2]?.url,
-      duration:e?.duration,
-      id:e?.id,
-      language:e?.language,
-      artistID:e?.primary_artists_id,
-    }
-  })
   async function AddToPlayer(){
+    const quality = await getIndexQuality()
+    const ForMusicPlayer = Data?.data?.songs?.map((e,i)=>{
+      return {
+        url:e?.downloadUrl[quality].url,
+        title:FormatTitleAndArtist(e?.name),
+        artist:FormatTitleAndArtist(FormatArtist(e?.artists?.primary)),
+        artwork:e?.image[2]?.url,
+        image:e?.image[2]?.url,
+        duration:e?.duration,
+        id:e?.id,
+        language:e?.language,
+        artistID:e?.primary_artists_id,
+      }
+    })
     await AddPlaylist(ForMusicPlayer)
     updateTrack()
   }

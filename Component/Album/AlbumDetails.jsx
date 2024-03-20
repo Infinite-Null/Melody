@@ -5,39 +5,32 @@ import { SmallText } from "../Global/SmallText";
 import { Spacer } from "../Global/Spacer";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
-import { AddPlaylist } from "../../MusicPlayerFunctions";
+import { AddPlaylist, getIndexQuality } from "../../MusicPlayerFunctions";
 import { PlayButton } from "../Playlist/PlayButton";
 import { useContext } from "react";
 import Context from "../../Context/Context";
+import FormatArtist from "../../Utils/FormatArtists";
+import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
+
 
 
 export const AlbumDetails = ({name,releaseData,liked,Data}) => {
   const {updateTrack} = useContext(Context)
-  function FormatArtist(data){
-    let artist = ""
-    data?.map((e,i)=>{
-      if (i === data.length - 1){
-        artist += e.name
-      } else {
-        artist += e.name + ", "
+  async function AddToPlayer(){
+    const quality = await getIndexQuality()
+    const ForMusicPlayer = Data?.data?.songs?.map((e,i)=>{
+      return {
+        url:e?.downloadUrl[quality].url,
+        title:FormatTitleAndArtist(e?.name),
+        artist:FormatTitleAndArtist(FormatArtist(e?.artists?.primary)),
+        artwork:e?.image[2]?.url,
+        image:e?.image[2]?.url,
+        duration:e?.duration,
+        id:e?.id,
+        language:e?.language,
+        artistID:e?.primary_artists_id,
       }
     })
-    return artist
-  }
-  const ForMusicPlayer = Data?.data?.songs?.map((e,i)=>{
-    return {
-      url:e?.downloadUrl[4].url,
-      title:e?.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artist:FormatArtist(e?.artists?.primary)?.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
-      artwork:e?.image[2]?.url,
-      image:e?.image[2]?.url,
-      duration:e?.duration,
-      id:e?.id,
-      language:e?.language,
-      artistID:e?.primary_artists_id,
-    }
-  })
-  async function AddToPlayer(){
     await AddPlaylist(ForMusicPlayer)
     updateTrack()
   }

@@ -3,16 +3,32 @@ import { Heading } from "../Global/Heading";
 import { Spacer } from "../Global/Spacer";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
-import { AddPlaylist } from "../../MusicPlayerFunctions";
+import { AddPlaylist, getIndexQuality } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
 import { PlayButton } from "../Playlist/PlayButton";
 
 
+
 export const LikedDetails = ({name, Data, dontShowPlayButton}) => {
   const {updateTrack} = useContext(Context)
   async function AddToPlayer(){
-      await AddPlaylist(Data)
+    const quality = await getIndexQuality()
+    const ForPlayer = []
+    Data.map((e)=>{
+      if (e){
+        ForPlayer.push({
+          url:e?.url[quality].url,
+          title:e?.title,
+          artist:e?.artist,
+          artwork:e.artwork,
+          duration:e?.duration,
+          id:e?.id,
+          language:e?.language,
+        })
+      }
+    })
+      await AddPlaylist(ForPlayer)
       updateTrack()
   }
   const theme = useTheme()

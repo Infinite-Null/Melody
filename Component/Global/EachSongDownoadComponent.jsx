@@ -4,11 +4,13 @@ import { useTheme } from "@react-navigation/native";
 import ReactNativeBlobUtil from "react-native-blob-util";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 import DeviceInfo from "react-native-device-info";
+import { GetDownloadPath } from "../../LocalStorage/AppSettings";
 
 export const EachSongDownoadComponent = ({url,title}) => {
   const theme = useTheme()
-  const actualDownload = () => {
+  async function actualDownload () {
     let dirs = ReactNativeBlobUtil.fs.dirs
+    const path = await GetDownloadPath()
     ToastAndroid.showWithGravity(
       `Download Started`,
       ToastAndroid.SHORT,
@@ -18,7 +20,7 @@ export const EachSongDownoadComponent = ({url,title}) => {
       .config({
         addAndroidDownloads:{
           useDownloadManager:true,
-          path:dirs.LegacyMusicDir + `/Melody/${FormatTitleAndArtist(title)}.m4a`,
+          path:(path === "Downloads") ? dirs.LegacyDownloadDir + `/Melody/${FormatTitleAndArtist(title)}.m4a` : dirs.LegacyMusicDir + `/Melody/${FormatTitleAndArtist(title)}.m4a`,
           notification:true,
           title:`${FormatTitleAndArtist(title)}`,
         },
