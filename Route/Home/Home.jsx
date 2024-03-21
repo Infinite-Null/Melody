@@ -1,5 +1,5 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
-import { FlatList, ScrollView } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 import { Heading } from "../../Component/Global/Heading";
 import { HorizontalScrollSongs } from "../../Component/Global/HorizontalScrollSongs";
 import { RouteHeading } from "../../Component/Home/RouteHeading";
@@ -10,7 +10,6 @@ import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
-import Animated, { FadeInDown } from "react-native-reanimated";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
 import { DisplayTopSection } from "../../Component/Home/DisplayTopSection";
 export const Home = () => {
@@ -35,7 +34,7 @@ export const Home = () => {
     <MainWrapper>
       <LoadingComponent loading={Loading}/>
       {
-        !Loading &&  <Animated.View entering={FadeInDown.delay(200)}>
+        !Loading &&  <View>
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:90,
           }}>
@@ -77,7 +76,7 @@ export const Home = () => {
               <HorizontalScrollSongs id={Data?.data?.charts[2]?.id}/>
             </PaddingConatiner>
           </ScrollView>
-        </Animated.View>
+        </View>
       }
     </MainWrapper>
   );

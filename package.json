@@ -25,6 +25,7 @@
     "react-native": "0.73.4",
     "react-native-blob-util": "^0.19.8",
     "react-native-bouncy-checkbox": "^3.0.7",
+    "react-native-code-push": "^8.2.1",
     "react-native-device-info": "^10.13.1",
     "react-native-element-dropdown": "^2.10.2",
     "react-native-fast-image": "^8.6.3",
