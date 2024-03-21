@@ -53,10 +53,10 @@ export const SearchPage = () => {
         setSearchText(text)
         const id = setTimeout(()=>{
           fetchSearchData(SearchText)
-        },1000)
+        },500)
         TimeOuts.push(id)
         TimeOuts.map((e,i)=>{
-          if ( i < TimeOuts.length - 1){
+          if ( i < TimeOuts.length - 3){
             e.clearTimeout()
           }
         })

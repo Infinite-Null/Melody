@@ -1,14 +1,14 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {RootRoute} from "./Route/RootRoute";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Alert, Dimensions, ToastAndroid } from "react-native";
+import { Dimensions, ToastAndroid } from "react-native";
 import ContextState from "./Context/ContextState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { RouteOnboarding } from "./Route/OnboardingScreen/RouteOnboarding";
 import { InitialScreen } from "./Route/InitialScreen";
 import CodePush from "react-native-code-push";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 const Stack = createStackNavigator()
 let codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_START };
