@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Melody</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">BdtzgeTLRedJXV4Ef88vdw91Qpf0KpHCJ95Il</string>
 </resources>
