@@ -1,7 +1,7 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {RootRoute} from "./Route/RootRoute";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Alert, Dimensions} from "react-native";
+import { Alert, Dimensions, ToastAndroid } from "react-native";
 import ContextState from "./Context/ContextState";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
@@ -34,7 +34,11 @@ function App(){
     CodePush.notifyAppReady()
     CodePush.checkForUpdate().then(update => {
       if (update) {
-        Alert.alert("New Update Available and App will update automatically")
+        ToastAndroid.showWithGravity(
+          `App Update Available and will be updated automatically`,
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER,
+        );
         CodePush.sync(
           { installMode: CodePush.InstallMode.IMMEDIATE },
         );

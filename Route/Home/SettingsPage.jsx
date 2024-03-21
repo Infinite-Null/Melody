@@ -90,7 +90,7 @@ export const SettingsPage = ({navigation}) => {
            <EachDropDownWithLabel data={FontSize} text={"Font size"} placeholder={Font} OnChange={SetFont}/>
            <EachDropDownWithLabel data={PlaybackQuality} text={"Playback quality"} placeholder={Playback} OnChange={SetPlayBack}/>
            <EachDropDownWithLabel data={DownloadPath} text={"Download Path"} placeholder={Download} OnChange={SetDownLoad}/>
-           <SmallText text={"Note: If you change font size, change name or select languages please restart the app to see the effect"}/>
+           <SmallText text={"*Note: If you change font size, change name or select languages please restart the app to see the effect"}/>
          </ScrollView>
        </PaddingConatiner>
     </MainWrapper>
