@@ -34,7 +34,8 @@
 
 ## About The Project
 
-![20240317_195917](https://github.com/Infinite-Null/Melody/assets/97950192/df49742e-68eb-4387-ac7b-237b0998dac3)
+![20240321_231443](https://github.com/Infinite-Null/Melody/assets/97950192/0598cbe7-02ef-4174-a413-49d8f8a3f7e2)
+
 
 Introducing Melody: Your Ultimate Ad-Free Music Companion! Developed with React Native and harnessing the power of JioSavan's Unofficial API, Melody offers you a seamless music streaming experience at your fingertips. Dive into a world of limitless tunes, curated playlists, and personalized recommendations—all without interruptions 
 
