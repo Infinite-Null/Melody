@@ -1,7 +1,7 @@
 import { MainWrapper } from "../Layout/MainWrapper";
 import { SearchBar } from "../Component/Global/SearchBar";
 import Tabs from "../Component/Global/Tabs/Tabs";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getSearchSongData } from "../Api/Songs";
 import { View } from "react-native";
 import SongDisplay from "../Component/SearchPage/SongDisplay";
@@ -12,13 +12,14 @@ import { getSearchAlbumData } from "../Api/Album";
 import AlbumsDisplay from "../Component/SearchPage/AlbumDisplay";
 import { Spacer } from "../Component/Global/Spacer";
 
-export const SearchPage = () => {
+export const SearchPage = ({navigation}) => {
   const [ActiveTab, setActiveTab] = useState(0)
+  const [query, setQuery] = useState("");
+  // const [ApiQuery, setApiQuery] = useState("");
   const [SearchText, setSearchText] = useState("")
   const [Loading, setLoading] = useState(false)
   const [Data, setData] = useState({});
   const limit = 20
-  const TimeOuts= []
   async function fetchSearchData(text){
     if (SearchText !== ""){
       try {
@@ -42,6 +43,24 @@ export const SearchPage = () => {
       setData([])
     }
   }
+  const initialSearchCall = useCallback((term) => {
+        fetchSearchData(term)
+    },
+    [],
+  );
+  useEffect(() => {
+    if (SearchText){
+      initialSearchCall(SearchText)
+    } else {
+      setData([])
+    }
+  }, [SearchText]);
+  useEffect(() => {
+    const timeoutId = setTimeout(()=>setSearchText(query), 400)
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [query]);
   useEffect(()=>{
       fetchSearchData(SearchText)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,19 +68,21 @@ export const SearchPage = () => {
   return (
     <MainWrapper>
       <Spacer/>
-      <SearchBar onChange={(text)=>{
-        setSearchText(text)
-        const id = setTimeout(()=>{
-          fetchSearchData(SearchText)
-        },500)
-        TimeOuts.push(id)
-        TimeOuts.map((e,i)=>{
-          if ( i < TimeOuts.length - 3){
-            e.clearTimeout()
-          }
-        })
+      <SearchBar navigation={navigation} onChange={(text)=>{
+        setQuery(text)
+        // setSearchText(text)
+        // const id = setTimeout(()=>{
+        //   fetchSearchData(SearchText)
+        // },500)
+        // TimeOuts.push(id)
+        // TimeOuts.map((e,i)=>{
+        //   if ( i < TimeOuts.length - 3){
+        //     e.clearTimeout()
+        //   }
+        // })
       }}/>
       <Tabs tabs={["Songs","Playlists","Albums"]} setState={setActiveTab} state={ActiveTab}/>
+      <Spacer height={15}/>
       {Loading && <LoadingComponent loading={Loading}/>}
       {!Loading && <View style={{
         paddingHorizontal:10,

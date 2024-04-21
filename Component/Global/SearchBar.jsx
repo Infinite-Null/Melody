@@ -1,8 +1,8 @@
-import { Dimensions, TextInput, View } from "react-native";
-import Feather from "react-native-vector-icons/Feather";
+import { Dimensions, Pressable, TextInput, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import Entypo from "react-native-vector-icons/Entypo";
 
-export const SearchBar = ({onChange}) => {
+export const SearchBar = ({onChange, navigation}) => {
   const width = Dimensions.get("window").width
   const theme = useTheme()
   return (
@@ -10,32 +10,34 @@ export const SearchBar = ({onChange}) => {
       flexDirection:"row",
       gap:2,
       alignItems:"center",
-      height:50,
+      height:60,
       marginHorizontal:10,
-
     }}>
       <View style={{
         flex:1,
-        paddingHorizontal:10,
-        backgroundColor:"rgb(29,33,47)",
+        paddingHorizontal:5,
+        backgroundColor:"rgba(0,0,0,0)",
         borderTopLeftRadius:10,
         borderBottomLeftRadius:10}}>
-        <TextInput style={{
+        <TextInput cursorColor={"rgb(255,255,255)"} placeholder={"Type to search..."} style={{
           color:"white",
+          fontSize:25,
+          fontFamily:"roboto",
         }} onChangeText={onChange} autoFocus={true}/>
       </View>
-        <View style={{
-          backgroundColor:theme.colors.primary,
-          height:50,
+        <Pressable onPress={()=>{
+          navigation.goBack()
+        }} style={{
+          backgroundColor:"white",
+          height:43,
           justifyContent:"center",
-          width:50,
-          borderTopRightRadius:10,
-          borderBottomRightRadius:10,
+          width:43,
+          borderRadius:100000,
           elevation:10,
           alignItems:"center",
         }}>
-          <Feather name={"search"} size={width * 0.045} color={"black"}/>
-        </View>
+          <Entypo name={"cross"} size={width * 0.045} color={"black"}/>
+        </Pressable>
     </View>
   );
 };
