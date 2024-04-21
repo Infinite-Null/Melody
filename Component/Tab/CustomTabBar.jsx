@@ -5,7 +5,7 @@ import BottomSheetMusic from '../MusicPlayer/BottomSheetMusic'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import Animated, { FadeInLeft, FadeInRight} from "react-native-reanimated";
 import Context from "../../Context/Context";
-const bottomColor = "rgb(5,5,5)"
+const bottomColor = "#151515"
 export default function CustomTabBar({ state, descriptors, navigation }) {
  const {setIndex} = useContext(Context)
   useEffect(() => {
@@ -77,11 +77,9 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
 const styles = StyleSheet.create({
     mainContainer: {
       flexDirection: 'row',
-      height:50,
+      height:70,
       alignItems:"center",
       backgroundColor:bottomColor,
-      borderTopColor:"rgba(0,0,0,0.26)",
-      borderTopWidth:1,
     },
     mainItemContainer: {
       flex: 1,

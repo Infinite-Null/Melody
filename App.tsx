@@ -26,7 +26,7 @@ function App(){
       headingSize:width * 0.085,
       fontSize:width * 0.045,
       disabled:'rgb(131,131,131)',
-      background:'black',
+      background:'#101010',
     },
   };
   useEffect(()=>{
