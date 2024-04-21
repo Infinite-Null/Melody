@@ -17,8 +17,20 @@ import QueueBottomSheet from "./QueueBottomSheet";
 import { getLyricsSongData } from "../../Api/Songs";
 import { ShowLyrics } from "./ShowLyrics";
 import { useActiveTrack } from "react-native-track-player";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { PlayNextSong, PlayPreviousSong } from "../../MusicPlayerFunctions";
 
-export const FullScreenMusic = ({color, Index}) => {
+export const FullScreenMusic = ({color, Index, setIndex}) => {
+  const pan = Gesture.Pan();
+  pan.onFinalize((e)=>{
+    if (e.translationX > 100){
+      PlayPreviousSong()
+    } else if(e.translationX < -100){
+      PlayNextSong()
+    } else {
+      setIndex(0)
+    }
+  })
   const width = Dimensions.get("window").width
   const currentPlaying = useActiveTrack()
   const [ShowDailog, setShowDailog] = useState(false);
@@ -49,11 +61,11 @@ export const FullScreenMusic = ({color, Index}) => {
   return (
    <Animated.View entering={FadeInDown} style={{backgroundColor:"rgba(0,0,0,0)",flex:1}}>
      <ShowLyrics Loading={Loading} Lyric={Lyric} setShowDailog={setShowDailog} ShowDailog={ShowDailog}/>
-     <ImageBackground blurRadius={10} source={{uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"}} style={{
+     <ImageBackground blurRadius={20} source={{uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"}} style={{
        flex:1,
      }}>
        <View style={{flex:1,backgroundColor:"rgba(0,0,0,0.44)"}}>
-         <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(44,44,44,0)','rgba(9,9,9,0.84)', 'rgba(0,0,0,0.86)', color]} style={{flex:1,alignItems:"center"}}>
+         <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(4,4,4,0.23)','rgba(9,9,9,0.47)', 'rgba(0,0,0,0.65)', 'rgba(0,0,0,0.89)', "rgba(0,0,0,0.89)"]} style={{flex:1,alignItems:"center"}}>
           <View style={{
             width:"90%",
             marginTop:5,
@@ -64,16 +76,19 @@ export const FullScreenMusic = ({color, Index}) => {
           }}>
             <GetLyricsButton onPress={GetLyrics} />
           </View>
-           <FastImage
-             source={{
-               uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
-             }}
-             style={{
-               height: width * 0.9,
-               width: width * 0.9,
-               borderRadius: 10,
-             }}
-           />
+           <Spacer height={20}/>
+           <GestureDetector gesture={pan}>
+             <FastImage
+               source={{
+                 uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
+               }}
+               style={{
+                 height: width * 0.9,
+                 width: width * 0.9,
+                 borderRadius: 10,
+               }}
+             />
+           </GestureDetector>
            <Spacer/>
            <Heading text={currentPlaying?.title ?? "No music :("} style={{textAlign:"center", paddingHorizontal:2}} nospace={true}/>
            <SmallText text={currentPlaying?.artist ?? "Explore now!"} style={{textAlign:"center", paddingHorizontal:2}}/>
@@ -95,7 +110,7 @@ export const FullScreenMusic = ({color, Index}) => {
          </LinearGradient>
        </View>
      </ImageBackground>
-     <QueueBottomSheet Index={Index - 1}/>
+     <QueueBottomSheet Index={0}/>
    </Animated.View>
   );
 };

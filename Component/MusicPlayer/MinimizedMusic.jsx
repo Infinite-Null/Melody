@@ -1,62 +1,77 @@
-import { Dimensions, Pressable, View } from "react-native";
-import React from "react";
+import { Dimensions,  View } from "react-native";
+import React, { memo } from "react";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
-import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
+import Animated, { FadeIn } from "react-native-reanimated";
+import { GestureDetector, Gesture, Directions, GestureHandlerRootView } from "react-native-gesture-handler";
 import { PlayPauseButton } from "./PlayPauseButton";
 import { NextSongButton } from "./NextSongButton";
 import { PreviousSongButton } from "./PreviousSongButton";
 import FastImage from "react-native-fast-image";
 import { useActiveTrack } from "react-native-track-player";
+import { PlayNextSong, PlayPreviousSong } from "../../MusicPlayerFunctions";
 
-export const MinimizedMusic = ({setIndex}) => {
+export const MinimizedMusic = memo(({setIndex, color}) => {
+  // const fling = Gesture.Fling()
+  const pan = Gesture.Pan();
+  pan.onFinalize((e)=>{
+    if (e.translationX > 100){
+      PlayPreviousSong()
+    } else if(e.translationX < -100){
+      PlayNextSong()
+    } else {
+      setIndex(1)
+    }
+  })
   const size = Dimensions.get("window").height
   const currentPlaying = useActiveTrack()
   return (
-    <Animated.View
-      entering={FadeInUp}
-      exiting={FadeOutUp.delay(0)}
-      style={{
-        flexDirection: 'row',
-        justifyContent:"space-between",
-        height:65,
-        paddingHorizontal:15,
-        paddingTop:5,
-        alignItems:"center",
-        gap:10,
-      }}>
-      <Pressable onPress={()=>{
-        setIndex(1)
-      }} style={{
-        flexDirection:"row",
-        flex:1,
-      }}>
-        <FastImage
-          source={{
-            uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
-          }}
-          style={{
-            height: (size *  0.1) - 30,
-            width: (size *  0.1) - 30,
-            borderRadius: 10,
-          }}
-        />
-        <View style={{
-          flex:1,
-          height:(size *  0.1) - 30,
-          alignItems:"flex-start",
-          justifyContent:"center",
-          paddingHorizontal:10,
+    <GestureHandlerRootView style={{flex:1}}>
+      <Animated.View
+        entering={FadeIn}
+        style={{
+          flexDirection: 'row',
+          justifyContent:"space-between",
+          height:80,
+          paddingHorizontal:15,
+          paddingVertical:15,
+          alignItems:"center",
+          gap:10,
+          backgroundColor:color,
         }}>
-          <PlainText text={currentPlaying?.title ?? "No music :("}/>
-          <SmallText text={currentPlaying?.artist ?? "Explore now!"} maxLine={1}/>
+        <GestureDetector gesture={pan}>
+          <View  style={{
+            flexDirection:"row",
+            flex:1,
+          }}>
+            <FastImage
+              source={{
+                uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
+              }}
+              style={{
+                height: (size *  0.1) - 30,
+                width: (size *  0.1) - 30,
+                borderRadius: 10,
+              }}
+            />
+            <View style={{
+              flex:1,
+              height:(size *  0.1) - 30,
+              alignItems:"flex-start",
+              justifyContent:"center",
+              paddingHorizontal:10,
+            }}>
+              <PlainText text={currentPlaying?.title ?? "No music :("}/>
+              <SmallText text={currentPlaying?.artist ?? "Explore now!"} maxLine={1}/>
+            </View>
+          </View>
+        </GestureDetector>
+        <View style={{gap:20,flexDirection:"row", alignItems:"center"}}>
+          <PreviousSongButton/>
+          <PlayPauseButton isplaying={false}/>
+          <NextSongButton/>
         </View>
-      </Pressable>
-     <View style={{gap:20,flexDirection:"row", alignItems:"center"}}>
-       <PreviousSongButton/>
-       <PlayPauseButton isplaying={false}/>
-       <NextSongButton/>
-     </View>
-    </Animated.View>
+      </Animated.View>
+    </GestureHandlerRootView>
   );
-};
+});
