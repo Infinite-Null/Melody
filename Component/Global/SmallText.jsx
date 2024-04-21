@@ -24,6 +24,7 @@ export const SmallText = ({text, color, style, maxLine, selectable}) => {
     <Text selectable={selectable} numberOfLines={maxLine ? maxLine : 2} style={{
       color:(!color) ? theme.colors.textSecondary : color,
       fontSize:Size,
+      fontFamily:'roboto',
       ...style,
     }}>{text}</Text>
   );

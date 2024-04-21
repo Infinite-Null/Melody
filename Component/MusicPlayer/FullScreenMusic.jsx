@@ -65,7 +65,7 @@ export const FullScreenMusic = ({color, Index, setIndex}) => {
        flex:1,
      }}>
        <View style={{flex:1,backgroundColor:"rgba(0,0,0,0.44)"}}>
-         <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(4,4,4,0.23)','rgba(9,9,9,0.47)', 'rgba(0,0,0,0.65)', 'rgba(0,0,0,0.89)', "rgba(0,0,0,0.89)"]} style={{flex:1,alignItems:"center"}}>
+         <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(4,4,4,0.23)','rgba(9,9,9,0.47)', 'rgba(0,0,0,0.65)', 'rgba(0,0,0,0.89)', 'rgba(0,0,0,0.9)', "rgba(0,0,0,1)"]} style={{flex:1,alignItems:"center"}}>
           <View style={{
             width:"90%",
             marginTop:5,

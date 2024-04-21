@@ -18,7 +18,7 @@ function App(){
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#8EBBFF',
+      primary: '#6CC04A',
       text: '#F4F5FC',
       textSecondary: '#CCCCCC',
       white : "white",

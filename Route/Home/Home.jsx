@@ -12,6 +12,7 @@ import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
 import { DisplayTopSection } from "../../Component/Home/DisplayTopSection";
+import LinearGradient from "react-native-linear-gradient";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
