@@ -4,10 +4,10 @@ import Feather from "react-native-vector-icons/Feather";
 import { Spacer } from "../Global/Spacer";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { GetCurrentDaytime } from "../../Utils/GetCurrentDaytime";
-import { getUserName } from "../../hooks/getUserName";
+import { useGetUserName } from "../../hooks/useGetUserName";
 
 export const RouteHeading = () => {
-  const userName =  getUserName()
+  const userName =  useGetUserName()
   const theme = useTheme()
   const width = Dimensions.get("window").width
   const navigation = useNavigation()

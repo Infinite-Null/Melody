@@ -110,7 +110,7 @@ export const FullScreenMusic = ({color, Index, setIndex}) => {
          </LinearGradient>
        </View>
      </ImageBackground>
-     <QueueBottomSheet Index={0}/>
+     <QueueBottomSheet Index={1}/>
    </Animated.View>
   );
 };

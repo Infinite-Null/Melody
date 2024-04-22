@@ -1,14 +1,12 @@
 import Slider from "@react-native-community/slider";
 import React from "react";
 import { Dimensions, View } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { useProgress } from "react-native-track-player";
 import { SetProgressSong } from "../../MusicPlayerFunctions";
 import { SmallText } from "../Global/SmallText";
 
 export const ProgressBar = () => {
   const width = Dimensions.get("window").width
-  const theme = useTheme()
   const { position, duration } = useProgress()
   function formatTime(val) {
     const time =  parseFloat(val)

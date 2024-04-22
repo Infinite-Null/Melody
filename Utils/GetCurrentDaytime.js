@@ -12,7 +12,7 @@ export   function GetCurrentDaytime() {
   } else if (afternoon){
     return "Afternoon Vibes ✨"
   } else if (evening) {
-    return "Evening Chill 🍵"
+    return "Evening Chill's ✨"
   } else if (night) {
     return "Lofi Night's 💫"
   }

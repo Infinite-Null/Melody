@@ -2,7 +2,7 @@ import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { SmallText } from "../Global/SmallText";
 import { memo } from "react";
 import LinearGradient from "react-native-linear-gradient";
-import { getUserName } from "../../hooks/getUserName";
+import { useGetUserName } from "../../hooks/useGetUserName";
 import { PlainText } from "../Global/PlainText";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import { SpaceBetween } from "../../Layout/SpaceBetween";

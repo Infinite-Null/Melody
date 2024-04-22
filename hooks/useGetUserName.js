@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GetUserNameValue } from "../LocalStorage/StoreUserName";
 
-export const getUserName = () => {
+export const useGetUserName = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [userNameValue, setUserName] = useState("");
   async function getUserNameLocalStorage(){

@@ -8,9 +8,10 @@ import { View } from "react-native";
 const QueueBottomSheet = ({Index}) => {
   const backgroundColor = 'rgba(5,5,5,0.76)'
   const bottomSheetRef = useRef(null);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(Index);
   return (
       <BottomSheet
+        index={0}
         onChange={(index)=>{
           setIndex(index)
         }}

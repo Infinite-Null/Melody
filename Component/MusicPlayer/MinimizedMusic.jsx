@@ -3,15 +3,16 @@ import React, { memo } from "react";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
 import Animated, { FadeIn } from "react-native-reanimated";
-import { GestureDetector, Gesture, Directions, GestureHandlerRootView } from "react-native-gesture-handler";
+import { GestureDetector, Gesture, GestureHandlerRootView } from "react-native-gesture-handler";
 import { PlayPauseButton } from "./PlayPauseButton";
 import { NextSongButton } from "./NextSongButton";
 import { PreviousSongButton } from "./PreviousSongButton";
 import FastImage from "react-native-fast-image";
-import { useActiveTrack } from "react-native-track-player";
+import { useActiveTrack, useProgress } from "react-native-track-player";
 import { PlayNextSong, PlayPreviousSong } from "../../MusicPlayerFunctions";
 
 export const MinimizedMusic = memo(({setIndex, color}) => {
+  const { position, duration } = useProgress()
   // const fling = Gesture.Fling()
   const pan = Gesture.Pan();
   pan.onFinalize((e)=>{
@@ -23,6 +24,9 @@ export const MinimizedMusic = memo(({setIndex, color}) => {
       setIndex(1)
     }
   })
+  function TotalCompletedInpercent(){
+    return (position / duration) * 100
+  }
   const size = Dimensions.get("window").height
   const currentPlaying = useActiveTrack()
   return (
@@ -72,6 +76,7 @@ export const MinimizedMusic = memo(({setIndex, color}) => {
           <NextSongButton/>
         </View>
       </Animated.View>
+      <View style={{height:2, width:`${TotalCompletedInpercent()}%`, backgroundColor:"white"}}/>
     </GestureHandlerRootView>
   );
 });
