@@ -1,8 +1,9 @@
 import { View } from "react-native";
 import { EachSmallCardHome } from "./EachSmallCardHome";
 import { Spacer } from "../Global/Spacer";
+import { memo } from "react";
 
-export const DisplayTopSection = ({playlist}) => {
+export const DisplayTopSection = memo(({playlist}) => {
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -21,4 +22,4 @@ export const DisplayTopSection = ({playlist}) => {
       </View>
     </>
   );
-};
+});

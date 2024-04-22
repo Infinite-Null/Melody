@@ -12,10 +12,12 @@ import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
 import { DisplayTopSection } from "../../Component/Home/DisplayTopSection";
-import LinearGradient from "react-native-linear-gradient";
+import { TopHeader } from "../../Component/Home/TopHeader";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
+  const [showHeader, setShowHeader] = useState(false);
+
   async function fetchHomePageData(){
     try {
       setLoading(true)
@@ -36,11 +38,17 @@ export const Home = () => {
       <LoadingComponent loading={Loading}/>
       {
         !Loading &&  <View>
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
+          <ScrollView style={{zIndex:-1}} onScroll={(e)=>{
+            if (e.nativeEvent.contentOffset.y > 200 && !showHeader){
+              setShowHeader(true)
+            } else if (e.nativeEvent.contentOffset.y < 200 && showHeader) {
+              setShowHeader(false)
+            }
+          }} showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:90,
           }}>
             <RouteHeading />
-             <DisplayTopSection Data={Data} playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>
+             <DisplayTopSection playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>
             <PaddingConatiner>
               <Heading text={"Recommended"}/>
             </PaddingConatiner>
@@ -63,7 +71,7 @@ export const Home = () => {
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>}/>
+            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts}/>}/>
             <PaddingConatiner>
               <HorizontalScrollSongs id={Data?.data?.charts[3]?.id}/>
             </PaddingConatiner>
@@ -77,6 +85,7 @@ export const Home = () => {
               <HorizontalScrollSongs id={Data?.data?.charts[2]?.id}/>
             </PaddingConatiner>
           </ScrollView>
+          <TopHeader showHeader={showHeader}/>
         </View>
       }
     </MainWrapper>

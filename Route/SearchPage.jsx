@@ -1,7 +1,7 @@
 import { MainWrapper } from "../Layout/MainWrapper";
 import { SearchBar } from "../Component/Global/SearchBar";
 import Tabs from "../Component/Global/Tabs/Tabs";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSearchSongData } from "../Api/Songs";
 import { View } from "react-native";
 import SongDisplay from "../Component/SearchPage/SongDisplay";
@@ -43,20 +43,15 @@ export const SearchPage = ({navigation}) => {
       setData([])
     }
   }
-  const initialSearchCall = useCallback((term) => {
-        fetchSearchData(term)
-    },
-    [],
-  );
   useEffect(() => {
     if (SearchText){
-      initialSearchCall(SearchText)
+      fetchSearchData(SearchText)
     } else {
       setData([])
     }
   }, [SearchText]);
   useEffect(() => {
-    const timeoutId = setTimeout(()=>setSearchText(query), 400)
+    const timeoutId = setTimeout(()=>setSearchText(query), 350)
     return () => {
       clearTimeout(timeoutId)
     }
@@ -70,16 +65,6 @@ export const SearchPage = ({navigation}) => {
       <Spacer/>
       <SearchBar navigation={navigation} onChange={(text)=>{
         setQuery(text)
-        // setSearchText(text)
-        // const id = setTimeout(()=>{
-        //   fetchSearchData(SearchText)
-        // },500)
-        // TimeOuts.push(id)
-        // TimeOuts.map((e,i)=>{
-        //   if ( i < TimeOuts.length - 3){
-        //     e.clearTimeout()
-        //   }
-        // })
       }}/>
       <Tabs tabs={["Songs","Playlists","Albums"]} setState={setActiveTab} state={ActiveTab}/>
       <Spacer height={15}/>
