@@ -2,7 +2,7 @@ import { Pressable, View } from "react-native";
 import { PlainText } from "../Global/PlainText";
 import { useNavigation } from "@react-navigation/native";
 
-export const EachMomentsandGenres = ({text, color}) => {
+export const EachMomentsandGenres = ({text, color, showLeftColor, style}) => {
   const navigation = useNavigation()
   return (
     <Pressable onPress={()=>{
@@ -14,14 +14,15 @@ export const EachMomentsandGenres = ({text, color}) => {
       alignItems:"center",
       justifyContent:"flex-start",
       flexDirection:'row',
+      ...style,
     }}>
-      <View style={{
-        borderRadius:10,
-        width:10,
-        height:50,
-        backgroundColor:color,
-        marginRight:10,
-      }}/>
+      {showLeftColor && <View style={{
+        borderRadius: 10,
+        width: 10,
+        height: 50,
+        backgroundColor: color,
+        marginRight: 10,
+      }} />}
       <PlainText text={text}/>
     </Pressable>
   );
