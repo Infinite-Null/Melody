@@ -56,7 +56,7 @@ export const Home = () => {
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-              gap:10,
+              gap:15,
             }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link} id={item.item.id}/>}/>
             <PaddingConatiner>
               <Heading text={"Trending Albums"}/>

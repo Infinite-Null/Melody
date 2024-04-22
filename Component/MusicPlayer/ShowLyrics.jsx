@@ -41,7 +41,7 @@ export const ShowLyrics = ({ShowDailog, Loading, Lyric, setShowDailog}) => {
            setShowDailog(false)
          }}  style={{
            flex:1,
-           backgroundColor:"rgb(220,160,160)",
+           backgroundColor:"rgb(255,255,255)",
            alignItems:"center",
            justifyContent:"center",
            padding:10,
