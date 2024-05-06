@@ -47,7 +47,7 @@ export const Home = () => {
           }} showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:90,
           }}>
-            <RouteHeading />
+            <RouteHeading showSearch={true} showSettings={true}/>
              {/*<DisplayTopSection playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>*/}
             <DisplayTopGenres/>
             <PaddingConatiner>

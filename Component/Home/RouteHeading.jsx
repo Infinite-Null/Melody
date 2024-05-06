@@ -6,7 +6,7 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { GetCurrentDaytime } from "../../Utils/GetCurrentDaytime";
 import { useGetUserName } from "../../hooks/useGetUserName";
 
-export const RouteHeading = () => {
+export const RouteHeading = ({bottomText, showSearch, showSettings}) => {
   const userName =  useGetUserName()
   const theme = useTheme()
   const width = Dimensions.get("window").width
@@ -34,17 +34,17 @@ export const RouteHeading = () => {
             color:theme.colors.text,
             fontSize:width * 0.040,
             fontFamily:"roboto",
-          }}>{GetCurrentDaytime()}</Text>
+          }}>{bottomText ? bottomText : GetCurrentDaytime()}</Text>
         </View>
         <View style={{flex:1}}/>
-        <Pressable style={{
+        {showSearch &&  <Pressable style={{
           padding:5,
           backgroundColor:"rgba(0,0,0,0)",
           borderRadius:10,
         }} onPress={()=>{
           navigation.navigate("Search")
-        }}><Feather name={"search"} size={width * 0.055} color={theme.colors.text}/></Pressable>
-        <Pressable onPress={()=>{
+        }}><Feather name={"search"} size={width * 0.055} color={theme.colors.text}/></Pressable>}
+        {showSettings &&  <Pressable onPress={()=>{
           navigation.navigate("Settings")
         }} style={{
           padding:5,
@@ -52,7 +52,7 @@ export const RouteHeading = () => {
           borderRadius:10,
         }}>
           <SimpleLineIcons name={"settings"} size={width * 0.055} color={theme.colors.text}/>
-        </Pressable>
+        </Pressable>}
       </View>
       <Spacer/>
     </>
