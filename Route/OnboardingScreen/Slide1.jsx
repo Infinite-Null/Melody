@@ -14,7 +14,7 @@ export const Slide1 = ({navigation}) => {
        justifyContent:"center",
        flex:1,
      }}>
-       <Animated.View entering={FadeInDown.duration(500)}><FastImage source={require("../../Images/Logo.png")} style={{
+       <Animated.View entering={FadeInDown.duration(500)}><FastImage source={require("../../Images/Logo.jpg")} style={{
          height:200,
          width:200,
          borderRadius:100,

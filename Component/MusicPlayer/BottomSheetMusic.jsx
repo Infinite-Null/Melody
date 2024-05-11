@@ -30,6 +30,9 @@ const BottomSheetMusic = ({color}) => {
       setIndex(index)
     }
   }, []);
+  const updateIndex = useCallback((index)=>{
+    setIndex(index)
+  },[])
   return (
       <BottomSheet
         enableContentPanningGesture={false}
@@ -41,14 +44,15 @@ const BottomSheetMusic = ({color}) => {
         position:"absolute",
         backgroundColor:"rgba(0,0,0,0)",
       }}
-        handleStyle={{
-            height:0,
-            overflow:"hidden",
-            width:0,
-            backgroundColor:"rgba(0,0,0,0)",
-           position:"absolute",
+        backgroundStyle={{
+          backgroundColor:color,
         }}
-        snapPoints={[115, '100%']}
+        // handleComponent={props => <MinimizedMusic  setIndex={updateIndex} color={color}/>}
+        handleHeight={5}
+        handleStyle={{
+          position:"absolute",
+        }}
+        snapPoints={[155, '100%']}
         ref={bottomSheetRef}
          index={Index}
         onChange={handleSheetChanges}>
@@ -56,8 +60,8 @@ const BottomSheetMusic = ({color}) => {
           ...styles.contentContainer,
           backgroundColor:color,
         }}>
-          {Index !== 1 &&  <MinimizedMusic  setIndex={setIndex}/>}
-          <FullScreenMusic color={color} Index={Index}/>
+          {Index !== 1 &&  <MinimizedMusic  setIndex={updateIndex}/>}
+          <FullScreenMusic color={color} Index={Index} setIndex={updateIndex}/>
         </BottomSheetView>
       </BottomSheet>
   );

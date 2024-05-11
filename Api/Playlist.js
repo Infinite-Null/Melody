@@ -4,7 +4,7 @@ async function getPlaylistData(id){
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `https://jiosavan-api-with-playlist.vercel.app/api/playlists?id=${id}`,
+    url: `https://jiosavan-api-with-playlist.vercel.app/api/playlists?id=${id}&limit=100000`,
     headers: { },
   };
   try {

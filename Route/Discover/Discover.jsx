@@ -1,21 +1,28 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
-import { LargeBentooCard } from "../../Component/Discover/LargeBentooCard";
 import { SmallBentooCard } from "../../Component/Home/SmallBentooCard";
 import { Dimensions, ScrollView, View } from "react-native";
 import { Spacer } from "../../Component/Global/Spacer";
 import { Heading } from "../../Component/Global/Heading";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 import { BundleEachLanguage } from "../../Component/Discover/BundleEachLanguage";
-import { DiscoverRouteHeading } from "../../Component/Discover/DiscoverRouteHeading";
 import { BundleEachMomentanGenres } from "../../Component/Discover/BundleEachMomentanGenres";
+import { RouteHeading } from "../../Component/Home/RouteHeading";
 
 export const Discover = () => {
  const width = Dimensions.get("window").width
   return (
    <MainWrapper>
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:100}}>
-      <DiscoverRouteHeading/>
-      <LargeBentooCard text={"Top Most Hits Music Today"} subtext={"Today's hits"} width={"100%"} image={require("../../Images/Trending.jpg")} id={"110858205"}/>
+      <RouteHeading bottomText={"Discover music"} showSearch={true}/>
+      <View style={{
+        flexDirection:"row",
+        gap:10,
+        justifyContent:"space-around",
+        paddingHorizontal:10,
+      }}>
+        <SmallBentooCard text={"Trending Now"} image={require("../../Images/trending.png")}  width={width * 0.46} navigate={"trending"}/>
+        <SmallBentooCard text={"Most Searched"} image={require("../../Images/MostSearched.png")} width={width * 0.46} navigate={"most searched"}/>
+      </View>
       <Spacer/>
       <View style={{
         flexDirection:"row",
@@ -23,8 +30,8 @@ export const Discover = () => {
         justifyContent:"space-around",
         paddingHorizontal:10,
       }}>
-        <SmallBentooCard text={"Pop Hits"} image={require("../../Images/party.jpg")}  width={width * 0.46} navigate={"pop"}/>
-        <SmallBentooCard text={"Lofi Beats"} image={require("../../Images/lofi.jpg")} width={width * 0.46} navigate={"lofi"}/>
+        <SmallBentooCard text={"Pop Hits"} image={require("../../Images/pop.png")}  width={width * 0.46} navigate={"pop"}/>
+        <SmallBentooCard text={"Lofi Beats"} image={require("../../Images/lofi.png")} width={width * 0.46} navigate={"lofi"}/>
       </View>
       <PaddingConatiner>
         <Heading text={"Languages"}/>

@@ -27,6 +27,7 @@ export const PlainText = ({text,style, numberOfLine}) => {
       fontSize:Size,
       fontWeight:500,
       paddingRight:10,
+      fontFamily:'roboto',
       ...style,
     }}>{text}</Text>
   );

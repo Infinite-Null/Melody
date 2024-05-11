@@ -1,9 +1,9 @@
-import { Image, Pressable, Text} from "react-native";
-import LinearGradient from "react-native-linear-gradient";
-import { useNavigation } from "@react-navigation/native";
+import { Image, Pressable, Text, View } from "react-native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 
 export const SmallBentooCard = ({width , image , text, navigate}) => {
   const navigation = useNavigation()
+  const theme = useTheme()
   return (
     <Pressable onPress={()=>{
       navigation.navigate("ShowPlaylistofType",{Searchtext:navigate.toLowerCase()})
@@ -17,18 +17,27 @@ export const SmallBentooCard = ({width , image , text, navigate}) => {
         width:width,
         height:170,
       }}/>
-      <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['rgba(120,120,120,0)', 'rgba(0,0,0,0.56)', 'rgb(0,0,0)']} style={{
+      <View style={{
         position:"absolute",
         bottom:0,
         width:"100%",
+        height:"100%",
+        alignItems:"center",
+        justifyContent:"center",
+        backgroundColor:"rgba(9,9,9,0.67)",
       }}>
         <Text style={{
           textAlign:"center",
           fontSize:20,
-          padding:5,
           fontWeight:"bold",
+          color:"rgb(225,225,225)",
         }}>{text}</Text>
-      </LinearGradient>
+        <Text style={{
+          textAlign:"center",
+          fontSize:10,
+          color:"white",
+        }}>Listen Now</Text>
+      </View>
     </Pressable>
   );
 };

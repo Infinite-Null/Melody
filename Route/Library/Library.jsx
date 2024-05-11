@@ -1,14 +1,14 @@
 import { MainWrapper } from "../../Layout/MainWrapper";
-import { LibraryRouteHeading } from "../../Component/Library/LibraryTopHeader";
 import { EachLibraryCard } from "../../Component/Library/EachLibraryCard";
 import { Dimensions, ScrollView, View } from "react-native";
+import { RouteHeading } from "../../Component/Home/RouteHeading";
 
 
 export const Library = () => {
   const width = Dimensions.get("window").width
   return (
     <MainWrapper>
-          <LibraryRouteHeading text={"Library"}/>
+      <RouteHeading bottomText={"Your Library"}/>
       <ScrollView>
         <View style={{flexWrap:'wrap', flexDirection:"row", width:width, justifyContent:"space-evenly"}}>
           <EachLibraryCard text={"Liked Songs"} image={require("../../Images/LikedSong.png")} navigate={"LikedSongs"}/>

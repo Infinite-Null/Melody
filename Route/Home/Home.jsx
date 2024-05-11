@@ -11,10 +11,13 @@ import { useEffect, useState } from "react";
 import { getHomePageData } from "../../Api/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
-import { DisplayTopSection } from "../../Component/Home/DisplayTopSection";
+import { TopHeader } from "../../Component/Home/TopHeader";
+import { DisplayTopGenres } from "../../Component/Home/DisplayTopGenres";
 export const Home = () => {
   const [Loading, setLoading] = useState(true);
   const [Data, setData] = useState({});
+  const [showHeader, setShowHeader] = useState(false);
+
   async function fetchHomePageData(){
     try {
       setLoading(true)
@@ -35,20 +38,27 @@ export const Home = () => {
       <LoadingComponent loading={Loading}/>
       {
         !Loading &&  <View>
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
+          <ScrollView style={{zIndex:-1}} onScroll={(e)=>{
+            if (e.nativeEvent.contentOffset.y > 200 && !showHeader){
+              setShowHeader(true)
+            } else if (e.nativeEvent.contentOffset.y < 200 && showHeader) {
+              setShowHeader(false)
+            }
+          }} showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingBottom:90,
           }}>
-            <RouteHeading />
-             <DisplayTopSection Data={Data} playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>
+            <RouteHeading showSearch={true} showSettings={true}/>
+             {/*<DisplayTopSection playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>*/}
+            <DisplayTopGenres/>
             <PaddingConatiner>
+              <HorizontalScrollSongs id={Data.data.charts[0].id}/>
               <Heading text={"Recommended"}/>
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-              gap:10,
+              gap:15,
             }} data={Data?.data?.playlists ?? []} renderItem={(item,i)=><EachPlaylistCard name={item.item.title} follower={item.item.subtitle} key={item.index} image={item.item.image[2].link} id={item.item.id}/>}/>
             <PaddingConatiner>
-              <HorizontalScrollSongs id={Data.data.charts[0].id}/>
               <Heading text={"Trending Albums"}/>
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
@@ -62,7 +72,7 @@ export const Home = () => {
             </PaddingConatiner>
             <FlatList horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{
               paddingLeft:13,
-            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts.filter((e)=>e.type === 'playlist')}/>}/>
+            }}  data={[1]} renderItem={()=><RenderTopCharts playlist={Data.data.charts}/>}/>
             <PaddingConatiner>
               <HorizontalScrollSongs id={Data?.data?.charts[3]?.id}/>
             </PaddingConatiner>
@@ -76,6 +86,7 @@ export const Home = () => {
               <HorizontalScrollSongs id={Data?.data?.charts[2]?.id}/>
             </PaddingConatiner>
           </ScrollView>
+          <TopHeader showHeader={showHeader}/>
         </View>
       }
     </MainWrapper>

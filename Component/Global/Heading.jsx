@@ -26,9 +26,10 @@ export const Heading = ({text, style, nospace}) => {
    <>
      {!nospace && <Spacer/>}
      <Text numberOfLines={2} style={{
-       fontWeight:600,
+       fontWeight:900,
        color:theme.colors.text,
        fontSize:Size,
+       fontFamily:'roboto',
        ...style,
      }}>{text}</Text>
      {!nospace && <Spacer/>}

@@ -42,7 +42,7 @@ export const LikedSongPage = () => {
   return (
     <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef} contentContainerStyle={{
       paddingBottom:55,
-      backgroundColor:"black",
+      backgroundColor:"rgba(0,0,0)",
     }}>
       <LikedPagesTopHeader AnimatedRef={AnimatedRef} url={require("../../Images/LikedSong.png")} />
       <LikedDetails name={"Liked Songs"} Data={LikedSongs}/>

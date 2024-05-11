@@ -27,7 +27,7 @@ export const LikedPlaylistPage = () => {
   return (
     <Animated.ScrollView scrollEventThrottle={16} ref={AnimatedRef} contentContainerStyle={{
       paddingBottom:65,
-      backgroundColor:"black",
+      backgroundColor:"rgba(0,0,0)",
     }}>
       <LikedPagesTopHeader AnimatedRef={AnimatedRef} url={require("../../Images/LikedPlaylist.png")} />
       <LikedDetails name={"Liked Playlists"} dontShowPlayButton={true}/>

@@ -1,14 +1,12 @@
 import Slider from "@react-native-community/slider";
 import React from "react";
 import { Dimensions, View } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { useProgress } from "react-native-track-player";
 import { SetProgressSong } from "../../MusicPlayerFunctions";
 import { SmallText } from "../Global/SmallText";
 
 export const ProgressBar = () => {
   const width = Dimensions.get("window").width
-  const theme = useTheme()
   const { position, duration } = useProgress()
   function formatTime(val) {
     const time =  parseFloat(val)
@@ -29,9 +27,9 @@ export const ProgressBar = () => {
         minimumValue={0}
         maximumValue={duration}
         value={(position >= duration) ? 0 : position}
-        minimumTrackTintColor={theme.colors.primary}
+        minimumTrackTintColor={"white"}
         maximumTrackTintColor="rgba(44,44,44,1)"
-        thumbTintColor={theme.colors.primary}
+        thumbTintColor={"white"}
       />
       <View style={{flexDirection:"row", justifyContent:"space-between", width:"90%"}}>
         <SmallText text={(position >= duration) ? "0:00" : formatTime(position)}/>

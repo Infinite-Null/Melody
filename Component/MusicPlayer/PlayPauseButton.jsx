@@ -26,7 +26,7 @@ export const PlayPauseButton = ({isFullScreen}) => {
         {playerState.state !== "playing" && playerState.state !== "buffering" && <Pressable onPress={()=>{
           PlaySong()
         }} style={{
-          backgroundColor:theme.colors.primary,
+          backgroundColor:"white",
           padding:15,
           height:60,
           width:60,
@@ -39,7 +39,7 @@ export const PlayPauseButton = ({isFullScreen}) => {
         {playerState.state === "playing" &&  <Pressable onPress={()=>{
           PauseSong()
         }} style={{
-          backgroundColor:theme.colors.primary,
+          backgroundColor:"white",
           padding:15,
           height:60,
           width:60,

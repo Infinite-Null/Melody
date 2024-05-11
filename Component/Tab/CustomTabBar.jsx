@@ -1,17 +1,28 @@
 import React, { useContext, useEffect } from "react";
-import { View, StyleSheet, Pressable} from "react-native";
-import { useTheme } from "@react-navigation/native";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 import BottomSheetMusic from '../MusicPlayer/BottomSheetMusic'
 import Ionicons from "react-native-vector-icons/Ionicons"
-import Animated, { FadeInLeft, FadeInRight} from "react-native-reanimated";
+import Animated, { FadeInDown,FadeInUp } from "react-native-reanimated";
 import Context from "../../Context/Context";
-const bottomColor = "rgb(5,5,5)"
+const bottomColor = "#151515"
 export default function CustomTabBar({ state, descriptors, navigation }) {
  const {setIndex} = useContext(Context)
   useEffect(() => {
     setIndex(0)
   }, []);
-  const theme = useTheme()
+  // eslint-disable-next-line react/no-unstable-nested-components
+  function GetIcon(label, isDiabled = false){
+    if (label === "Home") {
+      return <Ionicons name={"headset-outline"}
+                color={isDiabled ? "rgb(153,151,151)" : "white" } size={22} />
+    } else if (label === "Discover") {
+      return <Ionicons name={"apps-outline"}
+                       color={isDiabled ? "rgb(153,151,151)" : "white" } size={22} />
+    } else if (label === "Library") {
+      return <Ionicons name={"person-outline"}
+                       color={isDiabled ? "rgb(153,151,151)" : "white" } size={22} />
+    }
+  }
     return (
         <>
           <BottomSheetMusic color={bottomColor}/>
@@ -39,31 +50,36 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
                 <Pressable
                   onPress = {onPress}
                   style = {{backgroundColor: "rgba(0,0,0,0)", borderRadius: 20, height:40 }}>
-                  {!isFocused && <View style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    flex: 1,
-                    paddingHorizontal: 15,
-                    gap: 5,
-                  }}>
-                    <Ionicons name={label !== "Discover" ? label.toString().toLowerCase() : "globe"}
-                              color={theme.colors.text} size={14} />
-                  </View>}
-                  {isFocused && <Animated.View entering={FadeInRight} style={{
-                    flexDirection: "row",
+                  {!isFocused &&  <View style={{
                     justifyContent: "center",
                     alignItems: "center",
                     flex: 1,
                     paddingHorizontal: 15,
-                    gap: 5,
-                    backgroundColor:"rgba(57,136,201,0.12)",
                     borderRadius:15,
+                    gap:2
                   }}>
-                    <Ionicons name={label !== "Discover" ? label.toString().toLowerCase() : "globe"}
-                              color={ theme.colors.primary } size={14} />
-                    <Animated.Text entering={FadeInLeft} style={{
-                      fontSize: 10,
-                      color: theme.colors.primary,
+                    {GetIcon(label, true)}
+                    <Text style={{
+                      fontSize: 8,
+                      color: "rgb(153,151,151)",
+                      fontFamily:"roboto",
+                      letterSpacing:1,
+                    }}>{label}</Text>
+                  </View>}
+                  {isFocused && <Animated.View entering={FadeInUp} style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                    paddingHorizontal: 15,
+                    borderRadius:15,
+                    gap:2
+                  }}>
+                    {GetIcon(label)}
+                    <Animated.Text entering={FadeInDown} style={{
+                      fontSize: 8,
+                      color: "white",
+                      fontFamily:"roboto",
+                      letterSpacing:1,
                     }}>{label}</Animated.Text>
                   </Animated.View>}
                 </Pressable>
@@ -77,11 +93,9 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
 const styles = StyleSheet.create({
     mainContainer: {
       flexDirection: 'row',
-      height:50,
+      height:70,
       alignItems:"center",
       backgroundColor:bottomColor,
-      borderTopColor:"rgba(0,0,0,0.26)",
-      borderTopWidth:1,
     },
     mainItemContainer: {
       flex: 1,
