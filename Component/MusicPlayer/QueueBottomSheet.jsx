@@ -4,11 +4,12 @@ import { QueueRenderSongs } from "./QueueRenderSongs";
 import { PlainText } from "../Global/PlainText";
 import Entypo from "react-native-vector-icons/Entypo";
 import { View } from "react-native";
+import Octicons from "react-native-vector-icons/Octicons";
 
-const QueueBottomSheet = ({Index}) => {
+const QueueBottomSheet = () => {
   const backgroundColor = 'rgba(5,5,5,0.76)'
   const bottomSheetRef = useRef(null);
-  const [index, setIndex] = useState(Index);
+  const [index, setIndex] = useState(0);
   return (
       <BottomSheet
         index={0}
@@ -24,8 +25,8 @@ const QueueBottomSheet = ({Index}) => {
         }}
         handleComponent={props => {
           return <View style={{alignItems:"center", justifyContent:"center", backgroundColor:"transparent", height:60}}>
-            <Entypo name={index === 0 ? "chevron-up" : "chevron-down"} size={24} color="white" />
-            <PlainText text={index === 0 ? "Swipe up to see Queue" : "Swipe down to close Queue"}/>
+            <Octicons name={"dash"} size={24} color="white" />
+            <PlainText text={"Song Queue"}/>
           </View>
         }}
         backgroundStyle={{
@@ -35,7 +36,7 @@ const QueueBottomSheet = ({Index}) => {
           backgroundColor:backgroundColor,
         }}
       >
-        {index === 1 && <QueueRenderSongs/>}
+        <QueueRenderSongs/>
       </BottomSheet>
   );
 };

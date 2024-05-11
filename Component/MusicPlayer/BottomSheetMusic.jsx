@@ -61,7 +61,7 @@ const BottomSheetMusic = ({color}) => {
           backgroundColor:color,
         }}>
           {Index !== 1 &&  <MinimizedMusic  setIndex={updateIndex}/>}
-          <FullScreenMusic color={color} Index={Index} setIndex={updateIndex}/>
+          {Index === 1 &&  <FullScreenMusic color={color} Index={Index} setIndex={updateIndex}/>}
         </BottomSheetView>
       </BottomSheet>
   );

@@ -59,7 +59,7 @@ export const FullScreenMusic = ({color, Index, setIndex}) => {
    }
   }
   return (
-   <Animated.View entering={FadeInDown} style={{backgroundColor:"rgba(0,0,0,0)",flex:1}}>
+   <Animated.View entering={FadeInDown.delay(200)} style={{backgroundColor:"rgb(0,0,0)",flex:1}}>
      <ShowLyrics Loading={Loading} Lyric={Lyric} setShowDailog={setShowDailog} ShowDailog={ShowDailog}/>
      <ImageBackground blurRadius={20} source={{uri: currentPlaying?.artwork ?? "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"}} style={{
        flex:1,
