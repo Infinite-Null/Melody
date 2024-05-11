@@ -21,7 +21,7 @@ export const Discover = () => {
         paddingHorizontal:10,
       }}>
         <SmallBentooCard text={"Trending Now"} image={require("../../Images/trending.png")}  width={width * 0.46} navigate={"trending"}/>
-        <SmallBentooCard text={"Most Searched"} image={require("../../Images/MostSearched.png")} width={width * 0.46} navigate={"lofi"}/>
+        <SmallBentooCard text={"Most Searched"} image={require("../../Images/MostSearched.png")} width={width * 0.46} navigate={"most searched"}/>
       </View>
       <Spacer/>
       <View style={{

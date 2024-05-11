@@ -8,7 +8,7 @@ export const EachMomentsandGenres = ({text, color, showLeftColor, style}) => {
     <Pressable onPress={()=>{
       navigation.navigate("ShowPlaylistofType",{Searchtext:text.toLowerCase()})
     }} style={{
-      backgroundColor:"rgb(42,41,41)",
+      backgroundColor:"rgba(43,47,44,0.84)",
       borderRadius:10,
       paddingRight:10,
       alignItems:"center",

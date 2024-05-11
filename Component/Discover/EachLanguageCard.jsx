@@ -8,7 +8,7 @@ export const EachLanguageCard = ({language}) => {
     <Pressable onPress={()=>{
       navigation.navigate("LanguageDetail",{language:language.toLowerCase()})
     }} style={{
-      backgroundColor:"rgb(42,41,41)",
+      backgroundColor:"rgba(43,47,44,0.84)",
       padding:15,
       borderRadius:10,
       alignItems:"center",

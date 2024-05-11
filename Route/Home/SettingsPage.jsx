@@ -99,7 +99,7 @@ export const SettingsPage = ({navigation}) => {
 
 function EachSettingsButton({text, OnPress}) {
   return <Pressable onPress={OnPress} style={{
-    backgroundColor:"rgb(43,45,55)",
+    backgroundColor:"rgb(34,39,34)",
     padding:20,
     borderRadius:10,
     flexDirection:"row",
@@ -112,7 +112,7 @@ function EachSettingsButton({text, OnPress}) {
 }
 function EachDropDownWithLabel({data, text, placeholder, OnChange}){
   return <View style={{
-    backgroundColor:"rgb(43,45,55)",
+    backgroundColor:"rgb(34,39,34)",
     padding:20,
     borderRadius:10,
     flexDirection:"row",
