@@ -23,11 +23,16 @@ const ContextState = (props)=>{
         visible:false,
     });
 
-    // const [Queue, setQueue] = useState([]);
+    const [Queue, setQueue] = useState([]);
     async function updateTrack (){
         const tracks = await TrackPlayer.getQueue();
-        await SetQueueSongs(tracks)
-        // setQueue(tracks)
+        // await SetQueueSongs(tracks)
+        console.log(tracks);
+        const ids = tracks.map((e)=>e.id)
+        const queuesId = Queue.map((e)=>e.id)
+        if (JSON.stringify(ids) !== JSON.stringify(queuesId)){
+            setQueue(tracks)
+        }
     }
     async function AddRecommendedSongs(index,id){
         const tracks = await TrackPlayer.getQueue();
@@ -57,7 +62,6 @@ const ContextState = (props)=>{
         }
     }
 
-
     useTrackPlayerEvents(events, (event) => {
         if (event.type === Event.PlaybackError) {
             console.warn('An error occured while playing the current track.');
@@ -73,6 +77,7 @@ const ContextState = (props)=>{
     });
     async function InitialSetup(){
         await TrackPlayer.setupPlayer()
+        await updateTrack()
         await getCurrentSong()
         // await updateTrack()
     }
@@ -83,7 +88,7 @@ const ContextState = (props)=>{
     useEffect(() => {
         InitialSetup()
     }, []);
-    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex, setVisible}}>
+    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex, setVisible, Queue}}>
         {props.children}
          <EachSongMenuModal setVisible={setVisible} Visible={Visible}/>
     </Context.Provider>
