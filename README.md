@@ -22,6 +22,7 @@
 ## Table Of Contents
 
 * [About the Project](#about-the-project)
+* [Community](#community)
 * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
@@ -29,13 +30,20 @@
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
+* [Donate Now](#donate-now)
 
 ## About The Project
 
 ![MixCollage-12-May-2024-12-37-PM-7319](https://github.com/Infinite-Null/Melody/assets/97950192/9e673714-7806-45b8-9bed-f4b30d820d58)
 
 
-Introducing Melody: Your Ultimate Ad-Free Music Companion! Developed with React Native and harnessing the power of JioSavan's Unofficial API, Melody offers you a seamless music streaming experience at your fingertips. Dive into a world of limitless tunes, curated playlists, and personalized recommendations—all without interruptions 
+Introducing Melody: Your Ultimate Ad-Free Music Companion! Developed with React Native and harnessing the power of JioSavan's Unofficial API, Melody offers you a seamless music streaming experience at your fingertips. Dive into a world of limitless tunes, curated playlists, and personalized recommendations—all without interruptions.
+
+## Community
+
+<a href=https://t.me/ankits_project>
+<img src="https://github.com/Infinite-Null/NekoFlix/assets/97950192/98d4e8b5-62c2-41ec-8d66-73d791181fca" alt="Logo" width="200" height="120">
+</a>
 
 ## Built With
 
@@ -103,6 +111,17 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See [LICENSE](https://github.com/Infinite-Null/Melody/blob/main/LICENSE.md) for more information.
+
+## Donate Now
+
+<a href=https://buymeacoffee.com/ankitkumarshah>
+<img src="https://github.com/Infinite-Null/NekoFlix/assets/97950192/2a9aa329-316d-429d-9d34-d391a7a16973" alt="Logo" width="200" height="120">
+</a>
+
+
+<a href=https://github.com/Infinite-Null/NekoFlix/assets/97950192/f0656db7-db26-4c99-95fa-56053cc69498>
+<img src="https://github.com/Infinite-Null/NekoFlix/assets/97950192/be662d1b-8b82-4dff-ac56-2aeed847fd10" alt="Logo" width="200" height="120">
+</a>
 
 ## Disclaimer
 
