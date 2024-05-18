@@ -56,7 +56,14 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
     await AddPlaylist(ForMusicPlayer)
     updateTrack()
   }
-
+  async function getStreamingLink () {
+    try {
+      const streamLink = await getYoutubeMusicStreamUrl(id)
+      console.log(streamLink);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   async function AddSongToPlayerYoutubeMusic () {
     try {
       setSongLoading(true)
@@ -88,6 +95,7 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
       await AddSongToPlayerYoutubeMusic()
     }
   }
+
   return (
     <>
       <View style={{
@@ -130,6 +138,7 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
             id,
             url,
             duration,
+            isYoutubeMusic:isYoutubeMusic ? true : false,
           })
         }}/>
       </View>
