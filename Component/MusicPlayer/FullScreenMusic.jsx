@@ -14,7 +14,7 @@ import { LikeSongButton } from "./LikeSongButton";
 import { ProgressBar } from "./ProgressBar";
 import { GetLyricsButton } from "./GetLyricsButton";
 import QueueBottomSheet from "./QueueBottomSheet";
-import { getLyricsSongData } from "../../Api/Songs";
+import { getLyricsSongData } from "../../Api/JioSavan/Songs";
 import { ShowLyrics } from "./ShowLyrics";
 import { useActiveTrack } from "react-native-track-player";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";

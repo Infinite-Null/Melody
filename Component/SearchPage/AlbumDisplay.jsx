@@ -5,7 +5,7 @@ import { LoadingComponent } from '../Global/Loading'
 import { PlainText } from '../Global/PlainText'
 import { SmallText } from '../Global/SmallText'
 import { EachAlbumCard } from '../Global/EachAlbumCard'
-import { getSearchAlbumData } from '../../Api/Album'
+import { getSearchAlbumData } from '../../Api/JioSavan/Album'
 
 export default function AlbumsDisplay({data, limit, Searchtext}) {
   const [Data, setData] = useState(data)

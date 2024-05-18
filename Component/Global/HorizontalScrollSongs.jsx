@@ -1,10 +1,9 @@
 import { EachSongCard } from "./EachSongCard";
 import { Dimensions, ScrollView, View } from "react-native";
 import { useEffect, useState } from "react";
-import { getPlaylistData } from "../../Api/Playlist";
+import { getPlaylistData } from "../../Api/JioSavan/Playlist";
 import { LoadingComponent } from "./Loading";
 import { Heading } from "./Heading";
-import FormatArtist from "../../Utils/FormatArtists";
 import { Spacer } from "./Spacer";
 
 export const HorizontalScrollSongs = ({id}) => {
@@ -23,6 +22,8 @@ export const HorizontalScrollSongs = ({id}) => {
       setLoading(false)
     }
   }
+
+
   useEffect(() => {
     fetchPlaylistData()
   }, []);
@@ -32,15 +33,23 @@ export const HorizontalScrollSongs = ({id}) => {
         <Spacer/>
         <Heading text={Loading ? "Please Wait..." : Data?.data?.name} nospace={true}/>
         <Spacer/>
-        {!Loading && <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <View>
+        {!Loading && <ScrollView  horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View style={{
+            justifyContent:'space-between',
+            width:width * 0.80,
+            marginRight:10,
+          }}>
             {Data?.data?.songs?.slice(0,4)?.map((e,i)=><View style={{marginBottom:7}}>
-              <EachSongCard index={i} isFromPlaylist={true} Data={Data} artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={width * 0.80} title={e?.name}  url={e?.downloadUrl} titleandartistwidth={width * 0.5}/>
+              <EachSongCard thumbnail={e?.image[2]?.url} title={e?.name} id={e?.id} duration={e?.duration} artists={e?.artists?.primary ?? []} isYoutubeMusic={false} url={e?.downloadUrl[4]?.url} index={i} songData={Data?.data ?? []}/>
             </View>)}
           </View>
-          <View>
+          <View style={{
+            justifyContent:'space-between',
+            width:width * 0.80,
+            marginRight:10,
+          }}>
             {Data?.data?.songs?.slice(4,8)?.map((e,i)=><View style={{marginBottom:7}}>
-              <EachSongCard index={i + 4} Data={Data} isFromPlaylist={true}  artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={width * 0.80} title={e?.name}  url={e?.downloadUrl} titleandartistwidth={width * 0.5}/>
+              <EachSongCard thumbnail={e?.image[2]?.url} title={e?.name} id={e?.id} duration={e?.duration} artists={e?.artists?.primary ?? []} isYoutubeMusic={false} url={e?.downloadUrl[4]?.url} index={i + 4} songData={Data?.data ?? []}/>
             </View>)}
           </View>
           </ScrollView>}

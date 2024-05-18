@@ -8,7 +8,7 @@ import { EachAlbumCard } from "../../Component/Global/EachAlbumCard";
 import { RenderTopCharts } from "../../Component/Home/RenderTopCharts";
 import { LoadingComponent } from "../../Component/Global/Loading";
 import { useEffect, useState } from "react";
-import { getHomePageData } from "../../Api/HomePage";
+import { getHomePageData } from "../../Api/JioSavan/HomePage";
 import { EachPlaylistCard } from "../../Component/Global/EachPlaylistCard";
 import { GetLanguageValue } from "../../LocalStorage/Languages";
 import { TopHeader } from "../../Component/Home/TopHeader";

@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Dimensions, FlatList, View } from 'react-native'
 import { EachSongCard } from '../Global/EachSongCard'
-import { getSearchSongData } from '../../Api/Songs'
+import { getSearchSongData } from '../../Api/JioSavan/Songs'
 import { LoadingComponent } from '../Global/Loading'
 import { PlainText } from '../Global/PlainText'
 import { SmallText } from '../Global/SmallText'

@@ -2,13 +2,13 @@ import { MainWrapper } from "../Layout/MainWrapper";
 import { SearchBar } from "../Component/Global/SearchBar";
 import Tabs from "../Component/Global/Tabs/Tabs";
 import { useEffect, useState } from "react";
-import { getSearchSongData } from "../Api/Songs";
+import { getSearchSongData } from "../Api/JioSavan/Songs";
 import { View } from "react-native";
 import SongDisplay from "../Component/SearchPage/SongDisplay";
 import { LoadingComponent } from "../Component/Global/Loading";
-import { getSearchPlaylistData } from "../Api/Playlist";
+import { getSearchPlaylistData } from "../Api/JioSavan/Playlist";
 import PlaylistDisplay from "../Component/SearchPage/PlaylistDisplay";
-import { getSearchAlbumData } from "../Api/Album";
+import { getSearchAlbumData } from "../Api/JioSavan/Album";
 import AlbumsDisplay from "../Component/SearchPage/AlbumDisplay";
 import { Spacer } from "../Component/Global/Spacer";
 

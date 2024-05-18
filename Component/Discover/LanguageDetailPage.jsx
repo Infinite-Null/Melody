@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getHomePageData } from "../../Api/HomePage";
+import { getHomePageData } from "../../Api/JioSavan/HomePage";
 import { MainWrapper } from "../../Layout/MainWrapper";
 import { LoadingComponent } from "../Global/Loading";
 import Animated, { FadeInDown } from "react-native-reanimated";

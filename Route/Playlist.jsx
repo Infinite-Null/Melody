@@ -5,7 +5,7 @@ import { PlaylistDetails } from "../Component/Playlist/PlaylistDetails";
 import { View } from "react-native";
 import { EachSongCard } from "../Component/Global/EachSongCard";
 import { useEffect, useState } from "react";
-import { getPlaylistData } from "../Api/Playlist";
+import { getPlaylistData } from "../Api/JioSavan/Playlist";
 import { LoadingComponent } from "../Component/Global/Loading";
 import { useTheme } from "@react-navigation/native";
 import { PlainText } from "../Component/Global/PlainText";

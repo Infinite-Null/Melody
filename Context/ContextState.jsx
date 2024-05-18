@@ -1,11 +1,10 @@
 import Context from "./Context";
 import { useEffect, useState } from "react";
 import TrackPlayer, { Event, useTrackPlayerEvents } from "react-native-track-player";
-import { getRecommendedSongs } from "../Api/Recommended";
+import { getRecommendedSongs } from "../Api/JioSavan/Recommended";
 import { AddSongsToQueue } from "../MusicPlayerFunctions";
 import FormatArtist from "../Utils/FormatArtists";
 import { Repeats } from "../Utils/Repeats";
-import { SetQueueSongs } from "../LocalStorage/storeQueue";
 import { EachSongMenuModal } from "../Component/Global/EachSongMenuModal";
 
 
@@ -27,14 +26,13 @@ const ContextState = (props)=>{
     async function updateTrack (){
         const tracks = await TrackPlayer.getQueue();
         // await SetQueueSongs(tracks)
-        console.log(tracks);
         const ids = tracks.map((e)=>e.id)
         const queuesId = Queue.map((e)=>e.id)
         if (JSON.stringify(ids) !== JSON.stringify(queuesId)){
             setQueue(tracks)
         }
     }
-    async function AddRecommendedSongs(index,id){
+    async function AddRecommendedSongsJiosavan(index,id){
         const tracks = await TrackPlayer.getQueue();
         const totalTracks = tracks.length - 1
         if (index >= totalTracks - 2){
@@ -61,7 +59,9 @@ const ContextState = (props)=>{
            }
         }
     }
+    async function AddRecommendedSongsYoutubeMusic(index,id){
 
+    }
     useTrackPlayerEvents(events, (event) => {
         if (event.type === Event.PlaybackError) {
             console.warn('An error occured while playing the current track.');
@@ -69,8 +69,10 @@ const ContextState = (props)=>{
         if (event.type === Event.PlaybackActiveTrackChanged) {
             setCurrentPlaying(event.track)
             if (Repeat === Repeats.NoRepeat){
-                if (event.track?.id ){
-                    AddRecommendedSongs(event.index,event.track?.id)
+                if (event.track?.isYoutubeMusic){
+                    AddRecommendedSongsYoutubeMusic(event?.index,event.track?.id)
+                } else {
+                    AddRecommendedSongsJiosavan(event?.index,event.track?.id)
                 }
             }
         }

@@ -5,7 +5,7 @@ import { LoadingComponent } from "../Global/Loading";
 import { EachPlaylistCard } from "../Global/EachPlaylistCard";
 import { PlainText } from "../Global/PlainText";
 import { SmallText } from "../Global/SmallText";
-import { getSearchPlaylistData } from "../../Api/Playlist";
+import { getSearchPlaylistData } from "../../Api/JioSavan/Playlist";
 import { Heading } from "../Global/Heading";
 import { PaddingConatiner } from "../../Layout/PaddingConatiner";
 

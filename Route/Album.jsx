@@ -8,7 +8,7 @@ import { LoadingComponent } from "../Component/Global/Loading";
 import { useTheme } from "@react-navigation/native";
 import { PlainText } from "../Component/Global/PlainText";
 import { SmallText } from "../Component/Global/SmallText";
-import { getAlbumData } from "../Api/Album";
+import { getAlbumData } from "../Api/JioSavan/Album";
 import { AlbumDetails } from "../Component/Album/AlbumDetails";
 import FormatArtist from "../Utils/FormatArtists";
 
