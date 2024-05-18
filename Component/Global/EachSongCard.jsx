@@ -1,11 +1,10 @@
-import { Dimensions, Pressable,View } from "react-native";
+import { Pressable,View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
-import { AddPlaylist, PlayOneSong } from "../../MusicPlayerFunctions";
+import { AddPlaylist} from "../../MusicPlayerFunctions";
 import { memo, useContext } from "react";
 import Context from "../../Context/Context";
-import { useActiveTrack, usePlaybackState } from "react-native-track-player";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 import { EachSongMenuButton } from "../MusicPlayer/EachSongMenuButton";
 import FormatArtist from "../../Utils/FormatArtists";
@@ -13,8 +12,6 @@ import FormatArtist from "../../Utils/FormatArtists";
 
 export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,artists,thumbnail,duration, id, url, index, songData}) {
   const {updateTrack, setVisible} = useContext(Context)
-  const currentPlaying = useActiveTrack()
-  const playerState = usePlaybackState()
 
   async function AddSongToPlayerJioSavan () {
     const ForMusicPlayer = []
@@ -79,7 +76,11 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
         <EachSongMenuButton Onpress={()=>{
           setVisible({
             visible:true,
-            // title,artist,image,id,url,duration,language,
+            title,
+            artist:FormatTitleAndArtist(FormatArtist(artists)),image:thumbnail,
+            id,
+            url,
+            duration,
           })
         }}/>
       </View>

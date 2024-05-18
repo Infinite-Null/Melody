@@ -10,7 +10,6 @@ import { LoadingComponent } from "../Component/Global/Loading";
 import { useTheme } from "@react-navigation/native";
 import { PlainText } from "../Component/Global/PlainText";
 import { SmallText } from "../Component/Global/SmallText";
-import FormatArtist from "../Utils/FormatArtists";
 
 export const Playlist = ({route}) => {
   const theme = useTheme();
@@ -52,9 +51,7 @@ export const Playlist = ({route}) => {
           backgroundColor:"#101010",
           gap:7,
         }}>
-          {Data?.data?.songs?.map((e,i)=><EachSongCard Data={Data} isFromPlaylist={true} index={i}  artist={FormatArtist(e?.artists?.primary)} language={e?.language} playlist={true} artistID={e?.primary_artists_id} key={i} duration={e?.duration} image={e?.image[2]?.url} id={e?.id} width={"100%"} title={e?.name}  url={e?.downloadUrl} style={{
-            marginBottom:15,
-          }}/>)}
+          {Data?.data?.songs?.map((e,i)=><EachSongCard thumbnail={e?.image[2]?.url} title={e?.name} id={e?.id} duration={e?.duration} artists={e?.artists?.primary ?? []} isYoutubeMusic={false} url={e?.downloadUrl[4]?.url} index={i} songData={Data?.data ?? []}/>)}
         </View>}
       </Animated.ScrollView>
       {Data?.songs?.length <= 0 && <View style={{

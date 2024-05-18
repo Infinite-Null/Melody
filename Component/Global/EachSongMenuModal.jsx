@@ -11,7 +11,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import ReactNativeBlobUtil from "react-native-blob-util";
 import { GetDownloadPath } from "../../LocalStorage/AppSettings";
 import DeviceInfo from "react-native-device-info";
-import { AddSongsToQueue, getIndexQuality} from "../../MusicPlayerFunctions";
+import { AddSongsToQueue} from "../../MusicPlayerFunctions";
 import Context from "../../Context/Context";
 
 export const EachSongMenuModal = ({Visible, setVisible}) => {
@@ -34,7 +34,7 @@ export const EachSongMenuModal = ({Visible, setVisible}) => {
         },
         fileCache: true,
       })
-      .fetch('GET', Visible.url[4].url, {
+      .fetch('GET', Visible.url, {
       })
       .then((res) => {
         console.log('The file saved to ', res.path())
@@ -71,9 +71,8 @@ export const EachSongMenuModal = ({Visible, setVisible}) => {
     }
   };
   async function addSongToQueue(){
-    const quality = await getIndexQuality()
     const song  = {
-      url: Visible.url[quality].url,
+      url: Visible.url,
       title:FormatTitleAndArtist(Visible.title),
       artist:FormatTitleAndArtist(Visible.artist),
       artwork:Visible.image,
