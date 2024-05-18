@@ -11,25 +11,48 @@ import FormatArtist from "../../Utils/FormatArtists";
 import { getYoutubeMusicStreamUrl } from "../../Api/YoutubeMusic/Song";
 
 
-export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,artists,thumbnail,duration, id, url, index, songData}) {
+export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,artists,thumbnail,duration, id, url, index, songData, isFromLiked}) {
   const {updateTrack, setVisible, setSongLoading} = useContext(Context)
-  const formattedAritst = (isYoutubeMusic) ? artists : FormatArtist(artists)
+  const formattedAritst = (isYoutubeMusic || isFromLiked) ? artists : FormatArtist(artists)
   async function AddSongToPlayerJioSavan () {
     const ForMusicPlayer = []
-        songData?.songs?.map((e,i)=>{
-          if (i >= index){
-            ForMusicPlayer.push({
-              url:e?.downloadUrl[4].url,
-              title:FormatTitleAndArtist(e?.name),
-              artist:FormatTitleAndArtist(formattedAritst),
-              artwork:e?.image[2]?.url,
-              image:e?.image[2]?.url,
-              duration:e?.duration,
-              id:e?.id,
-              isYoutubeMusic:false,
-            })
-          }
-        })
+    if (isFromLiked){
+      songData?.map((e,i)=>{
+        console.log(e);
+        if (i >= index){
+          ForMusicPlayer.push({
+            url:url,
+            title:FormatTitleAndArtist(e?.title),
+            artist:FormatTitleAndArtist(formattedAritst),
+            artwork:e?.artwork,
+            image:e?.artwork,
+            duration:e?.duration,
+            id:e?.id,
+            isYoutubeMusic:isYoutubeMusic ? true : false,
+            streamURL:url ,
+          })
+        }
+      })
+    } else {
+      songData?.songs?.map((e,i)=>{
+        console.log(e);
+        if (i >= index){
+          ForMusicPlayer.push({
+            url:(isFromLiked) ? url : e?.downloadUrl[4].url,
+            title:FormatTitleAndArtist(e?.name),
+            artist:FormatTitleAndArtist(formattedAritst),
+            artwork:e?.image[2]?.url,
+            image:e?.image[2]?.url,
+            duration:e?.duration,
+            id:e?.id,
+            isYoutubeMusic:false,
+            streamURL:(isFromLiked) ? url : e?.downloadUrl[4].url,
+          })
+        }
+      })
+    }
+
+
     await AddPlaylist(ForMusicPlayer)
     updateTrack()
   }
@@ -48,6 +71,7 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
         duration:duration,
         id:id,
         isYoutubeMusic:true,
+        streamURL:streamLink.url,
       }
       await PlayOneSong(ForMusicPlayer)
       updateTrack()

@@ -7,24 +7,26 @@ import { AddPlaylist, getIndexQuality } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
 import { PlayButton } from "../Playlist/PlayButton";
+import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 
 
 
 export const LikedDetails = ({name, Data, dontShowPlayButton}) => {
   const {updateTrack} = useContext(Context)
   async function AddToPlayer(){
-    const quality = await getIndexQuality()
     const ForPlayer = []
     Data.map((e)=>{
       if (e){
         ForPlayer.push({
-          url:e?.url[quality].url,
-          title:e?.title,
-          artist:e?.artist,
-          artwork:e.artwork,
+          url:e?.url,
+          title:FormatTitleAndArtist(e?.title),
+          artist:e.artist,
+          artwork:e?.artwork,
+          image:e?.artwork,
           duration:e?.duration,
           id:e?.id,
-          language:e?.language,
+          isYoutubeMusic:e?.isYoutubeMusic,
+          streamURL:e?.url ,
         })
       }
     })

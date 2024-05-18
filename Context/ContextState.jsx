@@ -44,12 +44,14 @@ const ContextState = (props)=>{
                if (songs?.data?.length !== 0){
                    const ForMusicPlayer = songs.data.map((e)=> {
                        return {
-                           url:e.downloadUrl[3].url,
+                           url:e.downloadUrl[4].url,
                            title:e.name.toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
                            artist:FormatArtist(e?.artists?.primary).toString().replaceAll("&quot;","\"").replaceAll("&amp;","and").replaceAll("&#039;","'").replaceAll("&trade;","™"),
                            artwork:e.image[2].url,
                            duration:e.duration,
                            id:e.id,
+                           streamURL:e.downloadUrl[4].url,
+                            isYoutubeMusic:false,
                        }
                    })
                    await AddSongsToQueue(ForMusicPlayer)
@@ -74,11 +76,13 @@ const ContextState = (props)=>{
                        const songUrl = await getYoutubeMusicStreamUrl(songs[i].youtubeId)
                        forMusicPlayer.push({
                            url:songUrl.url,
+                           image:songs[i].thumbnailUrl,
                            title:songs[i].title,
                            artist:songs[i]?.artists[0]?.name ?? "",
                            artwork:songs[i].thumbnailUrl,
-                           duration:songs[i].duration,
+                           duration:songs[i].duration.totalSeconds,
                            id:songs[i].youtubeId,
+                           streamURL:songUrl.url,
                            isYoutubeMusic:true,
                        })
                    }

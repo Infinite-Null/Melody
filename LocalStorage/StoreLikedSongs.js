@@ -16,14 +16,14 @@ async function GetLikedSongs(){
   }
 }
 
-async function SetLikedSongs(title,artist,image,id,url,duration,language){
+async function SetLikedSongs(title,artist,image,id,streamURL,duration,isYoutubeMusic){
   const stored_value = await GetLikedSongs()
   const count = stored_value.count + 1
   const value = {
       ...stored_value,
       count,
   }
-  value.songs[id] = {title,artist,image,id,url,duration,language,count}
+  value.songs[id] = {title,artist,image,id,streamURL,duration,count,isYoutubeMusic}
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem('LikedSongs', jsonValue);
