@@ -2,7 +2,6 @@ import { MainWrapper } from "../Layout/MainWrapper";
 import { SearchBar } from "../Component/Global/SearchBar";
 import Tabs from "../Component/Global/Tabs/Tabs";
 import { useEffect, useState } from "react";
-import { getSearchSongData } from "../Api/JioSavan/Songs";
 import { View } from "react-native";
 import SongDisplay from "../Component/SearchPage/SongDisplay";
 import { LoadingComponent } from "../Component/Global/Loading";
@@ -11,6 +10,7 @@ import PlaylistDisplay from "../Component/SearchPage/PlaylistDisplay";
 import { getSearchAlbumData } from "../Api/JioSavan/Album";
 import AlbumsDisplay from "../Component/SearchPage/AlbumDisplay";
 import { Spacer } from "../Component/Global/Spacer";
+import { getYoutubeMusicStreamUrl, searchYoutubeMusicSong } from "../Api/YoutubeMusic/Song";
 
 export const SearchPage = ({navigation}) => {
   const [ActiveTab, setActiveTab] = useState(0)
@@ -26,7 +26,7 @@ export const SearchPage = ({navigation}) => {
         setLoading(true)
         let data
         if (ActiveTab === 0){
-          data = await getSearchSongData(text,1,limit)
+          data = await searchYoutubeMusicSong(text)
         } else if (ActiveTab === 1){
           data = await getSearchPlaylistData(text,1,limit)
         }
@@ -51,13 +51,14 @@ export const SearchPage = ({navigation}) => {
     }
   }, [SearchText]);
   useEffect(() => {
-    const timeoutId = setTimeout(()=>setSearchText(query), 350)
+    const timeoutId = setTimeout(()=>setSearchText(query), 550)
     return () => {
       clearTimeout(timeoutId)
     }
   }, [query]);
   useEffect(()=>{
       fetchSearchData(SearchText)
+    getYoutubeMusicStreamUrl("K7l5ZeVVoCA")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[ActiveTab])
   return (
@@ -72,7 +73,7 @@ export const SearchPage = ({navigation}) => {
       {!Loading && <View style={{
         paddingHorizontal:10,
       }}>
-          {ActiveTab === 0 && !Loading && <SongDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
+          {ActiveTab === 0 && !Loading && <SongDisplay Data={Data}/>}
           {ActiveTab === 1 && !Loading && <PlaylistDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
           {ActiveTab === 2 && !Loading && <AlbumsDisplay data={Data} limit={limit} Searchtext={SearchText}/>}
       </View>}

@@ -2,17 +2,18 @@ import { Pressable,View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
-import { AddPlaylist} from "../../MusicPlayerFunctions";
+import { AddPlaylist, PauseSong, PlayOneSong } from "../../MusicPlayerFunctions";
 import { memo, useContext } from "react";
 import Context from "../../Context/Context";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 import { EachSongMenuButton } from "../MusicPlayer/EachSongMenuButton";
 import FormatArtist from "../../Utils/FormatArtists";
+import { getYoutubeMusicStreamUrl } from "../../Api/YoutubeMusic/Song";
 
 
 export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,artists,thumbnail,duration, id, url, index, songData}) {
-  const {updateTrack, setVisible} = useContext(Context)
-
+  const {updateTrack, setVisible, setSongLoading} = useContext(Context)
+  const formattedAritst = (isYoutubeMusic) ? artists : FormatArtist(artists)
   async function AddSongToPlayerJioSavan () {
     const ForMusicPlayer = []
         songData?.songs?.map((e,i)=>{
@@ -20,7 +21,7 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
             ForMusicPlayer.push({
               url:e?.downloadUrl[4].url,
               title:FormatTitleAndArtist(e?.name),
-              artist:FormatTitleAndArtist(FormatArtist(e?.artists?.primary)),
+              artist:FormatTitleAndArtist(formattedAritst),
               artwork:e?.image[2]?.url,
               image:e?.image[2]?.url,
               duration:e?.duration,
@@ -32,11 +33,35 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
     await AddPlaylist(ForMusicPlayer)
     updateTrack()
   }
+
+  async function AddSongToPlayerYoutubeMusic () {
+    try {
+      setSongLoading(true)
+      await PauseSong()
+      const streamLink = await getYoutubeMusicStreamUrl(id)
+      const ForMusicPlayer = {
+        url:streamLink.url,
+        title:FormatTitleAndArtist(title),
+        artist:FormatTitleAndArtist(formattedAritst),
+        artwork:thumbnail,
+        image:thumbnail,
+        duration:duration,
+        id:id,
+        isYoutubeMusic:true,
+      }
+      await PlayOneSong(ForMusicPlayer)
+      updateTrack()
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setSongLoading(false)
+    }
+  }
   async function AddSongToPlayer () {
     if (!isYoutubeMusic){
       await AddSongToPlayerJioSavan()
     } else {
-
+      await AddSongToPlayerYoutubeMusic()
     }
   }
   return (
@@ -70,14 +95,14 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
             flex:1,
           }}>
             <PlainText text={FormatTitleAndArtist(title)} style={{width:"90%"}}/>
-            <SmallText text={FormatTitleAndArtist(FormatArtist(artists))} style={{width:"90%"}}/>
+            <SmallText text={FormatTitleAndArtist(formattedAritst)} style={{width:"90%"}}/>
           </View>
         </Pressable>
         <EachSongMenuButton Onpress={()=>{
           setVisible({
             visible:true,
             title,
-            artist:FormatTitleAndArtist(FormatArtist(artists)),image:thumbnail,
+            artist:FormatTitleAndArtist(formattedAritst),image:thumbnail,
             id,
             url,
             duration,

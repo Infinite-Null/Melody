@@ -6,6 +6,7 @@ import { AddSongsToQueue } from "../MusicPlayerFunctions";
 import FormatArtist from "../Utils/FormatArtists";
 import { Repeats } from "../Utils/Repeats";
 import { EachSongMenuModal } from "../Component/Global/EachSongMenuModal";
+import { getYoutubeMusicStreamUrl, getYoutubeMusicSuggestion } from "../Api/YoutubeMusic/Song";
 
 
 const events = [
@@ -23,6 +24,8 @@ const ContextState = (props)=>{
     });
 
     const [Queue, setQueue] = useState([]);
+    const [songLoading, setSongLoading] = useState(false);
+
     async function updateTrack (){
         const tracks = await TrackPlayer.getQueue();
         // await SetQueueSongs(tracks)
@@ -47,7 +50,6 @@ const ContextState = (props)=>{
                            artwork:e.image[2].url,
                            duration:e.duration,
                            id:e.id,
-                           language:e.language,
                        }
                    })
                    await AddSongsToQueue(ForMusicPlayer)
@@ -60,7 +62,34 @@ const ContextState = (props)=>{
         }
     }
     async function AddRecommendedSongsYoutubeMusic(index,id){
-
+        const tracks = await TrackPlayer.getQueue();
+        const totalTracks = tracks.length - 1
+        if (index >= totalTracks - 2){
+            try {
+                const songs = await getYoutubeMusicSuggestion(id)
+                const final  = songs.slice(0,10)
+                const forMusicPlayer = []
+                for (let i = 0; i < final.length; i++){
+                   if (final[i].youtubeId !== id){
+                       const songUrl = await getYoutubeMusicStreamUrl(songs[i].youtubeId)
+                       forMusicPlayer.push({
+                           url:songUrl.url,
+                           title:songs[i].title,
+                           artist:songs[i]?.artists[0]?.name ?? "",
+                           artwork:songs[i].thumbnailUrl,
+                           duration:songs[i].duration,
+                           id:songs[i].youtubeId,
+                           isYoutubeMusic:true,
+                       })
+                   }
+                }
+                await AddSongsToQueue(forMusicPlayer)
+            } catch (e) {
+                console.log(e);
+            } finally {
+                await updateTrack()
+            }
+        }
     }
     useTrackPlayerEvents(events, (event) => {
         if (event.type === Event.PlaybackError) {
@@ -90,7 +119,7 @@ const ContextState = (props)=>{
     useEffect(() => {
         InitialSetup()
     }, []);
-    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex, setVisible, Queue}}>
+    return <Context.Provider value={{currentPlaying,  Repeat, setRepeat, updateTrack, Index, setIndex, QueueIndex, setQueueIndex, setVisible, Queue, songLoading, setSongLoading}}>
         {props.children}
          <EachSongMenuModal setVisible={setVisible} Visible={Visible}/>
     </Context.Provider>
