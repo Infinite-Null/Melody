@@ -1,6 +1,6 @@
 import YTMusic from "ytmusic-api";
 import axios from "axios";
-const baseUrl = "http://localhost:3000/api"
+import {baseUrl} from "./baseUrl";
 async function searchYoutubeMusicSong(query){
   const ytmusic = new YTMusic()
   await ytmusic.initialize(/* Optional: Custom cookies */)

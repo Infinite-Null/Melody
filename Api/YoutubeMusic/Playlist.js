@@ -1,20 +1,20 @@
-import { listMusicsFromPlaylist,  searchPlaylists } from "node-youtube-music";
+import axios from "axios";
+import { baseUrl } from "./baseUrl";
 
-async function searchYoutubeMusicPlaylist(query){
+async function getYoutubeMusicPlaylistSongs(id){
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: baseUrl + "/listMusicsFromPlaylist/" + id,
+    headers: { },
+  };
   try {
-    return await searchPlaylists(query)
+    const response = await axios.request(config);
+    return response.data
   }
   catch (error) {
     throw error
   }
 }
-async function getYoutubeMusicPlaylistSongs(playlistId){
-  try {
-    return await listMusicsFromPlaylist(playlistId);
-  }
-  catch (error) {
-    throw error
-  }
-}
 
-export {searchYoutubeMusicPlaylist, getYoutubeMusicPlaylistSongs}
+export {getYoutubeMusicPlaylistSongs}
