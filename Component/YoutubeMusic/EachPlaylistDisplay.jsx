@@ -5,12 +5,16 @@ import { PlainText } from "../Global/PlainText";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Animated, { FadeOutLeft} from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
 
-export const EachPlaylistDisplay = ({title, thumbnail,totalSongs, removePlaylist, index}) => {
+export const EachPlaylistDisplay = ({title, thumbnail,totalSongs, removePlaylist, index, data}) => {
   const  {width} = Dimensions.get('window')
+  const navigation = useNavigation()
   return (
   <Animated.View exiting={FadeOutLeft}>
-    <Pressable style={{
+    <Pressable onPress={()=>{
+      navigation.navigate("YoutubeMusicPlaylist", {data})
+    }} style={{
       width:"100%",
       borderRadius:10,
       overflow:"hidden",
@@ -44,9 +48,10 @@ export const EachPlaylistDisplay = ({title, thumbnail,totalSongs, removePlaylist
         padding:10,
         justifyContent:"center",
       }}>
-        <PlainText text={title} style={{
-          fontSize:width * 0.08,
+        <PlainText text={title} numberOfLine={1} style={{
+          fontSize:width * 0.06,
           color:"white",
+          fontWeight:"bold",
         }}/>
         <SmallText text={`${totalSongs} songs`} style={{
           fontSize:width * 0.03,

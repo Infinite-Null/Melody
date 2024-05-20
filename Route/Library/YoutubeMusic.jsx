@@ -11,6 +11,7 @@ import { GetYoutubeMusicValue, SetYoutubeMusicValue } from "../../LocalStorage/Y
 import { EachPlaylistDisplay } from "../../Component/YoutubeMusic/EachPlaylistDisplay";
 import { Spacer } from "../../Component/Global/Spacer";
 import { LoadingModal } from "../../Component/YoutubeMusic/LoadingModal";
+import { it } from "@jest/globals";
 
 export const YoutubeMusic = () => {
   const { height } = Dimensions.get('window')
@@ -116,7 +117,7 @@ export const YoutubeMusic = () => {
         paddingBottom: height * 0.5,
       }}>
         {Playlist.map((item, index) => (
-          <EachPlaylistDisplay key={item.title} title={item.title} thumbnail={item.thumbnail} totalSongs={item.totalSongs} index={index} removePlaylist={removePlaylist}/>
+          <EachPlaylistDisplay key={item.title} data={item} title={item.title} thumbnail={item.thumbnail} totalSongs={item.totalSongs} index={index} removePlaylist={removePlaylist}/>
         ))}
       </ScrollView>
     </View>

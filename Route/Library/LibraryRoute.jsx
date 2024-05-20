@@ -5,6 +5,7 @@ import { LikedSongPage } from "./LikedSongPage";
 import { LikedPlaylistPage } from "./LikedPlaylistPage";
 import { AboutProject } from "./AboutProject";
 import { YoutubeMusic } from "./YoutubeMusic";
+import { YoutubeMusicPlaylistScreen } from "./YoutubeMusicPlaylistScreen";
 const Stack = createNativeStackNavigator();
 export const LibraryRoute = () => {
   return (
@@ -15,6 +16,7 @@ export const LibraryRoute = () => {
       <Stack.Screen name={"LikedPlaylists"} component={LikedPlaylistPage}/>
       <Stack.Screen name={"AboutProject"} component={AboutProject}/>
       <Stack.Screen name={"YoutubeMusic"} component={YoutubeMusic}/>
+      <Stack.Screen name={"YoutubeMusicPlaylist"} component={YoutubeMusicPlaylistScreen}/>
     </Stack.Navigator>
   );
 };
