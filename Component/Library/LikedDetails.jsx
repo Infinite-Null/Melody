@@ -3,35 +3,63 @@ import { Heading } from "../Global/Heading";
 import { Spacer } from "../Global/Spacer";
 import LinearGradient from "react-native-linear-gradient";
 import { useTheme } from "@react-navigation/native";
-import { AddPlaylist, getIndexQuality } from "../../MusicPlayerFunctions";
+import { AddPlaylist, AddSongsToQueue, getIndexQuality } from "../../MusicPlayerFunctions";
 import { useContext } from "react";
 import Context from "../../Context/Context";
 import { PlayButton } from "../Playlist/PlayButton";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
+import { getYoutubeMusicStreamUrl } from "../../Api/YoutubeMusic/Song";
+import TrackPlayer from "react-native-track-player";
 
 
 
 export const LikedDetails = ({name, Data, dontShowPlayButton}) => {
   const {updateTrack} = useContext(Context)
   async function AddToPlayer(){
-    const ForPlayer = []
-    Data.map((e)=>{
-      if (e){
-        ForPlayer.push({
-          url:e?.url,
-          title:FormatTitleAndArtist(e?.title),
-          artist:e.artist,
-          artwork:e?.artwork,
-          image:e?.artwork,
-          duration:e?.duration,
-          id:e?.id,
-          isYoutubeMusic:e?.isYoutubeMusic,
-          streamURL:e?.url ,
-        })
+    await TrackPlayer.pause()
+    for (let i = 0; i < Data.length; i++){
+      if (i === 0){
+        let url = Data[i]?.url
+        if (Data[i]?.isYoutubeMusic === true){
+          const resurl = await getYoutubeMusicStreamUrl(Data[i]?.id)
+          url = resurl.url
+        }
+        const ForMusicPlayer = {
+          url:url,
+          title:FormatTitleAndArtist(Data[i]?.title),
+          artist:FormatTitleAndArtist(Data[i]?.artist),
+          artwork:Data[i]?.artwork,
+          image:Data[i]?.artwork,
+          duration:Data[i]?.duration,
+          id:Data[i]?.id,
+          isYoutubeMusic:Data[i]?.isYoutubeMusic,
+          streamURL:url,
+        }
+        await TrackPlayer.reset()
+        await TrackPlayer.add([ForMusicPlayer]);
+        await TrackPlayer.play();
+        updateTrack()
+      } else {
+        let url = Data[i]?.url
+        if (Data[i]?.isYoutubeMusic === true){
+          const resurl = await getYoutubeMusicStreamUrl(Data[i]?.id)
+          url = resurl.url
+        }
+        const ForMusicPlayer = {
+          url:url,
+          title:FormatTitleAndArtist(Data[i]?.title),
+          artist:FormatTitleAndArtist(Data[i]?.artist),
+          artwork:Data[i]?.artwork,
+          image:Data[i]?.artwork,
+          duration:Data[i]?.duration,
+          id:Data[i]?.id,
+          isYoutubeMusic:false,
+          streamURL:url,
+        }
+        await AddSongsToQueue(ForMusicPlayer)
+        updateTrack()
       }
-    })
-      await AddPlaylist(ForPlayer)
-      updateTrack()
+    }
   }
   const theme = useTheme()
   const width = Dimensions.get('window').width

@@ -2,38 +2,67 @@ import { Pressable,View } from "react-native";
 import { PlainText } from "./PlainText";
 import { SmallText } from "./SmallText";
 import FastImage from "react-native-fast-image";
-import { AddPlaylist, PauseSong, PlayOneSong } from "../../MusicPlayerFunctions";
+import { AddPlaylist, AddSongsToQueue, PauseSong, PlayOneSong } from "../../MusicPlayerFunctions";
 import { memo, useContext } from "react";
 import Context from "../../Context/Context";
 import FormatTitleAndArtist from "../../Utils/FormatTitleAndArtist";
 import { EachSongMenuButton } from "../MusicPlayer/EachSongMenuButton";
 import FormatArtist from "../../Utils/FormatArtists";
 import { getYoutubeMusicStreamUrl } from "../../Api/YoutubeMusic/Song";
+import TrackPlayer from "react-native-track-player";
 
 
 export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,artists,thumbnail,duration, id, url, index, songData, isFromLiked, isYoutubePlaylist}) {
   const {updateTrack, setVisible, setSongLoading} = useContext(Context)
   const formattedAritst = (isYoutubeMusic || isFromLiked) ? artists : FormatArtist(artists)
   async function AddSongToPlayerJioSavan () {
-    const ForMusicPlayer = []
     if (isFromLiked){
-      songData?.map((e,i)=>{
-        console.log(e);
-        if (i >= index){
-          ForMusicPlayer.push({
+      for (let i = 0; i < songData.length; i++){
+        if (i === index){
+          let url = songData[i]?.url
+          if (songData[i]?.isYoutubeMusic === true){
+            const resurl = await getYoutubeMusicStreamUrl(songData[i]?.id)
+            url = resurl.url
+          }
+          const ForMusicPlayer = {
             url:url,
-            title:FormatTitleAndArtist(e?.title),
+            title:FormatTitleAndArtist(songData[i]?.title),
             artist:FormatTitleAndArtist(formattedAritst),
-            artwork:e?.artwork,
-            image:e?.artwork,
-            duration:e?.duration,
-            id:e?.id,
-            isYoutubeMusic:isYoutubeMusic ? true : false,
-            streamURL:url ,
-          })
+            artwork:songData[i]?.artwork,
+            image:songData[i]?.artwork,
+            duration:songData[i]?.duration,
+            id:songData[i]?.id,
+            isYoutubeMusic:false,
+            streamURL:url,
+          }
+          await TrackPlayer.reset()
+          await TrackPlayer.add([ForMusicPlayer]);
+          await TrackPlayer.play();
+          updateTrack()
         }
-      })
+        if(i > index){
+          let url = songData[i]?.url
+          if (songData[i]?.isYoutubeMusic === true){
+            const resurl = await getYoutubeMusicStreamUrl(songData[i]?.id)
+            url = resurl.url
+          }
+          const ForMusicPlayer = {
+            url:url,
+            title:FormatTitleAndArtist(songData[i]?.title),
+            artist:FormatTitleAndArtist(formattedAritst),
+            artwork:songData[i]?.artwork,
+            image:songData[i]?.artwork,
+            duration:songData[i]?.duration,
+            id:songData[i]?.id,
+            isYoutubeMusic:false,
+            streamURL:url,
+          }
+          await AddSongsToQueue(ForMusicPlayer)
+          updateTrack()
+        }
+      }
     } else {
+      const ForMusicPlayer = []
       songData?.songs?.map((e,i)=>{
         if (i >= index){
           ForMusicPlayer.push({
@@ -49,45 +78,53 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
           })
         }
       })
-    }
-
-
-    await AddPlaylist(ForMusicPlayer)
-    updateTrack()
-  }
-  // async function getStreamingLink () {
-  //   try {
-  //     const streamLink = await getYoutubeMusicStreamUrl(id)
-  //     console.log(streamLink);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-  async function AddSongToPlayerYoutubeMusic () {
-    if(isYoutubePlaylist){
-      const ForMusicPlayer = []
-      songData?.map((e,i)=>{
-        if (i >= index){
-          ForMusicPlayer.push({
-            url:e?.url,
-            title:FormatTitleAndArtist(e?.title),
-            artist:FormatTitleAndArtist(formattedAritst),
-            artwork:e?.image,
-            image:e?.image,
-            duration:e?.duration,
-            id:e?.id,
-            isYoutubeMusic:true,
-            streamURL:e?.url,
-          })
-        }
-      })
       await AddPlaylist(ForMusicPlayer)
       updateTrack()
+    }
+  }
+  async function AddSongToPlayerYoutubeMusic () {
+    if (isYoutubePlaylist){
+      for (let i = 0; i < songData.length; i++){
+        let { url } = await getYoutubeMusicStreamUrl(songData[i]?.id)
+        if (i  === index){
+          const ForMusicPlayer = {
+            url:url,
+            title:FormatTitleAndArtist(songData[i]?.title),
+            artist:FormatTitleAndArtist(formattedAritst),
+            artwork:songData[i]?.image,
+            image:songData[i]?.image,
+            duration:songData[i]?.duration,
+            id:songData[i]?.id,
+            isYoutubeMusic:true,
+            streamURL:url,
+          }
+          console.log(ForMusicPlayer);
+          await TrackPlayer.add([ForMusicPlayer]);
+          await TrackPlayer.play();
+          updateTrack()
+        }
+        if(i > index){
+          let { url } = await getYoutubeMusicStreamUrl(songData[i]?.id)
+          const ForMusicPlayer = {
+            url:url,
+            title:FormatTitleAndArtist(songData[i]?.title),
+            artist:FormatTitleAndArtist(formattedAritst),
+            artwork:songData[i]?.image,
+            image:songData[i]?.image,
+            duration:songData[i]?.duration,
+            id:songData[i]?.id,
+            isYoutubeMusic:true,
+            streamURL:url,
+          }
+          await AddSongsToQueue(ForMusicPlayer)
+          updateTrack()
+        }
+      }
     } else {
       try {
-
         await PauseSong()
         const streamLink = await getYoutubeMusicStreamUrl(id)
+        console.log(streamLink.url);
         const ForMusicPlayer = {
           url:streamLink.url,
           title:FormatTitleAndArtist(title),
@@ -109,7 +146,7 @@ export const EachSongCard = memo(function EachSongCard({isYoutubeMusic,title,art
     }
   }
   async function AddSongToPlayer () {
-    if (!isYoutubeMusic){
+    if (!isYoutubeMusic || isFromLiked){
       await AddSongToPlayerJioSavan()
     } else {
       await AddSongToPlayerYoutubeMusic()

@@ -34,6 +34,7 @@ export const LikedSongPage = () => {
     })
     setLikedSongs(Final)
   }
+
   useEffect(() => {
     getAllLikedSongs()
   }, []);
@@ -46,7 +47,7 @@ export const LikedSongPage = () => {
       <LikedDetails name={"Liked Songs"} Data={LikedSongs}/>
      <View style={{paddingHorizontal:10, backgroundColor:theme.colors.background}}>
        {LikedSongs.map((e,i) =>{
-         return <EachSongCard isFromLiked={true} isYoutubeMusic={e?.isYoutubeMusic} songData={LikedSongs} index={i}  url={e?.url} id={e?.id} title={e?.title} artists={e?.artist} thumbnail={e?.artwork} duration={e?.duration} key={i}/>
+         return <EachSongCard  isFromLiked={true} isYoutubeMusic={e?.isYoutubeMusic} songData={LikedSongs} index={i}  url={e?.url} id={e?.id} title={e?.title} artists={e?.artist} thumbnail={e?.artwork} duration={e?.duration} key={i}/>
        })}
      </View>
     </Animated.ScrollView>

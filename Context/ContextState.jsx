@@ -98,6 +98,7 @@ const ContextState = (props)=>{
     useTrackPlayerEvents(events, (event) => {
         if (event.type === Event.PlaybackError) {
             console.warn('An error occured while playing the current track.');
+            console.log(event.message);
         }
         if (event.type === Event.PlaybackActiveTrackChanged) {
             setCurrentPlaying(event.track)

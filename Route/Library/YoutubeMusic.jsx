@@ -11,7 +11,6 @@ import { GetYoutubeMusicValue, SetYoutubeMusicValue } from "../../LocalStorage/Y
 import { EachPlaylistDisplay } from "../../Component/YoutubeMusic/EachPlaylistDisplay";
 import { Spacer } from "../../Component/Global/Spacer";
 import { LoadingModal } from "../../Component/YoutubeMusic/LoadingModal";
-import { it } from "@jest/globals";
 
 export const YoutubeMusic = () => {
   const { height } = Dimensions.get('window')
@@ -42,7 +41,7 @@ export const YoutubeMusic = () => {
             url:streamUrl.url,
             image:songs[i]?.thumbnailUrl,
             artist:songs[i]?.artists[0]?.name ?? "",
-            duration:songs[i]?.totalSeconds,
+            duration:songs[i]?.duration?.totalSeconds,
             id:songs[i]?.youtubeId,
           })
         }
